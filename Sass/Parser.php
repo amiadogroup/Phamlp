@@ -21,7 +21,7 @@
  * @subpackage	Sass
  */
 
-require_once('Pahmlp_Sass_File.php');
+require_once('Phamlp_Sass_File.php.php');
 require_once('Pahmlp_Sass_Exception.php');
 require_once('tree/SassNode.php');
 
@@ -330,7 +330,7 @@ class Phamlp_Sass_Parser {
 			'line'					 => 1,
 			'line_numbers'	 => false,
 			'style' 				 => SassRenderer::STYLE_NESTED,
-			'syntax'				 => Pahmlp_Sass_File::SASS
+			'syntax'				 => Phamlp_Sass_File.php::SASS
 		);
 		
 		foreach (array_merge($defaultOptions, $options) as $name=>$value) {
@@ -457,17 +457,17 @@ class Phamlp_Sass_Parser {
 	 */
 	public function parse($source, $isFile = true) {
 		if ($isFile) {
-			$this->filename = Pahmlp_Sass_File::getFile($source, $this);
+			$this->filename = Phamlp_Sass_File.php::getFile($source, $this);
 			
 			if ($isFile) {
 				$this->syntax = substr($this->filename, -4);
 			}
-			elseif ($this->syntax !== Pahmlp_Sass_File::SASS && $this->syntax !== Pahmlp_Sass_File::SCSS) {
+			elseif ($this->syntax !== Phamlp_Sass_File.php::SASS && $this->syntax !== Phamlp_Sass_File.php::SCSS) {
 				throw new Pahmlp_Sass_Exception('Invalid {what}', array('{what}'=>'syntax option'));
 			}
 
 			if ($this->cache) {
-				$cached = Pahmlp_Sass_File::getCachedFile($this->filename, $this->cache_location);
+				$cached = Phamlp_Sass_File.php::getCachedFile($this->filename, $this->cache_location);
 				if ($cached !== false) {
 					return $cached;
 				}
@@ -476,7 +476,7 @@ class Phamlp_Sass_Parser {
 			$tree = $this->toTree(file_get_contents($this->filename));
 
 			if ($this->cache) {
-				Pahmlp_Sass_File::setCachedFile($tree, $this->filename, $this->cache_location);
+				Phamlp_Sass_File.php::setCachedFile($tree, $this->filename, $this->cache_location);
 			}
 
 			return $tree;
@@ -493,7 +493,7 @@ class Phamlp_Sass_Parser {
 	 * @return SassRootNode the root of this document tree
 	 */
 	private function toTree($source) {
-		if ($this->syntax === Pahmlp_Sass_File::SASS) {
+		if ($this->syntax === Phamlp_Sass_File.php::SASS) {
 			$this->source = explode("\n", $source);
 			$this->setIndentChar();
 		}
@@ -543,13 +543,13 @@ class Phamlp_Sass_Parser {
 				return new SassPropertyNode($token, $this->property_syntax);
 				break;
 			case SassMixinDefinitionNode::isa($token):
-				if ($this->syntax === Pahmlp_Sass_File::SCSS) {
+				if ($this->syntax === Phamlp_Sass_File.php::SCSS) {
 					throw new Pahmlp_Sass_Exception('Mixin {which} shortcut not allowed in SCSS', array('{which}'=>'definition'), $this);
 				}
 				return new SassMixinDefinitionNode($token);
 				break;
 			case SassMixinNode::isa($token):
-				if ($this->syntax === Pahmlp_Sass_File::SCSS) {
+				if ($this->syntax === Phamlp_Sass_File.php::SCSS) {
 					throw new Pahmlp_Sass_Exception('Mixin {which} shortcut not allowed in SCSS', array('{which}'=>'include'), $this);
 				}
 				return new SassMixinNode($token);
@@ -566,7 +566,7 @@ class Phamlp_Sass_Parser {
 	 * @return object
 	 */
 	private function getToken() {
-		return ($this->syntax === Pahmlp_Sass_File::SASS ? $this->sass2Token() : $this->scss2Token());
+		return ($this->syntax === Phamlp_Sass_File.php::SASS ? $this->sass2Token() : $this->scss2Token());
 	}
 	
 	/**
@@ -782,7 +782,7 @@ class Phamlp_Sass_Parser {
 				return new SassMixinNode($token);
 				break;
 			case '@import':
-				if ($this->syntax == Pahmlp_Sass_File::SASS) {
+				if ($this->syntax == Phamlp_Sass_File.php::SASS) {
 					$i = 0;
 					$source = '';
 					while (!empty($this->source) && empty($source)) {
