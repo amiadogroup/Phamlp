@@ -321,11 +321,11 @@ abstract class SassLiteral {
 	 * Asserts that the literal is the expected type 
 	 * @param SassLiteral the literal to test
 	 * @param string expected type
-	 * @throws SassScriptFunctionException if value is not the expected type
+	 * @throws Phamlp_Sass_Script_FunctionException if value is not the expected type
 	 */
 	public static function assertType($literal, $type) {
 		if (!$literal instanceof $type) {
-			throw new SassScriptFunctionException('{what} must be a {type}', array('{what}'=>($literal instanceof SassLiteral ? $literal->typeOf : 'literal'), '{type}'=>$type), Phamlp_Sass_Script_Parser::$context->node);
+			throw new Phamlp_Sass_Script_FunctionException('{what} must be a {type}', array('{what}'=>($literal instanceof SassLiteral ? $literal->typeOf : 'literal'), '{type}'=>$type), Phamlp_Sass_Script_Parser::$context->node);
 		}
 	}
 	
@@ -335,11 +335,11 @@ abstract class SassLiteral {
 	 * @param float the minimum value
 	 * @param float the maximum value
 	 * @param string the units.
-	 * @throws SassScriptFunctionException if value is not the expected type
+	 * @throws Phamlp_Sass_Script_FunctionException if value is not the expected type
 	 */
 	 public static function assertInRange($literal, $min, $max, $units = '') {
 	 	 if ($literal->value < $min || $literal->value > $max) {
-			throw new SassScriptFunctionException('{what} must be {inRange}', array('{what}'=>$literal->typeOf, '{inRange}'=>Phamlp::t('sass', 'between {min} and {max} inclusive', array('{min}'=>$min.$units, '{max}'=>$max.$units))), Phamlp_Sass_Script_Parser::$context->node);
+			throw new Phamlp_Sass_Script_FunctionException('{what} must be {inRange}', array('{what}'=>$literal->typeOf, '{inRange}'=>Phamlp::t('sass', 'between {min} and {max} inclusive', array('{min}'=>$min.$units, '{max}'=>$max.$units))), Phamlp_Sass_Script_Parser::$context->node);
 		}
 	}
 

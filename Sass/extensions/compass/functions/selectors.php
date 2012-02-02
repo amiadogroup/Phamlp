@@ -49,7 +49,7 @@ class SassExtentionsCompassFunctionsSelectors {
 	#		 width: 2px
 	public static function nest() {
 		if (func_num_args() < 2)
-			throw new SassScriptFunctionException('nest() requires two or more arguments', array(), Phamlp_Sass_Script_Parser::$context->node);
+			throw new Phamlp_Sass_Script_FunctionException('nest() requires two or more arguments', array(), Phamlp_Sass_Script_Parser::$context->node);
 			
 		$args = func_get_args();
 		$arg = array_shift($args);

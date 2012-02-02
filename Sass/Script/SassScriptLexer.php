@@ -13,7 +13,6 @@ require_once('literals/SassBoolean.php');
 require_once('literals/SassColour.php');
 require_once('literals/SassNumber.php');
 require_once('literals/SassString.php');
-require_once('SassScriptFunction.php');
 require_once('SassScriptOperation.php');
 require_once('SassScriptVariable.php');
 
@@ -53,17 +52,17 @@ class SassScriptLexer {
 			if (($match = $this->isWhitespace($string)) !== false) {
 				$tokens[] = null;
 			}
-			elseif (($match = SassScriptFunction::isa($string)) !== false) {
-				preg_match(SassScriptFunction::MATCH_FUNC, $match, $matches);
+			elseif (($match = Phamlp_Sass_Script_Function::isa($string)) !== false) {
+				preg_match(Phamlp_Sass_Script_Function::MATCH_FUNC, $match, $matches);
 				
 				$args = array();
-				foreach (SassScriptFunction::extractArgs($matches[SassScriptFunction::ARGS])
+				foreach (Phamlp_Sass_Script_Function::extractArgs($matches[Phamlp_Sass_Script_Function::ARGS])
 						as $expression) {
 					$args[] = $this->parser->evaluate($expression, $context);
 				}
 				
-				$tokens[] = new SassScriptFunction(
-						$matches[SassScriptFunction::NAME], $args);
+				$tokens[] = new Phamlp_Sass_Script_Function(
+						$matches[Phamlp_Sass_Script_Function::NAME], $args);
 			}
 			elseif (($match = SassString::isa($string)) !== false) {
 				$tokens[] = new SassString($match);

@@ -71,7 +71,7 @@ class Phamlp_Sass_Script_Parser {
 		
 		while (count($tokens)) {
 			$token = array_shift($tokens);
-			if ($token instanceof SassScriptFunction) {
+			if ($token instanceof Phamlp_Sass_Script_Function) {
 				array_push($operands, $token->perform());
 			}
 			elseif ($token instanceof SassLiteral) {
@@ -123,7 +123,7 @@ class Phamlp_Sass_Script_Parser {
 			}
 
 			// If the token is a number or function add it to the output queue.
- 			if ($token instanceof SassLiteral || $token instanceof SassScriptFunction) {
+ 			if ($token instanceof SassLiteral || $token instanceof Phamlp_Sass_Script_Function) {
  				if ($environment === self::CSS_PROPERTY && $token instanceof SassNumber && !$parenthesis) {
 					$token->inExpression = false; 
  				}

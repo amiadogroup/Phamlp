@@ -41,7 +41,7 @@ class Phamlp_Sass_Tree_Node_Mixin extends Phamlp_Sass_Tree_Node {
 		preg_match(self::MATCH, $token->source, $matches);
 		$this->name = $matches[self::NAME];
 	  if (isset($matches[self::ARGS])) {
-	  	$this->args = SassScriptFunction::extractArgs($matches[self::ARGS]);
+	  	$this->args = Phamlp_Sass_Script_Function::extractArgs($matches[self::ARGS]);
 	  }
 	}
 

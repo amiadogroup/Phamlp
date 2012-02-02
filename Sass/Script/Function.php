@@ -1,7 +1,7 @@
 <?php
 /* SVN FILE: $Id$ */
 /**
- * SassScriptFunction class file.
+ * Phamlp_Sass_Script_Function class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
  * @copyright 	Copyright (c) 2010 PBM Web Development
  * @license			http://phamlp.googlecode.com/files/license.txt
@@ -10,12 +10,12 @@
  */
 
 /**
- * SassScriptFunction class.
+ * Phamlp_Sass_Script_Function class.
  * Preforms a SassScript function.
  * @package			PHamlP
  * @subpackage	Sass.script
  */
-class SassScriptFunction {
+class Phamlp_Sass_Script_Function {
 	/**@#+
 	 * Regexes for matching and extracting functions and arguments
 	 */
@@ -29,10 +29,10 @@ class SassScriptFunction {
 	private $args;
 
 	/**
-	 * SassScriptFunction constructor
+	 * Phamlp_Sass_Script_Function constructor
 	 * @param string name of the function
 	 * @param array arguments for the function
-	 * @return SassScriptFunction
+	 * @return Phamlp_Sass_Script_Function
 	 */
 	public function __construct($name, $args) {
 		$this->name = $name;
@@ -44,7 +44,7 @@ class SassScriptFunction {
 	 * Look for a user defined function first - this allows users to override
 	 * pre-defined functions, then try the pre-defined functions.
 	 * @return Function the value of this Function
-	 * @throws SassScriptFunctionException if function is undefined
+	 * @throws Phamlp_Sass_Script_FunctionException if function is undefined
 	 */
 	public function perform() {
 		$name = str_replace('-', '_', $this->name);
@@ -63,9 +63,8 @@ class SassScriptFunction {
 			} // foreach
 		} // foreach
 
-		require_once('SassScriptFunctions.php');
-		if (method_exists('SassScriptFunctions', $name)) {
-			return call_user_func_array(array('SassScriptFunctions', $name), $this->args);
+		if (method_exists('Phamlp_Sass_Script_Functions', $name)) {
+			return call_user_func_array(array('Phamlp_Sass_Script_Functions', $name), $this->args);
 		}
 		
 		// CSS function: create a SassString that will emit the function into the CSS
