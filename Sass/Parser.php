@@ -538,11 +538,11 @@ class Phamlp_Sass_Parser {
 			case Phamlp_Sass_Tree_Node_Property::isa($token, $this->property_syntax):
 				return new Phamlp_Sass_Tree_Node_Property($token, $this->property_syntax);
 				break;
-			case SassMixinDefinitionNode::isa($token):
+			case Phamlp_Sass_Tree_Node_Mixin_Definition::isa($token):
 				if ($this->syntax === Phamlp_Sass_File::SCSS) {
 					throw new Phamlp_Sass_Exception('Mixin {which} shortcut not allowed in SCSS', array('{which}'=>'definition'), $this);
 				}
-				return new SassMixinDefinitionNode($token);
+				return new Phamlp_Sass_Tree_Node_Mixin_Definition($token);
 				break;
 			case SassMixinNode::isa($token):
 				if ($this->syntax === Phamlp_Sass_File::SCSS) {
@@ -772,7 +772,7 @@ class Phamlp_Sass_Parser {
 				return new SassExtendNode($token);
 				break;
 			case '@mixin':
-				return new SassMixinDefinitionNode($token);
+				return new Phamlp_Sass_Tree_Node_Mixin_Definition($token);
 				break;
 			case '@include':
 				return new SassMixinNode($token);

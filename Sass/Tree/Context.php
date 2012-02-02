@@ -47,7 +47,7 @@ class Phamlp_Sass_Tree_Context {
 	/**
 	 * Adds a mixin
 	 * @param string name of mixin
-	 * @return SassMixinDefinitionNode the mixin
+	 * @return Phamlp_Sass_Tree_Node_Mixin_Definition the mixin
 	 */
 	public function addMixin($name, $mixin) {
 		$this->mixins[$name] = $mixin;
@@ -57,7 +57,7 @@ class Phamlp_Sass_Tree_Context {
 	/**
 	 * Returns a mixin
 	 * @param string name of mixin to return
-	 * @return SassMixinDefinitionNode the mixin
+	 * @return Phamlp_Sass_Tree_Node_Mixin_Definition the mixin
 	 * @throws Phamlp_Sass_Tree_ContextException if mixin not defined in this context
 	 */
 	public function getMixin($name) {

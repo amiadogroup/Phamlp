@@ -32,7 +32,7 @@ class SassMixinNode extends Phamlp_Sass_Tree_Node {
 	private $args = array();
 
 	/**
-	 * SassMixinDefinitionNode constructor.
+	 * Phamlp_Sass_Tree_Node_Mixin_Definition constructor.
 	 * @param object source token
 	 * @return SassMixinNode
 	 */
