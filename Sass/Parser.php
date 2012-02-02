@@ -449,7 +449,7 @@ class Phamlp_Sass_Parser {
 	 * If caching is enabled a cached version will be used if possible or the
 	 * compiled version cached if not.
 	 * @param string name of source file or Sass source
-	 * @return SassRootNode Root node of document tree
+	 * @return Phamlp_Sass_Tree_RootNode Root node of document tree
 	 */
 	public function parse($source, $isFile = true) {
 		if ($isFile) {
@@ -486,7 +486,7 @@ class Phamlp_Sass_Parser {
 	 * Parse Sass source into a document tree.
 	 * If the tree is already created return that.
 	 * @param string Sass source
-	 * @return SassRootNode the root of this document tree
+	 * @return Phamlp_Sass_Tree_RootNode the root of this document tree
 	 */
 	private function toTree($source) {
 		if ($this->syntax === Phamlp_Sass_File::SASS) {
@@ -497,7 +497,7 @@ class Phamlp_Sass_Parser {
 			$this->source = $source;
 		}
 		unset($source);
-		$root = new SassRootNode($this);
+		$root = new Phamlp_Sass_Tree_RootNode($this);
 		$this->buildTree($root);
 		return $root;
 	}

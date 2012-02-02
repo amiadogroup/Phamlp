@@ -17,7 +17,7 @@ require_once('SassImportNode.php');
 require_once('SassMixinNode.php');
 require_once('SassMixinDefinitionNode.php');
 require_once('SassPropertyNode.php');
-require_once('SassRootNode.php');
+require_once('Phamlp_Sass_Tree_RootNode.php');
 require_once('SassRuleNode.php');
 require_once('SassVariableNode.php');
 require_once('SassExtendNode.php');
