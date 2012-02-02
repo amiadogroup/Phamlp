@@ -10,7 +10,6 @@
  */
 
 require_once('SassContext.php');
-require_once('SassCommentNode.php');
 require_once('SassDebugNode.php');
 require_once('SassDirectiveNode.php');
 require_once('SassImportNode.php');
