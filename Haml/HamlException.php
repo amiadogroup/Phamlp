@@ -21,6 +21,6 @@ class HamlException extends Exception {
 	 * @param object object with source code and meta data
 	 */
 	public function __construct($message, $params = array(), $object = null) {
-		parent::__construct('haml', $message, $params, $object);
+		parent::__construct('sass:: ' . $message . ' ' . print_r($params, true) . (is_object($object) ? ": {$object->filename}::{$object->line}\nSource: {$object->source}" : ''));
 	}
 }
