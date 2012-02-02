@@ -16,7 +16,7 @@
  * @package			PHamlP
  * @subpackage	Sass.renderers
  */
-class SassCompressedRenderer extends SassRenderer {
+class SassCompressedRenderer extends Phamlp_Sass_Renderer_Renderer {
 	/**
 	 * Renders the brace between the selectors and the properties
 	 * @return string the brace between the selectors and the properties

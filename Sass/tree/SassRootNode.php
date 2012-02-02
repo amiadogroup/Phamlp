@@ -10,7 +10,7 @@
  */
 
 require_once(dirname(__FILE__).'/../script/SassScriptParser.php');
-require_once(dirname(__FILE__).'/../renderers/SassRenderer.php');
+require_once(dirname(__FILE__).'/../renderers/Phamlp_Sass_Renderer_Renderer.php');
 
 /**
  * SassRootNode class.
@@ -24,7 +24,7 @@ class SassRootNode extends Phamlp_Sass_Tree_Node {
 	 */
 	protected $script;
 	/**
-	 * @var SassRenderer the renderer for this node
+	 * @var Phamlp_Sass_Renderer_Renderer the renderer for this node
 	 */
 	protected $renderer;
 	/**
@@ -50,7 +50,7 @@ class SassRootNode extends Phamlp_Sass_Tree_Node {
 		));
 		$this->parser = $parser;
 		$this->script = new SassScriptParser();
-		$this->renderer = SassRenderer::getRenderer($parser->style);
+		$this->renderer = Phamlp_Sass_Renderer_Renderer::getRenderer($parser->style);
 		$this->root = $this;
 	}
 

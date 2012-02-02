@@ -1,7 +1,7 @@
 <?php
 /* SVN FILE: $Id$ */
 /**
- * SassRenderer class file.
+ * Phamlp_Sass_Renderer_Renderer class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
  * @copyright 	Copyright (c) 2010 PBM Web Development
  * @license			http://phamlp.googlecode.com/files/license.txt
@@ -15,11 +15,11 @@ require_once('SassExpandedRenderer.php');
 require_once('SassNestedRenderer.php');
 
 /**
- * SassRenderer class.
+ * Phamlp_Sass_Renderer_Renderer class.
  * @package			PHamlP
  * @subpackage	Sass.renderers
  */
-class SassRenderer {
+class Phamlp_Sass_Renderer_Renderer {
 	/**#@+
 	 * Output Styles
 	 */
@@ -34,7 +34,7 @@ class SassRenderer {
 	/**
 	 * Returns the renderer for the required render style.
 	 * @param string render style
-	 * @return SassRenderer
+	 * @return Phamlp_Sass_Renderer_Renderer
 	 */
 	public static function getRenderer($style) {
 		switch ($style) {
