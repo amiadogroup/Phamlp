@@ -26,8 +26,8 @@
 		'Can not use parent selector (&) when no parent selectors'=>'',
 		'Child classes must override this method'=>'',
 		'{class} does not support {operation}.'=>'',
-		'Colour'=>'',
-		'colours'=>'',
+		'Color'=>'',
+		'colors'=>'',
 		'Illegal comment type'=>'',
 		'Illegal indentation ({level}); indentation can only increase by one'=>'',
 		'import directives'=>'',
@@ -49,9 +49,9 @@
 		'number'=>'',
 		'Number'=>'',
 		'Properties can not be assigned at root level'=>'',
-		'SassColour can not have HSL and RGB keys specified'=>'',
-		'SassColour must have all {colourSpace} keys specified'=>'',
-		'SassColour array must have at least 3 elements'=>'',
+		'SassColor can not have HSL and RGB keys specified'=>'',
+		'SassColor must have all {colorSpace} keys specified'=>'',
+		'SassColor array must have at least 3 elements'=>'',
 		'Selectors can not end in a comma'=>'',
 		'Setting variables with "{sassDefault}=" is deprecated; use "${name}: {value}{scssDefault}"'=>'',
 		'Unable to create document tree for {uri}'=>'',
@@ -78,8 +78,8 @@ between {min} and {max} inclusive
 Can not use parent selector (&) when no parent selectors
 Child classes must override this method
 {class} does not support {operation}.
-Colour
-colours
+Color
+colors
 Illegal comment type
 Illegal indentation ({level}); indentation can only increase by one
 import directives
@@ -101,9 +101,9 @@ No setter function for {what}
 number
 Number
 Properties can not be assigned at root level
-SassColour can not have HSL and RGB keys specified
-SassColour must have all {colourSpace} keys specified
-SassColour array must have at least 3 elements
+SassColor can not have HSL and RGB keys specified
+SassColor must have all {colorSpace} keys specified
+SassColor array must have at least 3 elements
 Selectors can not end in a comma
 Setting variables with "{sassDefault}=" is deprecated; use "${name}: {value}{scssDefault}"
 Unable to create document tree for {uri}

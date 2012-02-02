@@ -1,7 +1,7 @@
 <?php
 /* SVN FILE: $Id: SassBoolean.php 49 2010-04-04 10:51:24Z chris.l.yates $ */
 /**
- * Compass extension SassScript colour stop objects and functions class file.
+ * Compass extension SassScript color stop objects and functions class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
  * @copyright 	Copyright (c) 2010 PBM Web Development
  * @license			http://phamlp.googlecode.com/files/license.txt
@@ -42,25 +42,25 @@ class CompassList extends SassLiteral {
 	public static function isa($subject) {}
 }
 
-class CompassColourStop extends SassLiteral {
-	private $colour;
+class CompassColorStop extends SassLiteral {
+	private $color;
 	public $stop;
 	  
-	public function __construct($colour, $stop = null) {
-		$this->colour = $colour;
+	public function __construct($color, $stop = null) {
+		$this->color = $color;
 		$this->stop = $stop;
 	}
 	
 	protected function getColor() {
-		return $this->getColour();
+		return $this->getColor();
 	}
 	
-	protected function getColour() {
-		return $this->colour;
+	protected function getColor() {
+		return $this->color;
 	}
 	
 	public function toString() {
-		$s = $this->colour->toString();
+		$s = $this->color->toString();
 		if (!empty($this->stop)) {
 			$s .= ' ';
 			if ($this->stop->isUnitless()) {
@@ -77,65 +77,65 @@ class CompassColourStop extends SassLiteral {
 }
  
 /**
- * Compass extension SassScript colour stops functions class.
+ * Compass extension SassScript color stops functions class.
  * A collection of functions for use in SassSCript.
  * @package			PHamlP
  * @subpackage	Sass.extensions.compass.functions
  */
-class SassExtentionsCompassFunctionsColourStops {
+class SassExtentionsCompassFunctionsColorStops {
 	# returns color-stop() calls for use in webkit.
-	public static function grad_color_stops($colour_list) {
-		return self::grad_colour_stops($colour_list);
+	public static function grad_color_stops($color_list) {
+		return self::grad_color_stops($color_list);
 	}
 	
-	public static function grad_colour_stops($colour_list) {
-		SassLiteral::assertType($colour_list, 'CompassList');
-		self::normalize_stops($colour_list);
-		$v = array_reverse($colour_list->values);
+	public static function grad_color_stops($color_list) {
+		SassLiteral::assertType($color_list, 'CompassList');
+		self::normalize_stops($color_list);
+		$v = array_reverse($color_list->values);
 		$max = $v[0]->stop;
 		$last_value = null;
 		
-		$colourStops = array();
+		$colorStops = array();
 		
-		foreach ($colour_list->values as $pos) {
-			# have to convert absolute units to percentages for use in colour stop functions.
+		foreach ($color_list->values as $pos) {
+			# have to convert absolute units to percentages for use in color stop functions.
 			$stop = $pos->stop;
 			if ($stop->numeratorUnits === $max->numeratorUnits) {
 				$stop = $stop->op_div($max)->op_times(new SassNumber('100%'));
 			}
-			# Make sure the colour stops are specified in the right order.
+			# Make sure the color stops are specified in the right order.
 			if ($last_value && $last_value->value > $stop->value) {
-				throw new SassScriptFunctionException('Colour stops must be specified in increasing order', array(), SassScriptParser::$context->node);
+				throw new SassScriptFunctionException('Color stops must be specified in increasing order', array(), SassScriptParser::$context->node);
 			}
 		 
 			$last_value = $stop;
-			$colourStops[] = "colour-stop({$stop->toString()}, {$pos->colour->toString()})";
+			$colorStops[] = "color-stop({$stop->toString()}, {$pos->color->toString()})";
 		}
 		
-		return new SassString(join(', ', $colourStops));
+		return new SassString(join(', ', $colorStops));
 	}
 
-	# returns the end position of the gradient from the colour stop
-	public static function grad_end_position($colourList, $radial = null) {
-		SassLiteral::assertType($colourList, 'CompassList');
+	# returns the end position of the gradient from the color stop
+	public static function grad_end_position($colorList, $radial = null) {
+		SassLiteral::assertType($colorList, 'CompassList');
 		if (is_null($radial)) {
 			$radial = new SassBoolean(false);
 		}
 		else {
 			SassLiteral::assertType($radial, 'SassBoolean');
 		}
-		return self::grad_position($colourList, new SassNumber(sizeof($colourList->values)), new SassNumber(100), $radial);
+		return self::grad_position($colorList, new SassNumber(sizeof($colorList->values)), new SassNumber(100), $radial);
 	}
 
-	public static function grad_position($colourList, $index, $default, $radial = null) {
-		SassLiteral::assertType($colourList, 'CompassList');
+	public static function grad_position($colorList, $index, $default, $radial = null) {
+		SassLiteral::assertType($colorList, 'CompassList');
 		if (is_null($radial)) {
 			$radial = new SassBoolean(false);
 		}
 		else {
 			SassLiteral::assertType($radial, 'SassBoolean');
 		}
-		$stop = $colourList->values[$index->value - 1]->stop;
+		$stop = $colorList->values[$index->value - 1]->stop;
 		if ($stop && $radial->value) {
 			$orig_stop = $stop;
 			if ($stop->isUnitless()) {
@@ -149,8 +149,8 @@ class SassExtentionsCompassFunctionsColourStops {
 				}
 			}
 			
-			if ($stop->numeratorUnits === '%' && isset($colourList->values[sizeof($colourList->values)-1]->stop) && $colourList->values[sizeof($colourList->values)-1]->stop->numeratorUnits === 'px')
-				$stop = $stop->op_times($colourList->values[sizeof($colourList->values)-1]->stop)->op_div(new SassNumber('100%'));
+			if ($stop->numeratorUnits === '%' && isset($colorList->values[sizeof($colorList->values)-1]->stop) && $colorList->values[sizeof($colorList->values)-1]->stop->numeratorUnits === 'px')
+				$stop = $stop->op_times($colorList->values[sizeof($colorList->values)-1]->stop)->op_div(new SassNumber('100%'));
 			//Compass::Logger.new.record(:warning, "Webkit only supports pixels for the start and end stops for radial gradients. Got: #{orig_stop}") if stop.numerator_units != ["px"];
 			return $stop->op_div(new SassNumber('1'.$stop->units));
 		}
@@ -187,39 +187,39 @@ class SassExtentionsCompassFunctionsColourStops {
 	}
 
 	public static function color_stops() {
-		return self::colour_stops(func_get_args());
+		return self::color_stops(func_get_args());
 	}
 	
-	public static function colour_stops() {
+	public static function color_stops() {
 		$args = func_get_args();
 		$list = array();
 		
 		foreach ($args as $arg) {
-			if ($arg instanceof SassColour) {
-				$list[] = new CompassColourStop($arg);
+			if ($arg instanceof SassColor) {
+				$list[] = new CompassColorStop($arg);
 			}
 			elseif ($arg instanceof SassString) {
 				# We get a string as the result of concatenation
 				# So we have to reparse the expression
-				$colour = $stop = null;
+				$color = $stop = null;
 				if (empty($parser))
 					$parser = new SassScriptParser();
 				$expr = $parser->parse($arg->value, SassScriptParser::$context);
 				
 				$x = array_pop($expr);
 				
-				if ($x instanceof SassColour)
-					$colour = $x;
+				if ($x instanceof SassColor)
+					$color = $x;
 				elseif ($x instanceof SassScriptOperation) {
 					if ($x->operator != 'concat')
 						# This should never happen.
-						throw new SassScriptFunctionException("Couldn't parse a colour stop from: {value}", array('{value}'=>$arg->value), SassScriptParser::$context->node);
-					$colour = $expr[0];
+						throw new SassScriptFunctionException("Couldn't parse a color stop from: {value}", array('{value}'=>$arg->value), SassScriptParser::$context->node);
+					$color = $expr[0];
 					$stop = $expr[1];
 				}
 				else
-					throw new SassScriptFunctionException("Couldn't parse a colour stop from: {value}", array('{value}'=>$arg->value), SassScriptParser::$context->node);
-				$list[] = new CompassColourStop($colour, $stop);
+					throw new SassScriptFunctionException("Couldn't parse a color stop from: {value}", array('{value}'=>$arg->value), SassScriptParser::$context->node);
+				$list[] = new CompassColorStop($color, $stop);
 			}
 			else
 				throw new SassScriptFunctionException('Not a valid color stop: {arg}', array('{arg}'=>$arg->value), SassScriptParser::$context->node);
@@ -227,8 +227,8 @@ class SassExtentionsCompassFunctionsColourStops {
 		return new CompassList($list);
 	}
 	
-	private static function normalize_stops($colourList) {
-		$positions = $colourList->values;
+	private static function normalize_stops($colorList) {
+		$positions = $colorList->values;
 		$s = sizeof($positions);
 		
 		# fill in the start and end positions, if unspecified
@@ -262,7 +262,7 @@ class SassExtentionsCompassFunctionsColourStops {
 		}
 		if ($positions[$s-1]->stop->op_eq(new SassNumber('0px'))->toBoolean() ||
 			 $positions[$s-1]->stop->op_eq(new SassNumber('0%'))->toBoolean())
-			 	throw new SassScriptFunctionException('Colour stops must be specified in increasing order', array(), SassScriptParser::$context->node);
+			 	throw new SassScriptFunctionException('Color stops must be specified in increasing order', array(), SassScriptParser::$context->node);
 		return null;
 	}
 }

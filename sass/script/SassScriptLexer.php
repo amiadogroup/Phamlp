@@ -10,7 +10,7 @@
  */
 
 require_once('literals/SassBoolean.php');
-require_once('literals/SassColour.php');
+require_once('literals/SassColor.php');
 require_once('literals/SassNumber.php');
 require_once('literals/SassString.php');
 require_once('SassScriptFunction.php');
@@ -71,8 +71,8 @@ class SassScriptLexer {
 			elseif (($match = SassBoolean::isa($string)) !== false) {
 				$tokens[] = new SassBoolean($match);
 			}
-			elseif (($match = SassColour::isa($string)) !== false) {
-				$tokens[] = new SassColour($match);
+			elseif (($match = SassColor::isa($string)) !== false) {
+				$tokens[] = new SassColor($match);
 			}
 			elseif (($match = SassNumber::isa($string)) !== false) {				
 				$tokens[] = new SassNumber($match);
