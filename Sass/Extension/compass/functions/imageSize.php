@@ -31,9 +31,9 @@ class SassExtentionsCompassFunctionsImageSize {
 	private function real_path($image_file) {
 		$path = $image_file->value;
 		# Compute the real path to the image on the file stystem if the images_dir is set.
-		if (SassExtentionsCompassConfig::config('images_path'))
-			return SassExtentionsCompassConfig::config('images_path').DIRECTORY_SEPARATOR.$path;
+		if (Phamlp_Sass_Extention_Compass_Config::config('images_path'))
+			return Phamlp_Sass_Extention_Compass_Config::config('images_path').DIRECTORY_SEPARATOR.$path;
 		else
-			return SassExtentionsCompassConfig::config('project_path').DIRECTORY_SEPARATOR.$path;
+			return Phamlp_Sass_Extention_Compass_Config::config('project_path').DIRECTORY_SEPARATOR.$path;
 	}
 }

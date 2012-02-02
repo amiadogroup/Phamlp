@@ -18,7 +18,7 @@
 class SassExtentionsCompassFunctionsInlineData {
 	public function inline_image($path, $mime_type = null) {
 		$path = $path->value;
-		$real_path = SassExtentionsCompassConfig::config('images_path').DIRECTORY_SEPARATOR.$path;
+		$real_path = Phamlp_Sass_Extention_Compass_Config::config('images_path').DIRECTORY_SEPARATOR.$path;
 		$url = 'url(data:'.self::compute_mime_type($path, $mime_type).';base64,'.self::data($real_path).')';
 		return new Phamlp_Sass_Script_Literal_String($url);
 	}
@@ -31,7 +31,7 @@ class SassExtentionsCompassFunctionsInlineData {
 		$files = array();
 		while ($args) {
 			$path = array_shift($args);
-			$real_path = SassExtentionsCompassConfig::config('fonts_path').DIRECTORY_SEPARATOR.$path->value;
+			$real_path = Phamlp_Sass_Extention_Compass_Config::config('fonts_path').DIRECTORY_SEPARATOR.$path->value;
 			$fp = fopen($real_path, 'rb');
 			$url = 'url(data:'.self::compute_mime_type($path).';base64,'.self::data($real_path).')';
 			$files[] = "$url format('".array_shift($args)."')";
