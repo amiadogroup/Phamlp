@@ -38,11 +38,11 @@ class Phamlp_Sass_Tree_Node_CommentException extends Phamlp_Sass_Tree_NodeExcept
 class SassDebugNodeException extends Phamlp_Sass_Tree_NodeException {}
 
 /**
- * SassDirectiveNodeException class.
+ * Phamlp_Sass_Tree_Node_DirectiveException class.
  * @package			PHamlP
  * @subpackage	Sass.tree
  */
-class SassDirectiveNodeException extends Phamlp_Sass_Tree_NodeException {}
+class Phamlp_Sass_Tree_Node_DirectiveException extends Phamlp_Sass_Tree_NodeException {}
 
 /**
  * SassExtendNodeException class.

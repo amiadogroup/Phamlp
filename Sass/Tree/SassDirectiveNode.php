@@ -1,7 +1,7 @@
 <?php
 /* SVN FILE: $Id$ */
 /**
- * SassDirectiveNode class file.
+ * Phamlp_Sass_Tree_Node_Directive class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
  * @copyright 	Copyright (c) 2010 PBM Web Development
  * @license			http://phamlp.googlecode.com/files/license.txt
@@ -10,19 +10,19 @@
  */
 
 /**
- * SassDirectiveNode class.
+ * Phamlp_Sass_Tree_Node_Directive class.
  * Represents a CSS directive.
  * @package			PHamlP
  * @subpackage	Sass.tree
  */
-class SassDirectiveNode extends Phamlp_Sass_Tree_Node {
+class Phamlp_Sass_Tree_Node_Directive extends Phamlp_Sass_Tree_Node {
 	const NODE_IDENTIFIER = '@';
 	const MATCH = '/^(@\w+)/';
 
 	/**
-	 * SassDirectiveNode.
+	 * Phamlp_Sass_Tree_Node_Directive.
 	 * @param object source token
-	 * @return SassDirectiveNode
+	 * @return Phamlp_Sass_Tree_Node_Directive
 	 */
 	public function __construct($token) {
 		parent::__construct($token);

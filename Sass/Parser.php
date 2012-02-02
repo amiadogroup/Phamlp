@@ -526,7 +526,7 @@ class Phamlp_Sass_Parser {
 		$token = $this->getToken();
 		if (empty($token)) return null;
 		switch (true) {
-			case SassDirectiveNode::isa($token):
+			case Phamlp_Sass_Tree_Node_Directive::isa($token):
 				return $this->parseDirective($token, $node);
 				break;
 			case Phamlp_Sass_Tree_Node_Comment::isa($token):
@@ -767,7 +767,7 @@ class Phamlp_Sass_Parser {
 	 * @return Phamlp_Sass_Tree_Node a Sass directive node
 	 */
 	private function parseDirective($token, $parent) {
-		switch (SassDirectiveNode::extractDirective($token)) {
+		switch (Phamlp_Sass_Tree_Node_Directive::extractDirective($token)) {
 			case '@extend':
 				return new SassExtendNode($token);
 				break;
@@ -810,7 +810,7 @@ class Phamlp_Sass_Parser {
 				return new SassDebugNode($token, true);
 				break;
 			default:
-				return new SassDirectiveNode($token);
+				return new Phamlp_Sass_Tree_Node_Directive($token);
 				break;
 		}
 	}
