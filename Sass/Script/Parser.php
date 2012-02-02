@@ -10,7 +10,6 @@
  */
 
 require_once('SassScriptLexer.php');
-require_once('Phamlp_Sass_Script_ParserExceptions.php');
 
 /**
  * Phamlp_Sass_Script_Parser class.

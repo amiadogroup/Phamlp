@@ -9,8 +9,6 @@
  * @subpackage	Sass.script.literals
  */
 
-require_once(dirname(__FILE__).'/../Phamlp_Sass_Script_ParserExceptions.php');
-
 /**
  * Sass literal exception.
  * @package			PHamlP
