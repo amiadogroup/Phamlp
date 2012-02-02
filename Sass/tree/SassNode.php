@@ -119,7 +119,7 @@ class SassNode {
 	public function addChild($child) {
 		if ($child instanceof SassElseNode) {
 			if (!$this->lastChild instanceof SassIfNode) {
-				throw new Pahmlp_Sass_Exception('@else(if) directive must come after @(else)if', array(), $child);
+				throw new Phamlp_Sass_FilePahmlp_Phamlp_Sass_Exception('@else(if) directive must come after @(else)if', array(), $child);
 			}
 			$this->lastChild->addElse($child);
 		}

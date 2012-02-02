@@ -9,14 +9,14 @@
  * @subpackage	Sass.tree
  */
 
-require_once(dirname(__FILE__).'/../Pahmlp_Sass_Exception.php');
+require_once(dirname(__FILE__).'/../Phamlp_Sass_FilePahmlp_Phamlp_Sass_Exception.php');
 
 /**
  * SassNodeException class.
  * @package			PHamlP
  * @subpackage	Sass.tree
  */
-class SassNodeException extends Pahmlp_Sass_Exception {}
+class SassNodeException extends Phamlp_Sass_FilePahmlp_Phamlp_Sass_Exception {}
 
 /**
  * SassContextException class.
