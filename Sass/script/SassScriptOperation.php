@@ -106,7 +106,7 @@ class SassScriptOperation {
 			return $this->$name;
 		}
 	  else {
-			throw new SassScriptOperationException('Unknown property: {name}', array('{name}'=>$name), SassScriptParser::$context->node);
+			throw new SassScriptOperationException('Unknown property: {name}', array('{name}'=>$name), Phamlp_Sass_Script_Parser::$context->node);
 	  }
 	}
 
@@ -119,7 +119,7 @@ class SassScriptOperation {
 	 */
 	public function perform($operands) {
 		if (count($operands) !== $this->operandCount) {
-			throw new SassScriptOperationException('Incorrect operand count for {operation}; expected {expected}, received {received}', array('{operation}'=>get_class($operands[0]), '{expected}'=>$this->operandCount, '{received}'=>count($operands)), SassScriptParser::$context->node);
+			throw new SassScriptOperationException('Incorrect operand count for {operation}; expected {expected}, received {received}', array('{operation}'=>get_class($operands[0]), '{expected}'=>$this->operandCount, '{received}'=>count($operands)), Phamlp_Sass_Script_Parser::$context->node);
 		}
 		
 		if (count($operands) > 1 && is_null($operands[1])) {
@@ -136,7 +136,7 @@ class SassScriptOperation {
 			return $operands[0]->$operation(!empty($operands[1]) ? $operands[1] : null);
 		}
 
-		throw new SassScriptOperationException('Undefined operation "{operation}" for {what}',  array('{operation}'=>$operation, '{what}'=>get_class($operands[0])), SassScriptParser::$context->node);
+		throw new SassScriptOperationException('Undefined operation "{operation}" for {what}',  array('{operation}'=>$operation, '{what}'=>get_class($operands[0])), Phamlp_Sass_Script_Parser::$context->node);
 	}
 
 	/**

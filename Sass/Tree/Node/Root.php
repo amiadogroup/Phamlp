@@ -8,8 +8,6 @@
  * @subpackage	Sass.tree
  */
 
-require_once(dirname(__FILE__).'/../script/SassScriptParser.php');
-
 /**
  * Phamlp_Sass_Tree_Node_Root class.
  * Also the root node of a document.
@@ -18,7 +16,7 @@ require_once(dirname(__FILE__).'/../script/SassScriptParser.php');
  */
 class Phamlp_Sass_Tree_Node_Root extends Phamlp_Sass_Tree_Node {
 	/**
-	 * @var SassScriptParser SassScript parser
+	 * @var Phamlp_Sass_Script_Parser SassScript parser
 	 */
 	protected $script;
 	/**
@@ -47,7 +45,7 @@ class Phamlp_Sass_Tree_Node_Root extends Phamlp_Sass_Tree_Node {
 			'line' => 0,
 		));
 		$this->parser = $parser;
-		$this->script = new SassScriptParser();
+		$this->script = new Phamlp_Sass_Script_Parser();
 		$this->renderer = Phamlp_Sass_Renderer_Renderer::getRenderer($parser->style);
 		$this->root = $this;
 	}

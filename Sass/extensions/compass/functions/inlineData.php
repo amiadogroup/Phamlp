@@ -25,7 +25,7 @@ class SassExtentionsCompassFunctionsInlineData {
 
 	public function inline_font_files() {
 		if (func_num_args() % 2)
-			throw new SassScriptFunctionException('An even number of arguments must be passed to inline_font_files()', array(), SassScriptParser::$context->node);
+			throw new SassScriptFunctionException('An even number of arguments must be passed to inline_font_files()', array(), Phamlp_Sass_Script_Parser::$context->node);
 
 		$args = func_get_args();
 		$files = array();
@@ -68,7 +68,7 @@ class SassExtentionsCompassFunctionsInlineData {
 				return 'image/'.strtolower($matches[1]);
 				break;
 			default:
-				throw new SassScriptFunctionException('Unable to determine mime type for {what}, please specify one explicitly', array('{what}'=>$path), SassScriptParser::$context->node);
+				throw new SassScriptFunctionException('Unable to determine mime type for {what}, please specify one explicitly', array('{what}'=>$path), Phamlp_Sass_Script_Parser::$context->node);
 				break;
 		}
 	}
@@ -79,6 +79,6 @@ class SassExtentionsCompassFunctionsInlineData {
 			return base64_encode(fread($fp, filesize($real_path)));
 		}
 		else
-			throw new SassScriptFunctionException('Unable to find {what}: {filename}', array('{what}'=>'file', '{filename}'=>$real_path), SassScriptParser::$context->node);
+			throw new SassScriptFunctionException('Unable to find {what}: {filename}', array('{what}'=>'file', '{filename}'=>$real_path), Phamlp_Sass_Script_Parser::$context->node);
 	}
 }

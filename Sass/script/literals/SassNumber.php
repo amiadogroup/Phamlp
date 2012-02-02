@@ -106,7 +106,7 @@ class SassNumber extends SassLiteral {
 			return $other->op_plus($this);
 		}
 		elseif (!$other instanceof SassNumber) {
-			throw new SassNumberException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'number')), SassScriptParser::$context->node);
+			throw new SassNumberException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'number')), Phamlp_Sass_Script_Parser::$context->node);
 		}
 		else {
 			$other = $this->convert($other);
@@ -133,7 +133,7 @@ class SassNumber extends SassLiteral {
 			return $other->op_minus($this);
 		}
 		elseif (!$other instanceof SassNumber) {
-			throw new SassNumberException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'number')), SassScriptParser::$context->node);
+			throw new SassNumberException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'number')), Phamlp_Sass_Script_Parser::$context->node);
 		}
 		else {
 			$other = $this->convert($other);
@@ -160,7 +160,7 @@ class SassNumber extends SassLiteral {
 			return $other->op_times($this);
 		}
 		elseif (!$other instanceof SassNumber) {
-			throw new SassNumberException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'number')), SassScriptParser::$context->node);
+			throw new SassNumberException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'number')), Phamlp_Sass_Script_Parser::$context->node);
 		}
 		else {
 			return new SassNumber(($this->value * $other->value).$this->unitString(
@@ -181,7 +181,7 @@ class SassNumber extends SassLiteral {
 			return $other->op_div($this);
 		}
 		elseif (!$other instanceof SassNumber) {
-			throw new SassNumberException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'number')), SassScriptParser::$context->node);
+			throw new SassNumberException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'number')), Phamlp_Sass_Script_Parser::$context->node);
 		}
 		elseif ($this->inExpression || $other->inExpression) {
 			return new SassNumber(($this->value / $other->value).$this->unitString(
@@ -219,7 +219,7 @@ class SassNumber extends SassLiteral {
 	 */
 	public function op_gt($other) {
 		if (!$other instanceof SassNumber) {
-			throw new SassNumberException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'number')), SassScriptParser::$context->node);
+			throw new SassNumberException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'number')), Phamlp_Sass_Script_Parser::$context->node);
 		}
 		return new SassBoolean($this->value > $this->convert($other)->value);
 	}
@@ -232,7 +232,7 @@ class SassNumber extends SassLiteral {
 	 */
 	public function op_gte($other) {
 		if (!$other instanceof SassNumber) {
-			throw new SassNumberException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'number')), SassScriptParser::$context->node);
+			throw new SassNumberException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'number')), Phamlp_Sass_Script_Parser::$context->node);
 		}
 		return new SassBoolean($this->value >= $this->convert($other)->value);
 	}
@@ -245,7 +245,7 @@ class SassNumber extends SassLiteral {
 	 */
 	public function op_lt($other) {
 		if (!$other instanceof SassNumber) {
-			throw new SassNumberException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'number')), SassScriptParser::$context->node);
+			throw new SassNumberException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'number')), Phamlp_Sass_Script_Parser::$context->node);
 		}
 		return new SassBoolean($this->value < $this->convert($other)->value);
 	}
@@ -258,7 +258,7 @@ class SassNumber extends SassLiteral {
 	 */
 	public function op_lte($other) {
 		if (!$other instanceof SassNumber) {
-			throw new SassNumberException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'number')), SassScriptParser::$context->node);
+			throw new SassNumberException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'number')), Phamlp_Sass_Script_Parser::$context->node);
 		}
 		return new SassBoolean($this->value <= $this->convert($other)->value);
 	}
@@ -271,7 +271,7 @@ class SassNumber extends SassLiteral {
 	 */
 	public function op_modulo($other) {
 		if (!$other instanceof SassNumber || !$other->isUnitless()) {
-			throw new SassNumberException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'unitless number')), SassScriptParser::$context->node);
+			throw new SassNumberException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'unitless number')), Phamlp_Sass_Script_Parser::$context->node);
 		}
 		$this->value %= $this->convert($other)->value;
 		return $this;
@@ -328,7 +328,7 @@ class SassNumber extends SassLiteral {
 		$toUnits = $units[1];
 		
 		if (sizeof($fromUnits) !== sizeof($toUnits) || !$this->areConvertable(array_merge($fromUnits, $toUnits))) {
-			throw new SassNumberException("Incompatible units: '{from}' and '{to}'", array('{from}'=>join(' * ', $fromUnits), '{to}'=>join(' * ', $toUnits)), SassScriptParser::$context->node);
+			throw new SassNumberException("Incompatible units: '{from}' and '{to}'", array('{from}'=>join(' * ', $fromUnits), '{to}'=>join(' * ', $toUnits)), Phamlp_Sass_Script_Parser::$context->node);
 		}
 		
 		$coercionFactor = 1;
@@ -340,7 +340,7 @@ class SassNumber extends SassLiteral {
 			else {
 				throw new SassNumberException("Incompatible units: '{from}' and '{to}",
 					array('{from}'=>join(' * ', $fromUnits), '{to}'=>join(' * ', $toUnits)),
-					SassScriptParser::$context->node);
+					Phamlp_Sass_Script_Parser::$context->node);
 			}			
 		}
 		return $coercionFactor; 
@@ -472,7 +472,7 @@ class SassNumber extends SassLiteral {
 	 */
 	public function toInt() {
 		if  (!$this->isInt()) {
-			throw new SassNumberException('Not an integer: {value}', array('{value}'=>$this->value), SassScriptParser::$context->node);
+			throw new SassNumberException('Not an integer: {value}', array('{value}'=>$this->value), Phamlp_Sass_Script_Parser::$context->node);
 		}
 	  return intval($this->value);
 	}
@@ -485,7 +485,7 @@ class SassNumber extends SassLiteral {
 	 */
 	public function toString() {
 		if  (!$this->hasLegalUnits()) {
-			throw new SassNumberException('Invalid {what}', array('{what}'=>"CSS units ({$this->units})"), SassScriptParser::$context->node);
+			throw new SassNumberException('Invalid {what}', array('{what}'=>"CSS units ({$this->units})"), Phamlp_Sass_Script_Parser::$context->node);
 		}
 	  return ($this->units == 'px' ? floor($this->value) :
 	  		round($this->value, self::PRECISION)).$this->units;

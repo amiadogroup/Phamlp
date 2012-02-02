@@ -224,7 +224,7 @@ class Phamlp_Sass_Tree_Node {
 
 	/**
 	 * Returns the SassScript parser.
-	 * @return SassScriptParser the SassScript parser
+	 * @return Phamlp_Sass_Script_Parser the SassScript parser
 	 */
 	public function getScript() {
 	  return $this->root->script;

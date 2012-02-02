@@ -54,7 +54,7 @@ class SassString extends SassLiteral {
 	 */
 	public function op_plus($other) {
 		if (!($other instanceof SassString)) {
-			throw new SassStringException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Value'), '{type}'=>Phamlp::t('sass', 'string')), SassScriptParser::$context->node);
+			throw new SassStringException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Value'), '{type}'=>Phamlp::t('sass', 'string')), Phamlp_Sass_Script_Parser::$context->node);
 		}
 		$this->value .= $other->value;
 		return $this;
@@ -68,7 +68,7 @@ class SassString extends SassLiteral {
 	 */
 	public function op_times($other) {
 		if (!($other instanceof SassNumber) || !$other->isUnitless()) {
-			throw new SassStringException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Value'), '{type}'=>Phamlp::t('sass', 'unitless number')), SassScriptParser::$context->node);
+			throw new SassStringException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Value'), '{type}'=>Phamlp::t('sass', 'unitless number')), Phamlp_Sass_Script_Parser::$context->node);
 		}
 		$this->value = str_repeat($this->value, $other->value);
 		return $this;
@@ -91,7 +91,7 @@ class SassString extends SassLiteral {
 	}
 	
 	public function toVar() {
-		return SassScriptParser::$context->getVariable($this->value);
+		return Phamlp_Sass_Script_Parser::$context->getVariable($this->value);
 	}
 
 	/**

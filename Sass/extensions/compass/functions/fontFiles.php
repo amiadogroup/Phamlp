@@ -18,7 +18,7 @@
 class SassExtentionsCompassFunctionsFontFiles {
 	public function font_files() {
 		if (func_num_args() % 2)
-			throw new SassScriptFunctionException('An even number of arguments must be passed to font_files()', array(), SassScriptParser::$context->node);
+			throw new SassScriptFunctionException('An even number of arguments must be passed to font_files()', array(), Phamlp_Sass_Script_Parser::$context->node);
 
 		$args = func_get_args();
 		$files = array();

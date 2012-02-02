@@ -105,7 +105,7 @@ class SassExtentionsCompassFunctionsColourStops {
 			}
 			# Make sure the colour stops are specified in the right order.
 			if ($last_value && $last_value->value > $stop->value) {
-				throw new SassScriptFunctionException('Colour stops must be specified in increasing order', array(), SassScriptParser::$context->node);
+				throw new SassScriptFunctionException('Colour stops must be specified in increasing order', array(), Phamlp_Sass_Script_Parser::$context->node);
 			}
 		 
 			$last_value = $stop;
@@ -203,8 +203,8 @@ class SassExtentionsCompassFunctionsColourStops {
 				# So we have to reparse the expression
 				$colour = $stop = null;
 				if (empty($parser))
-					$parser = new SassScriptParser();
-				$expr = $parser->parse($arg->value, SassScriptParser::$context);
+					$parser = new Phamlp_Sass_Script_Parser();
+				$expr = $parser->parse($arg->value, Phamlp_Sass_Script_Parser::$context);
 				
 				$x = array_pop($expr);
 				
@@ -213,16 +213,16 @@ class SassExtentionsCompassFunctionsColourStops {
 				elseif ($x instanceof SassScriptOperation) {
 					if ($x->operator != 'concat')
 						# This should never happen.
-						throw new SassScriptFunctionException("Couldn't parse a colour stop from: {value}", array('{value}'=>$arg->value), SassScriptParser::$context->node);
+						throw new SassScriptFunctionException("Couldn't parse a colour stop from: {value}", array('{value}'=>$arg->value), Phamlp_Sass_Script_Parser::$context->node);
 					$colour = $expr[0];
 					$stop = $expr[1];
 				}
 				else
-					throw new SassScriptFunctionException("Couldn't parse a colour stop from: {value}", array('{value}'=>$arg->value), SassScriptParser::$context->node);
+					throw new SassScriptFunctionException("Couldn't parse a colour stop from: {value}", array('{value}'=>$arg->value), Phamlp_Sass_Script_Parser::$context->node);
 				$list[] = new CompassColourStop($colour, $stop);
 			}
 			else
-				throw new SassScriptFunctionException('Not a valid color stop: {arg}', array('{arg}'=>$arg->value), SassScriptParser::$context->node);
+				throw new SassScriptFunctionException('Not a valid color stop: {arg}', array('{arg}'=>$arg->value), Phamlp_Sass_Script_Parser::$context->node);
 		}
 		return new CompassList($list);
 	}
@@ -262,7 +262,7 @@ class SassExtentionsCompassFunctionsColourStops {
 		}
 		if ($positions[$s-1]->stop->op_eq(new SassNumber('0px'))->toBoolean() ||
 			 $positions[$s-1]->stop->op_eq(new SassNumber('0%'))->toBoolean())
-			 	throw new SassScriptFunctionException('Colour stops must be specified in increasing order', array(), SassScriptParser::$context->node);
+			 	throw new SassScriptFunctionException('Colour stops must be specified in increasing order', array(), Phamlp_Sass_Script_Parser::$context->node);
 		return null;
 	}
 }

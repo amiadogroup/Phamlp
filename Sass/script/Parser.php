@@ -1,7 +1,7 @@
 <?php
 /* SVN FILE: $Id$ */
 /**
- * SassScriptParser class file.
+ * Phamlp_Sass_Script_Parser class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
  * @copyright 	Copyright (c) 2010 PBM Web Development
  * @license			http://phamlp.googlecode.com/files/license.txt
@@ -10,16 +10,16 @@
  */
 
 require_once('SassScriptLexer.php');
-require_once('SassScriptParserExceptions.php');
+require_once('Phamlp_Sass_Script_ParserExceptions.php');
 
 /**
- * SassScriptParser class.
+ * Phamlp_Sass_Script_Parser class.
  * Parses SassScript. SassScript is lexed into {@link http://en.wikipedia.org/wiki/Reverse_Polish_notation Reverse Polish notation} by the SassScriptLexer and
  *  the calculated result returned.
  * @package			PHamlP
  * @subpackage	Sass.script
  */
-class SassScriptParser {
+class Phamlp_Sass_Script_Parser {
 	const MATCH_INTERPOLATION = '/(?<!\\\\)#\{(.*?)\}/';
 	const DEFAULT_ENV = 0;
 	const CSS_RULE = 1;
@@ -36,8 +36,8 @@ class SassScriptParser {
 	private $lexer;
 
 	/**
-	* SassScriptParser constructor.
-	* @return SassScriptParser
+	* Phamlp_Sass_Script_Parser constructor.
+	* @return Phamlp_Sass_Script_Parser
 	*/
 	public function __construct() {
 		$this->lexer = new SassScriptLexer($this);
@@ -153,7 +153,7 @@ class SassScriptParser {
 					// If the stack runs out without finding a left parenthesis
 					// there are mismatched parentheses.
 					if ($c == 0) {
-						throw new SassScriptParserException('Unmatched parentheses', array(), $context->node);
+						throw new Phamlp_Sass_Script_ParserException('Unmatched parentheses', array(), $context->node);
 					}
 				}
 				// the token is an operator, o1, so:
@@ -184,7 +184,7 @@ class SassScriptParser {
 				array_push($outputQueue, array_pop($operatorStack));
 			}
 			else {
-				throw new SassScriptParserException('Unmatched parentheses', array(), $context->node);
+				throw new Phamlp_Sass_Script_ParserException('Unmatched parentheses', array(), $context->node);
 			}
 		}
 		return $outputQueue;

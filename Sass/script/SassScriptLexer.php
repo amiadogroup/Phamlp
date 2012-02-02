@@ -29,7 +29,7 @@ class SassScriptLexer {
 	const MATCH_WHITESPACE = '/^\s+/';
 
 	/**
-	 * @var SassScriptParser the parser object
+	 * @var Phamlp_Sass_Script_Parser the parser object
 	 */
 	private $parser;
 

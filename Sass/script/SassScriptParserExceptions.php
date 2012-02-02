@@ -10,29 +10,29 @@
  */
 
 /**
- * SassScriptParserException class.
+ * Phamlp_Sass_Script_ParserException class.
  * @package			PHamlP
  * @subpackage	Sass.script
  */
-class SassScriptParserException extends Phamlp_Sass_Exception {}
+class Phamlp_Sass_Script_ParserException extends Phamlp_Sass_Exception {}
 
 /**
  * SassScriptLexerException class.
  * @package			PHamlP
  * @subpackage	Sass.script
  */
-class SassScriptLexerException extends SassScriptParserException {}
+class SassScriptLexerException extends Phamlp_Sass_Script_ParserException {}
 
 /**
  * SassScriptOperationException class.
  * @package			PHamlP
  * @subpackage	Sass.script
  */
-class SassScriptOperationException extends SassScriptParserException {}
+class SassScriptOperationException extends Phamlp_Sass_Script_ParserException {}
 
 /**
  * SassScriptFunctionException class.
  * @package			PHamlP
  * @subpackage	Sass.script
  */
-class SassScriptFunctionException extends SassScriptParserException {}
+class SassScriptFunctionException extends Phamlp_Sass_Script_ParserException {}

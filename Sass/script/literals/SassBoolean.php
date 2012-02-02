@@ -35,7 +35,7 @@ class SassBoolean extends SassLiteral {
 			$this->value = ($value === 'true' ? true : false);
 		}
 		else {
-			throw new SassBooleanException('Invalid {what}', array('{what}'=>'SassBoolean'), SassScriptParser::$context->node);
+			throw new SassBooleanException('Invalid {what}', array('{what}'=>'SassBoolean'), Phamlp_Sass_Script_Parser::$context->node);
 		}
 	}
 

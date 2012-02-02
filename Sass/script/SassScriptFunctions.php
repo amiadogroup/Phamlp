@@ -112,7 +112,7 @@ class SassScriptFunctions {
 				return new SassColour($rgba);
 				break;
 			default:
-				throw new SassScriptFunctionException('Incorrect argument count for {method}; expected {expected}, received {received}', array('{method}' => __METHOD__, '{expected}' => '2 or 4', '{received}' => func_num_args()), SassScriptParser::$context->node);
+				throw new SassScriptFunctionException('Incorrect argument count for {method}; expected {expected}, received {received}', array('{method}' => __METHOD__, '{expected}' => '2 or 4', '{received}' => func_num_args()), Phamlp_Sass_Script_Parser::$context->node);
 		}		
 	}
 
@@ -639,7 +639,7 @@ class SassScriptFunctions {
 	 */
 	public static function percentage($number) {
 		if (!$number instanceof SassNumber || $number->hasUnits()) {
-			throw new SassScriptFunctionException('{what} must be a {type}', array('{what}'=>'number', '{type}'=>'unitless SassNumber'), SassScriptParser::$context->node);
+			throw new SassScriptFunctionException('{what} must be a {type}', array('{what}'=>'number', '{type}'=>'unitless SassNumber'), Phamlp_Sass_Script_Parser::$context->node);
 		}
 		$number->value *= 100;
 		$number->units = '%';

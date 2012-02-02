@@ -48,7 +48,7 @@ class SassScriptFunction {
 	 */
 	public function perform() {
 		$name = str_replace('-', '_', $this->name);
-		foreach (SassScriptParser::$context->node->parser->function_paths as $path) {	
+		foreach (Phamlp_Sass_Script_Parser::$context->node->parser->function_paths as $path) {	
 			$_path = explode(DIRECTORY_SEPARATOR, $path);
 			$_class = ucfirst($_path[sizeof($_path) - 2]);
 			foreach (array_slice(scandir($path), 2) as $file) {

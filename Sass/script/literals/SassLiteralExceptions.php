@@ -9,14 +9,14 @@
  * @subpackage	Sass.script.literals
  */
 
-require_once(dirname(__FILE__).'/../SassScriptParserExceptions.php');
+require_once(dirname(__FILE__).'/../Phamlp_Sass_Script_ParserExceptions.php');
 
 /**
  * Sass literal exception.
  * @package			PHamlP
  * @subpackage	Sass.script.literals
  */
-class SassLiteralException extends SassScriptParserException {}
+class SassLiteralException extends Phamlp_Sass_Script_ParserException {}
 
 /**
  * SassBooleanException class.
