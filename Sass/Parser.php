@@ -788,7 +788,7 @@ class Phamlp_Sass_Parser {
 						throw new Phamlp_Sass_Exception('Nesting not allowed beneath {what}', array('{what}'=>'@import directive'), $token);
 					}
 				}
-				return new SassImportNode($token);
+				return new Phamlp_Sass_Tree_Node_Import($token);
 				break;
 			case '@for':
 				return new SassForNode($token);
