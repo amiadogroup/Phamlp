@@ -1,6 +1,6 @@
 <?php
 /**
- * Phamlp_Sass_File.php class file.
+ * Phamlp_Sass_File class file.
  * File handling utilites.
  * @author			Chris Yates <chris.l.yates@gmail.com>
  * @copyright 	Copyright (c) 2010 PBM Web Development
@@ -10,11 +10,11 @@
  */
 
 /**
- * Phamlp_Sass_File.php class.
+ * Phamlp_Sass_File class.
  * @package			PHamlP
  * @subpackage	Sass
  */
-class Phamlp_Sass_File.php {
+class Phamlp_Sass_File {
 	const SASS = 'sass';
 	const SCSS = 'scss';
 	const SASSC = 'sassc';

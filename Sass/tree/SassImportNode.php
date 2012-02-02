@@ -54,8 +54,8 @@ class SassImportNode extends SassNode {
 			}
 			else {
 				$file = trim($file, '\'"');
-				$tree = Phamlp_Sass_File.php::getTree(
-					Phamlp_Sass_File.php::getFile($file, $this->parser), $this->parser);
+				$tree = Phamlp_Sass_File::getTree(
+					Phamlp_Sass_File::getFile($file, $this->parser), $this->parser);
 				if (empty($tree)) {
 					throw new SassImportNodeException('Unable to create document tree for {file}', array('{file}'=>$file), $this);
 				}
