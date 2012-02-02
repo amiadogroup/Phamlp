@@ -1,7 +1,7 @@
 <?php
 /* SVN FILE: $Id$ */
 /**
- * SassScriptOperation class file.
+ * Phamlp_Sass_Script_Operation class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
  * @copyright 	Copyright (c) 2010 PBM Web Development
  * @license			http://phamlp.googlecode.com/files/license.txt
@@ -10,12 +10,12 @@
  */
 
 /**
- * SassScriptOperation class.
+ * Phamlp_Sass_Script_Operation class.
  * The operation to perform.
  * @package			PHamlP
  * @subpackage	Sass.script
  */
-class SassScriptOperation {
+class Phamlp_Sass_Script_Operation {
   const MATCH = '/^(\(|\)|\+|-|\*|\/|%|<=|>=|<|>|==|!=|=|#{|}|,|and\b|or\b|xor\b|not\b)/';
 
 	/**
@@ -77,10 +77,10 @@ class SassScriptOperation {
 	private $operandCount;
 
 	/**
-	 * SassScriptOperation constructor
+	 * Phamlp_Sass_Script_Operation constructor
 	 *
 	 * @param mixed string: operator symbol; array: operator token
-	 * @return SassScriptOperation
+	 * @return Phamlp_Sass_Script_Operation
 	 */
 	public function __construct($operation) {
 		if (is_string($operation)) {
@@ -99,14 +99,14 @@ class SassScriptOperation {
 	 * Getter function for properties
 	 * @param string name of property
 	 * @return mixed value of the property
-	 * @throws SassScriptOperationException if the property does not exist
+	 * @throws Phamlp_Sass_Script_OperationException if the property does not exist
 	 */
 	public function __get($name) {
 		if (property_exists($this, $name)) {
 			return $this->$name;
 		}
 	  else {
-			throw new SassScriptOperationException('Unknown property: {name}', array('{name}'=>$name), Phamlp_Sass_Script_Parser::$context->node);
+			throw new Phamlp_Sass_Script_OperationException('Unknown property: {name}', array('{name}'=>$name), Phamlp_Sass_Script_Parser::$context->node);
 	  }
 	}
 
@@ -114,12 +114,12 @@ class SassScriptOperation {
 	 * Performs this operation.
 	 * @param array operands for the operation. The operands are SassLiterals
 	 * @return SassLiteral the result of the operation
-	 * @throws SassScriptOperationException if the oprand count is incorrect or
+	 * @throws Phamlp_Sass_Script_OperationException if the oprand count is incorrect or
 	 * the operation is undefined
 	 */
 	public function perform($operands) {
 		if (count($operands) !== $this->operandCount) {
-			throw new SassScriptOperationException('Incorrect operand count for {operation}; expected {expected}, received {received}', array('{operation}'=>get_class($operands[0]), '{expected}'=>$this->operandCount, '{received}'=>count($operands)), Phamlp_Sass_Script_Parser::$context->node);
+			throw new Phamlp_Sass_Script_OperationException('Incorrect operand count for {operation}; expected {expected}, received {received}', array('{operation}'=>get_class($operands[0]), '{expected}'=>$this->operandCount, '{received}'=>count($operands)), Phamlp_Sass_Script_Parser::$context->node);
 		}
 		
 		if (count($operands) > 1 && is_null($operands[1])) {
@@ -136,7 +136,7 @@ class SassScriptOperation {
 			return $operands[0]->$operation(!empty($operands[1]) ? $operands[1] : null);
 		}
 
-		throw new SassScriptOperationException('Undefined operation "{operation}" for {what}',  array('{operation}'=>$operation, '{what}'=>get_class($operands[0])), Phamlp_Sass_Script_Parser::$context->node);
+		throw new Phamlp_Sass_Script_OperationException('Undefined operation "{operation}" for {what}',  array('{operation}'=>$operation, '{what}'=>get_class($operands[0])), Phamlp_Sass_Script_Parser::$context->node);
 	}
 
 	/**

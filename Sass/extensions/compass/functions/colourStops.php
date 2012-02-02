@@ -210,7 +210,7 @@ class SassExtentionsCompassFunctionsColourStops {
 				
 				if ($x instanceof SassColour)
 					$colour = $x;
-				elseif ($x instanceof SassScriptOperation) {
+				elseif ($x instanceof Phamlp_Sass_Script_Operation) {
 					if ($x->operator != 'concat')
 						# This should never happen.
 						throw new Phamlp_Sass_Script_FunctionException("Couldn't parse a colour stop from: {value}", array('{value}'=>$arg->value), Phamlp_Sass_Script_Parser::$context->node);

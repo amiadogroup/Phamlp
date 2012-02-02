@@ -9,11 +9,9 @@
  * @subpackage	Sass.script
  */
 
-require_once('SassScriptLexer.php');
-
 /**
  * Phamlp_Sass_Script_Parser class.
- * Parses SassScript. SassScript is lexed into {@link http://en.wikipedia.org/wiki/Reverse_Polish_notation Reverse Polish notation} by the SassScriptLexer and
+ * Parses SassScript. SassScript is lexed into {@link http://en.wikipedia.org/wiki/Reverse_Polish_notation Reverse Polish notation} by the Phamlp_Sass_Script_Lexer and
  *  the calculated result returned.
  * @package			PHamlP
  * @subpackage	Sass.script
@@ -30,7 +28,7 @@ class Phamlp_Sass_Script_Parser {
 	public static $context;
 
 	/**
-	 * @var SassScriptLexer the lexer object
+	 * @var Phamlp_Sass_Script_Lexer the lexer object
 	 */
 	private $lexer;
 
@@ -39,7 +37,7 @@ class Phamlp_Sass_Script_Parser {
 	* @return Phamlp_Sass_Script_Parser
 	*/
 	public function __construct() {
-		$this->lexer = new SassScriptLexer($this);
+		$this->lexer = new Phamlp_Sass_Script_Lexer($this);
 	}
 
 	/**
@@ -109,15 +107,15 @@ class Phamlp_Sass_Script_Parser {
 		foreach($tokens as $i=>$token) {
 			// If two literals/expessions are seperated by whitespace use the concat operator
 			if (empty($token)) {
-				if ($i > 0 && (!$tokens[$i-1] instanceof SassScriptOperation || $tokens[$i-1]->operator === SassScriptOperation::$operators[')'][0]) &&
-						(!$tokens[$i+1] instanceof SassScriptOperation || $tokens[$i+1]->operator === SassScriptOperation::$operators['('][0])) {
-					$token = new SassScriptOperation(SassScriptOperation::$defaultOperator, $context);
+				if ($i > 0 && (!$tokens[$i-1] instanceof Phamlp_Sass_Script_Operation || $tokens[$i-1]->operator === Phamlp_Sass_Script_Operation::$operators[')'][0]) &&
+						(!$tokens[$i+1] instanceof Phamlp_Sass_Script_Operation || $tokens[$i+1]->operator === Phamlp_Sass_Script_Operation::$operators['('][0])) {
+					$token = new Phamlp_Sass_Script_Operation(Phamlp_Sass_Script_Operation::$defaultOperator, $context);
 				}
 				else {
 					continue;
 				}				
 			}
-			elseif ($token instanceof SassScriptVariable) {
+			elseif ($token instanceof Phamlp_Sass_Script_Variable) {
 				$token = $token->evaluate($context);
 				$environment = self::DEFAULT_ENV;
 			}
@@ -130,18 +128,18 @@ class Phamlp_Sass_Script_Parser {
 				array_push($outputQueue, $token);
 			}
 			// If the token is an operation
-			elseif ($token instanceof SassScriptOperation) {
+			elseif ($token instanceof Phamlp_Sass_Script_Operation) {
 				// If the token is a left parenthesis push it onto the stack.
-				if ($token->operator == SassScriptOperation::$operators['('][0]) {
+				if ($token->operator == Phamlp_Sass_Script_Operation::$operators['('][0]) {
 					array_push($operatorStack, $token);
 					$parenthesis++;
 				}
 				// If the token is a right parenthesis:
-				elseif ($token->operator == SassScriptOperation::$operators[')'][0]) {
+				elseif ($token->operator == Phamlp_Sass_Script_Operation::$operators[')'][0]) {
 					$parenthesis--;
 					while ($c = count($operatorStack)) {
 						// If the token at the top of the stack is a left parenthesis
-						if ($operatorStack[$c - 1]->operator == SassScriptOperation::$operators['('][0]) {
+						if ($operatorStack[$c - 1]->operator == Phamlp_Sass_Script_Operation::$operators['('][0]) {
 							// Pop the left parenthesis from the stack, but not onto the output queue.
 							array_pop($operatorStack);
 							break;
@@ -163,7 +161,7 @@ class Phamlp_Sass_Script_Parser {
 						// if o2 is left parenthesis, or
 						// the o1 has left associativty and greater precedence than o2, or
 						// the o1 has right associativity and lower or equal precedence than o2
-						if (($operation->operator == SassScriptOperation::$operators['('][0]) ||
+						if (($operation->operator == Phamlp_Sass_Script_Operation::$operators['('][0]) ||
 							($token->associativity == 'l' && $token->precedence > $operation->precedence) ||
 							($token->associativity == 'r' && $token->precedence <= $operation->precedence)) {
 							break; // stop checking operators
@@ -179,7 +177,7 @@ class Phamlp_Sass_Script_Parser {
 
 		// When there are no more tokens
 		while ($c = count($operatorStack)) { // While there are operators on the stack:
-			if ($operatorStack[$c - 1]->operator !== SassScriptOperation::$operators['('][0]) {
+			if ($operatorStack[$c - 1]->operator !== Phamlp_Sass_Script_Operation::$operators['('][0]) {
 				array_push($outputQueue, array_pop($operatorStack));
 			}
 			else {

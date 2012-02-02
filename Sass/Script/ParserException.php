@@ -17,18 +17,18 @@
 class Phamlp_Sass_Script_ParserException extends Phamlp_Sass_Exception {}
 
 /**
- * SassScriptLexerException class.
+ * Phamlp_Sass_Script_LexerException class.
  * @package			PHamlP
  * @subpackage	Sass.script
  */
-class SassScriptLexerException extends Phamlp_Sass_Script_ParserException {}
+class Phamlp_Sass_Script_LexerException extends Phamlp_Sass_Script_ParserException {}
 
 /**
- * SassScriptOperationException class.
+ * Phamlp_Sass_Script_OperationException class.
  * @package			PHamlP
  * @subpackage	Sass.script
  */
-class SassScriptOperationException extends Phamlp_Sass_Script_ParserException {}
+class Phamlp_Sass_Script_OperationException extends Phamlp_Sass_Script_ParserException {}
 
 /**
  * Phamlp_Sass_Script_FunctionException class.

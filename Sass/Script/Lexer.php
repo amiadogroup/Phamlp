@@ -1,7 +1,7 @@
 <?php
 /* SVN FILE: $Id$ */
 /**
- * SassScriptLexer class file.
+ * Phamlp_Sass_Script_Lexer class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
  * @copyright 	Copyright (c) 2010 PBM Web Development
  * @license			http://phamlp.googlecode.com/files/license.txt
@@ -13,18 +13,16 @@ require_once('literals/SassBoolean.php');
 require_once('literals/SassColour.php');
 require_once('literals/SassNumber.php');
 require_once('literals/SassString.php');
-require_once('SassScriptOperation.php');
-require_once('SassScriptVariable.php');
 
 /**
- * SassScriptLexer class.
+ * Phamlp_Sass_Script_Lexer class.
  * Lexes SassSCript into tokens for the parser.
  * 
  * Implements a {@link http://en.wikipedia.org/wiki/Shunting-yard_algorithm Shunting-yard algorithm} to provide {@link http://en.wikipedia.org/wiki/Reverse_Polish_notation Reverse Polish notation} output.
  * @package			PHamlP
  * @subpackage	Sass.script
  */
-class SassScriptLexer {
+class Phamlp_Sass_Script_Lexer {
 	const MATCH_WHITESPACE = '/^\s+/';
 
 	/**
@@ -33,8 +31,8 @@ class SassScriptLexer {
 	private $parser;
 
 	/**
-	* SassScriptLexer constructor.
-	* @return SassScriptLexer
+	* Phamlp_Sass_Script_Lexer constructor.
+	* @return Phamlp_Sass_Script_Lexer
 	*/
 	public function __construct($parser) {
 		$this->parser = $parser;
@@ -76,17 +74,17 @@ class SassScriptLexer {
 			elseif (($match = SassNumber::isa($string)) !== false) {				
 				$tokens[] = new SassNumber($match);
 			}
-			elseif (($match = SassScriptOperation::isa($string)) !== false) {
-				$tokens[] = new SassScriptOperation($match);
+			elseif (($match = Phamlp_Sass_Script_Operation::isa($string)) !== false) {
+				$tokens[] = new Phamlp_Sass_Script_Operation($match);
 			}
-			elseif (($match = SassScriptVariable::isa($string)) !== false) {
-				$tokens[] = new SassScriptVariable($match);
+			elseif (($match = Phamlp_Sass_Script_Variable::isa($string)) !== false) {
+				$tokens[] = new Phamlp_Sass_Script_Variable($match);
 			}
 			else {
 				$_string = $string;
 				$match = '';
 				while (strlen($_string) && !$this->isWhitespace($_string)) {
-					foreach (SassScriptOperation::$inStrOperators as $operator) {
+					foreach (Phamlp_Sass_Script_Operation::$inStrOperators as $operator) {
 						if (substr($_string, 0, strlen($operator)) == $operator) {
 							break 2;
 						}
