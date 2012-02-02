@@ -13,7 +13,7 @@
  * @package			PHamlP
  * @subpackage	Haml
  */
-class HamlException extends Exception {
+class Haml_Exception extends Phamlp_Exception {
 	/**
 	 * Haml Exception. 
 	 * @param string Exception message
@@ -21,6 +21,6 @@ class HamlException extends Exception {
 	 * @param object object with source code and meta data
 	 */
 	public function __construct($message, $params = array(), $object = null) {
-		parent::__construct('sass:: ' . $message . ' ' . print_r($params, true) . (is_object($object) ? ": {$object->filename}::{$object->line}\nSource: {$object->source}" : ''));
+		parent::__construct('Haml', $message, $params, $object);
 	}
 }

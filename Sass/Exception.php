@@ -13,7 +13,7 @@
  * @package			PHamlP
  * @subpackage	Sass
  */
-class Phamlp_Sass_Exception extends Exception {
+class Phamlp_Sass_Exception extends Phamlp_Exception {
 	/**
 	 * Sass Exception.
 	 * @param string Exception message
@@ -21,6 +21,6 @@ class Phamlp_Sass_Exception extends Exception {
 	 * @param object object with source code and meta data
 	 */
 	public function __construct($message, $params = array(), $object = null) {
-		parent::__construct('sass:: ' . $message . ' ' . print_r($params, true) . (is_object($object) ? ": {$object->filename}::{$object->line}\nSource: {$object->source}" : ''));
+		parent::__construct('Sass', $message, $params, $object);
 	}
 }
