@@ -791,23 +791,23 @@ class Phamlp_Sass_Parser {
 				return new Phamlp_Sass_Tree_Node_Import($token);
 				break;
 			case '@for':
-				return new SassForNode($token);
+				return new Phamlp_Sass_Tree_Node_For($token);
 				break;
 			case '@if':
-				return new SassIfNode($token);
+				return new Phamlp_Sass_Tree_Node_If($token);
 				break;
 			case '@else': // handles else and else if directives
-				return new SassElseNode($token);
+				return new Phamlp_Sass_Tree_Node_Else($token);
 				break;
 			case '@do':
 			case '@while':
-				return new SassWhileNode($token);
+				return new Phamlp_Sass_Tree_Node_While($token);
 				break;
 			case '@debug':
-				return new SassDebugNode($token);
+				return new Phamlp_Sass_Tree_Node_Debug($token);
 				break;
 			case '@warn':
-				return new SassDebugNode($token, true);
+				return new Phamlp_Sass_Tree_Node_Debug($token, true);
 				break;
 			default:
 				return new Phamlp_Sass_Tree_Node_Directive($token);

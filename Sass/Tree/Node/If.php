@@ -1,7 +1,7 @@
 <?php
 /* SVN FILE: $Id$ */
 /**
- * SassIfNode class file.
+ * Phamlp_Sass_Tree_Node_If class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
  * @copyright 	Copyright (c) 2010 PBM Web Development
  * @license			http://phamlp.googlecode.com/files/license.txt
@@ -10,20 +10,20 @@
  */
 
 /**
- * SassIfNode class.
+ * Phamlp_Sass_Tree_Node_If class.
  * Represents Sass If, Else If and Else statements.
  * Else If and Else statement nodes are chained below the If statement node.
  * @package			PHamlP
  * @subpackage	Sass.tree
  */
-class SassIfNode extends Phamlp_Sass_Tree_Node {
+class Phamlp_Sass_Tree_Node_If extends Phamlp_Sass_Tree_Node {
 	const MATCH_IF = '/^@if\s+(.+)$/i';
 	const MATCH_ELSE = '/@else(\s+if\s+(.+))?/i';
 	const IF_EXPRESSION = 1;
 	const ELSE_IF = 1;
 	const ELSE_EXPRESSION = 2;
 	/**
-	 * @var SassIfNode the next else node.
+	 * @var Phamlp_Sass_Tree_Node_If the next else node.
 	 */
 	private $else;
 	/**
@@ -32,27 +32,27 @@ class SassIfNode extends Phamlp_Sass_Tree_Node {
 	private $expression;
 
 	/**
-	 * SassIfNode constructor.
+	 * Phamlp_Sass_Tree_Node_If constructor.
 	 * @param object source token
 	 * @param boolean true for an "if" node, false for an "else if | else" node
-	 * @return SassIfNode
+	 * @return Phamlp_Sass_Tree_Node_If
 	 */
 	public function __construct($token, $if=true) {
 		parent::__construct($token);
 		if ($if) {
 			preg_match(self::MATCH_IF, $token->source, $matches);
-			$this->expression = $matches[SassIfNode::IF_EXPRESSION];
+			$this->expression = $matches[Phamlp_Sass_Tree_Node_If::IF_EXPRESSION];
 		}
 		else {
 			preg_match(self::MATCH_ELSE, $token->source, $matches);
-			$this->expression = (sizeof($matches)==1 ? null : $matches[SassIfNode::ELSE_EXPRESSION]);
+			$this->expression = (sizeof($matches)==1 ? null : $matches[Phamlp_Sass_Tree_Node_If::ELSE_EXPRESSION]);
 		}
 	}
 
 	/**
 	 * Adds an "else" statement to this node.
-	 * @param SassIfNode "else" statement node to add
-	 * @return SassIfNode this node
+	 * @param Phamlp_Sass_Tree_Node_If "else" statement node to add
+	 * @return Phamlp_Sass_Tree_Node_If this node
 	 */
 	public function addElse($node) {
 	  if (is_null($this->else)) {

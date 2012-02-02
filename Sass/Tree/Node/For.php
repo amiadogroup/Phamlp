@@ -1,7 +1,7 @@
 <?php
 /* SVN FILE: $Id$ */
 /**
- * SassForNode class file.
+ * Phamlp_Sass_Tree_Node_For class file.
  * This is an enhanced version of the standard SassScript @for loop that adds
  * an optional step clause. Step must evaluate to a positive integer.
  * The syntax is:
@@ -20,12 +20,12 @@
  */
 
 /**
- * SassForNode class.
+ * Phamlp_Sass_Tree_Node_For class.
  * Represents a Sass @for loop.
  * @package			PHamlP
  * @subpackage	Sass.tree
  */
-class SassForNode extends Phamlp_Sass_Tree_Node {
+class Phamlp_Sass_Tree_Node_For extends Phamlp_Sass_Tree_Node {
 	const MATCH = '/@for\s+[!\$](\w+)\s+from\s+(.+?)\s+(through|to)\s+(.+?)(?:\s+step\s+(.+))?$/i';
 
 	const VARIABLE = 1;
@@ -58,19 +58,19 @@ class SassForNode extends Phamlp_Sass_Tree_Node {
 	private $step;
 
 	/**
-	 * SassForNode constructor.
+	 * Phamlp_Sass_Tree_Node_For constructor.
 	 * @param object source token
-	 * @return SassForNode
+	 * @return Phamlp_Sass_Tree_Node_For
 	 */
 	public function __construct($token) {
 		parent::__construct($token);
 		if (!preg_match(self::MATCH, $token->source, $matches)) {
-			throw new SassForNodeException('Invalid {what}', array('{what}'=>'@for directive'), $this);
+			throw new Phamlp_Sass_Tree_Node_ForException('Invalid {what}', array('{what}'=>'@for directive'), $this);
 		}
 		$this->variable  = $matches[self::VARIABLE];
 		$this->from			 = $matches[self::FROM];
 		$this->to				 = $matches[self::TO];
-		$this->inclusive = ($matches[self::INCLUSIVE] === SassForNode::IS_INCLUSIVE);
+		$this->inclusive = ($matches[self::INCLUSIVE] === Phamlp_Sass_Tree_Node_For::IS_INCLUSIVE);
 		$this->step			 = (empty($matches[self::STEP]) ? 1 : $matches[self::STEP]);
 	}
 

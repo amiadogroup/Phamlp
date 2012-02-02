@@ -31,11 +31,11 @@ class Phamlp_Sass_Tree_ContextException extends Phamlp_Sass_Tree_NodeException {
 class Phamlp_Sass_Tree_Node_CommentException extends Phamlp_Sass_Tree_NodeException {}
 
 /**
- * SassDebugNodeException class.
+ * Phamlp_Sass_Tree_Node_DebugException class.
  * @package			PHamlP
  * @subpackage	Sass.tree
  */
-class SassDebugNodeException extends Phamlp_Sass_Tree_NodeException {}
+class Phamlp_Sass_Tree_Node_DebugException extends Phamlp_Sass_Tree_NodeException {}
 
 /**
  * Phamlp_Sass_Tree_Node_DirectiveException class.
@@ -52,18 +52,18 @@ class Phamlp_Sass_Tree_Node_DirectiveException extends Phamlp_Sass_Tree_NodeExce
 class SassExtendNodeException extends Phamlp_Sass_Tree_NodeException {}
 
 /**
- * SassForNodeException class.
+ * Phamlp_Sass_Tree_Node_ForException class.
  * @package			PHamlP
  * @subpackage	Sass.tree
  */
-class SassForNodeException extends Phamlp_Sass_Tree_NodeException {}
+class Phamlp_Sass_Tree_Node_ForException extends Phamlp_Sass_Tree_NodeException {}
 
 /**
- * SassIfNodeException class.
+ * Phamlp_Sass_Tree_Node_IfException class.
  * @package			PHamlP
  * @subpackage	Sass.tree
  */
-class SassIfNodeException extends Phamlp_Sass_Tree_NodeException {}
+class Phamlp_Sass_Tree_Node_IfException extends Phamlp_Sass_Tree_NodeException {}
 
 /**
  * Phamlp_Sass_Tree_Node_ImportException class.
@@ -108,8 +108,8 @@ class Phamlp_Sass_Tree_Node_RuleException extends Phamlp_Sass_Tree_NodeException
 class Phamlp_Sass_Tree_Node_VariableException extends Phamlp_Sass_Tree_NodeException {}
 
 /**
- * SassWhileNodeException class.
+ * Phamlp_Sass_Tree_Node_WhileException class.
  * @package			PHamlP
  * @subpackage	Sass.tree
  */
-class SassWhileNodeException extends Phamlp_Sass_Tree_NodeException {}
+class Phamlp_Sass_Tree_Node_WhileException extends Phamlp_Sass_Tree_NodeException {}

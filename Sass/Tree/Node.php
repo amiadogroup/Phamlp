@@ -99,8 +99,8 @@ class Phamlp_Sass_Tree_Node {
 	 * @return Phamlp_Sass_Tree_Node the child to add
 	 */
 	public function addChild($child) {
-		if ($child instanceof SassElseNode) {
-			if (!$this->lastChild instanceof SassIfNode) {
+		if ($child instanceof Phamlp_Sass_Tree_Node_Else) {
+			if (!$this->lastChild instanceof Phamlp_Sass_Tree_Node_If) {
 				throw new Phamlp_Sass_Exception('@else(if) directive must come after @(else)if', array(), $child);
 			}
 			$this->lastChild->addElse($child);
@@ -260,12 +260,12 @@ class Phamlp_Sass_Tree_Node {
 	 * @param boolean true if this node is in a SassScript directive, false if not
 	 */
 	public function inSassScriptDirective() {
-		return $this->parent instanceof SassForNode ||
-				$this->parent->parent instanceof SassForNode ||
-				$this->parent instanceof SassIfNode ||
-				$this->parent->parent instanceof SassIfNode ||
-				$this->parent instanceof SassWhileNode ||
-				$this->parent->parent instanceof SassWhileNode;
+		return $this->parent instanceof Phamlp_Sass_Tree_Node_For ||
+				$this->parent->parent instanceof Phamlp_Sass_Tree_Node_For ||
+				$this->parent instanceof Phamlp_Sass_Tree_Node_If ||
+				$this->parent->parent instanceof Phamlp_Sass_Tree_Node_If ||
+				$this->parent instanceof Phamlp_Sass_Tree_Node_While ||
+				$this->parent->parent instanceof Phamlp_Sass_Tree_Node_While;
 	}
 
 	/**
@@ -296,7 +296,7 @@ class Phamlp_Sass_Tree_Node {
 	 * @param array line
 	 */
 	public function addWarning($message, $params=array()) {
-		$warning = new SassDebugNode($this->token, $message, $params);
+		$warning = new Phamlp_Sass_Tree_Node_Debug($this->token, $message, $params);
 		$this->addChild($warning);
 	}
 

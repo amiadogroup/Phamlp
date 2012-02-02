@@ -1,7 +1,7 @@
 <?php
-/* SVN FILE: $Id: SassDebugNode.php 49 2010-04-04 10:51:24Z chris.l.yates $ */
+/* SVN FILE: $Id: Phamlp_Sass_Tree_Node_Debug.php 49 2010-04-04 10:51:24Z chris.l.yates $ */
 /**
- * SassDebugNode class file.
+ * Phamlp_Sass_Tree_Node_Debug class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
  * @copyright 	Copyright (c) 2010 PBM Web Development
  * @license			http://phamlp.googlecode.com/files/license.txt
@@ -10,12 +10,12 @@
  */
 
 /**
- * SassDebugNode class.
+ * Phamlp_Sass_Tree_Node_Debug class.
  * Represents a Sass @debug or @warn directive.
  * @package			PHamlP
  * @subpackage	Sass.tree
  */
-class SassDebugNode extends Phamlp_Sass_Tree_Node {
+class Phamlp_Sass_Tree_Node_Debug extends Phamlp_Sass_Tree_Node {
 	const IDENTIFIER = '@';
 	const MATCH = '/^@(?:debug|warn)\s+(.+?)\s*;?$/';
 	const MESSAGE = 1;
@@ -35,14 +35,14 @@ class SassDebugNode extends Phamlp_Sass_Tree_Node {
 	private $warning;
 
 	/**
-	 * SassDebugNode.
+	 * Phamlp_Sass_Tree_Node_Debug.
 	 * @param object source token
 	 * @param mixed string: an internally generated warning message about the
 	 * source
 	 * boolean: the source token is a @debug or @warn directive containing the
 	 * message; True if this is a @warn directive
 	 * @param array parameters for the message
-	 * @return SassDebugNode
+	 * @return Phamlp_Sass_Tree_Node_Debug
 	 */
 	public function __construct($token, $message=false, $params=array()) {
 		parent::__construct($token);
