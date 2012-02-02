@@ -9,21 +9,6 @@
  * @subpackage	Sass.tree
  */
 
-require_once('SassContext.php');
-require_once('SassDebugNode.php');
-require_once('SassDirectiveNode.php');
-require_once('SassImportNode.php');
-require_once('SassMixinNode.php');
-require_once('SassMixinDefinitionNode.php');
-require_once('SassPropertyNode.php');
-require_once('SassRuleNode.php');
-require_once('SassVariableNode.php');
-require_once('SassExtendNode.php');
-require_once('SassForNode.php');
-require_once('SassIfNode.php');
-require_once('SassElseNode.php');
-require_once('SassWhileNode.php');
-
 /**
  * Phamlp_Sass_Tree_Node class.
  * Base class for all Sass nodes.
@@ -286,7 +271,7 @@ class Phamlp_Sass_Tree_Node {
 	/**
 	 * Evaluates a SassScript expression.
 	 * @param string expression to evaluate
-	 * @param SassContext the context in which the expression is evaluated
+	 * @param Phamlp_Sass_Tree_Context the context in which the expression is evaluated
 	 * @return SassLiteral value of parsed expression
 	 */
 	protected function evaluate($expression, $context, $x=null) {
@@ -297,7 +282,7 @@ class Phamlp_Sass_Tree_Node {
 	/**
 	 * Replace interpolated SassScript contained in '#{}' with the parsed value.
 	 * @param string the text to interpolate
-	 * @param SassContext the context in which the string is interpolated
+	 * @param Phamlp_Sass_Tree_Context the context in which the string is interpolated
 	 * @return string the interpolated text
 	 */
 	protected function interpolate($expression, $context) {
@@ -317,7 +302,7 @@ class Phamlp_Sass_Tree_Node {
 
 	/**
 	 * Parse the children of the node.
-	 * @param SassContext the context in which the children are parsed
+	 * @param Phamlp_Sass_Tree_Context the context in which the children are parsed
 	 * @return array the parsed child nodes
 	 */
 	protected function parseChildren($context) {

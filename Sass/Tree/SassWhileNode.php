@@ -44,7 +44,7 @@ class SassWhileNode extends Phamlp_Sass_Tree_Node {
 
 	/**
 	 * Parse this node.
-	 * @param SassContext the context in which this node is parsed
+	 * @param Phamlp_Sass_Tree_Context the context in which this node is parsed
 	 * @return array the parsed child nodes
 	 */
 	public function parse($context) {

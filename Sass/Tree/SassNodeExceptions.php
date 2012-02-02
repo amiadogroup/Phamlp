@@ -17,11 +17,11 @@
 class Phamlp_Sass_Tree_NodeException extends Phamlp_Sass_Exception {}
 
 /**
- * SassContextException class.
+ * Phamlp_Sass_Tree_ContextException class.
  * @package			PHamlP
  * @subpackage	Sass.tree
  */
-class SassContextException extends Phamlp_Sass_Tree_NodeException {}
+class Phamlp_Sass_Tree_ContextException extends Phamlp_Sass_Tree_NodeException {}
 
 /**
  * Phamlp_Sass_Tree_CommentNodeException class.

@@ -66,7 +66,7 @@ class SassVariableNode extends Phamlp_Sass_Tree_Node {
 	/**
 	 * Parse this node.
 	 * Sets the variable in the current context.
-	 * @param SassContext the context in which this node is parsed
+	 * @param Phamlp_Sass_Tree_Context the context in which this node is parsed
 	 * @return array the parsed node - an empty array
 	 */
 	public function parse($context) {

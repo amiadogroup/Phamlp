@@ -78,7 +78,7 @@ class SassRuleNode extends Phamlp_Sass_Tree_Node {
 
 	/**
 	 * Parse this node and its children into static nodes.
-	 * @param SassContext the context in which this node is parsed
+	 * @param Phamlp_Sass_Tree_Context the context in which this node is parsed
 	 * @return array the parsed node and its children
 	 */
 	public function parse($context) {
@@ -197,7 +197,7 @@ class SassRuleNode extends Phamlp_Sass_Tree_Node {
 	 * Resolves selectors.
 	 * Interpolates SassScript in selectors and resolves any parent references or
 	 * appends the parent selectors.
-	 * @param SassContext the context in which this node is parsed
+	 * @param Phamlp_Sass_Tree_Context the context in which this node is parsed
 	 */
 	public function resolveSelectors($context) {
 		$resolvedSelectors = array();

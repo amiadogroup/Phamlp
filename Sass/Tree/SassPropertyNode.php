@@ -90,7 +90,7 @@ class SassPropertyNode extends Phamlp_Sass_Tree_Node {
 	 * Parse this node.
 	 * If the node is a property namespace return all parsed child nodes. If not
 	 * return the parsed version of this node.
-	 * @param SassContext the context in which this node is parsed
+	 * @param Phamlp_Sass_Tree_Context the context in which this node is parsed
 	 * @return array the parsed node
 	 */
 	public function parse($context) {

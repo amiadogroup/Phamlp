@@ -56,7 +56,7 @@ class Phamlp_Sass_Tree_RootNode extends Phamlp_Sass_Tree_Node {
 	 * Parses this node and its children into the render tree.
 	 * Dynamic nodes are evaluated, files imported, etc.
 	 * Only static nodes for rendering are in the resulting tree.
-	 * @param SassContext the context in which this node is parsed
+	 * @param Phamlp_Sass_Tree_Context the context in which this node is parsed
 	 * @return Phamlp_Sass_Tree_Node root node of the render tree
 	 */
 	public function parse($context) {
@@ -70,7 +70,7 @@ class Phamlp_Sass_Tree_RootNode extends Phamlp_Sass_Tree_Node {
 	 * @return string the rendered node
 	 */
 	public function render() {
-		$node = $this->parse(new SassContext());
+		$node = $this->parse(new Phamlp_Sass_Tree_Context());
 		$output = '';
 		foreach ($node->children as $child) {
 			$output .= $child->render();

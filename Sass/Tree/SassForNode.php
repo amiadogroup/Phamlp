@@ -76,7 +76,7 @@ class SassForNode extends Phamlp_Sass_Tree_Node {
 
 	/**
 	 * Parse this node.
-	 * @param SassContext the context in which this node is parsed
+	 * @param Phamlp_Sass_Tree_Context the context in which this node is parsed
 	 * @return array parsed child nodes
 	 */
 	public function parse($context) {
@@ -89,7 +89,7 @@ class SassForNode extends Phamlp_Sass_Tree_Node {
 			$to += ($from < $to ? 1 : -1);
 		}
 
-		$context = new SassContext($context);
+		$context = new Phamlp_Sass_Tree_Context($context);
 		for ($i = $from; ($from < $to ? $i < $to : $i > $to); $i = $i + $step) {
 			$context->setVariable($this->variable, new SassNumber($i));
 			$children = array_merge($children, $this->parseChildren($context));

@@ -1,7 +1,7 @@
 <?php
 /* SVN FILE: $Id$ */
 /**
- * SassContext class file.
+ * Phamlp_Sass_Tree_Context class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
  * @copyright 	Copyright (c) 2010 PBM Web Development
  * @license			http://phamlp.googlecode.com/files/license.txt
@@ -10,16 +10,16 @@
  */
 
 /**
- * SassContext class.
+ * Phamlp_Sass_Tree_Context class.
  * Defines the context that the parser is operating in and so allows variables
  * to be scoped.
  * A new context is created for Mixins and imported files.
  * @package			PHamlP
  * @subpackage	Sass.tree
  */
-class SassContext {
+class Phamlp_Sass_Tree_Context {
 	/**
-	 * @var SassContext enclosing context
+	 * @var Phamlp_Sass_Tree_Context enclosing context
 	 */
 	protected $parent;
 	/**
@@ -36,9 +36,9 @@ class SassContext {
 	public $node; 
 
 	/**
-	 * SassContext constructor.
-	 * @param SassContext - the enclosing context
-	 * @return SassContext
+	 * Phamlp_Sass_Tree_Context constructor.
+	 * @param Phamlp_Sass_Tree_Context - the enclosing context
+	 * @return Phamlp_Sass_Tree_Context
 	 */
 	public function __construct($parent = null) {
 		$this->parent = $parent;
@@ -58,7 +58,7 @@ class SassContext {
 	 * Returns a mixin
 	 * @param string name of mixin to return
 	 * @return SassMixinDefinitionNode the mixin
-	 * @throws SassContextException if mixin not defined in this context
+	 * @throws Phamlp_Sass_Tree_ContextException if mixin not defined in this context
 	 */
 	public function getMixin($name) {
 		if (isset($this->mixins[$name])) {
@@ -67,14 +67,14 @@ class SassContext {
 		elseif (!empty($this->parent)) {
 			return $this->parent->getMixin($name);
 		}
-		throw new SassContextException('Undefined {what}: {name}', array('{what}'=>'Mixin', '{name}'=>$name), $this->node);
+		throw new Phamlp_Sass_Tree_ContextException('Undefined {what}: {name}', array('{what}'=>'Mixin', '{name}'=>$name), $this->node);
 	}
 
 	/**
 	 * Returns a variable defined in this context
 	 * @param string name of variable to return
 	 * @return string the variable
-	 * @throws SassContextException if variable not defined in this context
+	 * @throws Phamlp_Sass_Tree_ContextException if variable not defined in this context
 	 */
 	public function getVariable($name) {
 		if (isset($this->variables[$name])) {
@@ -84,7 +84,7 @@ class SassContext {
 			return $this->parent->getVariable($name);
 		}
 		else {
-			throw new SassContextException('Undefined {what}: {name}', array('{what}'=>'Variable', '{name}'=>$name), $this->node);
+			throw new Phamlp_Sass_Tree_ContextException('Undefined {what}: {name}', array('{what}'=>'Variable', '{name}'=>$name), $this->node);
 		}
 	}
 
