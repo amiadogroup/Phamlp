@@ -325,7 +325,7 @@ class Phamlp_Sass_Parser {
 			'load_paths' 		 => array(dirname(__FILE__) . DIRECTORY_SEPARATOR . self::TEMPLATE_LOCATION),
 			'line'					 => 1,
 			'line_numbers'	 => false,
-			'style' 				 => Phamlp_Sass_Renderer_Renderer::STYLE_NESTED,
+			'style' 				 => Phamlp_Sass_Renderer::STYLE_NESTED,
 			'syntax'				 => Phamlp_Sass_File::SASS
 		);
 		

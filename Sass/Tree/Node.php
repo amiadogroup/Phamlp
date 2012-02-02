@@ -232,7 +232,7 @@ class Phamlp_Sass_Tree_Node {
 
 	/**
 	 * Returns the renderer.
-	 * @return Phamlp_Sass_Renderer_Renderer the renderer
+	 * @return Phamlp_Sass_Renderer the renderer
 	 */
 	public function getRenderer() {
 	  return $this->root->renderer;

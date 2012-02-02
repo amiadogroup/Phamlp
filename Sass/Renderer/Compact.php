@@ -1,7 +1,7 @@
 <?php
 /* SVN FILE: $Id$ */
 /**
- * SassCompactRenderer class file.
+ * Phamlp_Sass_Renderer_Compact class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
  * @copyright 	Copyright (c) 2010 PBM Web Development
  * @license			http://phamlp.googlecode.com/files/license.txt
@@ -9,17 +9,15 @@
  * @subpackage	Sass.renderers
  */
 
-require_once('SassCompressedRenderer.php');
-
 /**
- * SassCompactRenderer class.
+ * Phamlp_Sass_Renderer_Compact class.
  * Each CSS rule takes up only one line, with every property defined on that
  * line. Nested rules are placed next to each other with no newline, while
  * groups of rules have newlines between them.
  * @package			PHamlP
  * @subpackage	Sass.renderers
  */
-class SassCompactRenderer extends SassCompressedRenderer {
+class Phamlp_Sass_Renderer_Compact extends Phamlp_Sass_Renderer_Compressed {
 	const DEBUG_INFO_RULE = '@media -sass-debug-info';
 	const DEBUG_INFO_PROPERTY = 'font-family';
 	

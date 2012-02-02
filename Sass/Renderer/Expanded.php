@@ -1,7 +1,7 @@
 <?php
 /* SVN FILE: $Id$ */
 /**
- * SassExpandedRenderer class file.
+ * Phamlp_Sass_Renderer_Expanded class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
  * @copyright 	Copyright (c) 2010 PBM Web Development
  * @license			http://phamlp.googlecode.com/files/license.txt
@@ -9,17 +9,15 @@
  * @subpackage	Sass.renderers
  */
 
-require_once('SassCompactRenderer.php');
-
 /**
- * SassExpandedRenderer class.
+ * Phamlp_Sass_Renderer_Expanded class.
  * Expanded is the typical human-made CSS style, with each property and rule
  * taking up one line. Properties are indented within the rules, but the rules
  * are not indented in any special way.
  * @package			PHamlP
  * @subpackage	Sass.renderers
  */
-class SassExpandedRenderer extends SassCompactRenderer {
+class Phamlp_Sass_Renderer_Expanded extends Phamlp_Sass_Renderer_Compact {
 	/**
 	 * Renders the brace between the selectors and the properties
 	 * @return string the brace between the selectors and the properties

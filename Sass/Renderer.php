@@ -1,7 +1,7 @@
 <?php
 /* SVN FILE: $Id$ */
 /**
- * Phamlp_Sass_Renderer_Renderer class file.
+ * Phamlp_Sass_Renderer class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
  * @copyright 	Copyright (c) 2010 PBM Web Development
  * @license			http://phamlp.googlecode.com/files/license.txt
@@ -9,17 +9,12 @@
  * @subpackage	Sass.renderers
  */
 
-require_once('SassCompactRenderer.php');
-require_once('SassCompressedRenderer.php');
-require_once('SassExpandedRenderer.php');
-require_once('SassNestedRenderer.php');
-
 /**
- * Phamlp_Sass_Renderer_Renderer class.
+ * Phamlp_Sass_Renderer class.
  * @package			PHamlP
  * @subpackage	Sass.renderers
  */
-class Phamlp_Sass_Renderer_Renderer {
+class Phamlp_Sass_Renderer {
 	/**#@+
 	 * Output Styles
 	 */
@@ -34,18 +29,18 @@ class Phamlp_Sass_Renderer_Renderer {
 	/**
 	 * Returns the renderer for the required render style.
 	 * @param string render style
-	 * @return Phamlp_Sass_Renderer_Renderer
+	 * @return Phamlp_Sass_Renderer
 	 */
 	public static function getRenderer($style) {
 		switch ($style) {
 			case self::STYLE_COMPACT:
-		  	return new SassCompactRenderer();
+		  	return new Phamlp_Sass_Renderer_Compact();
 			case self::STYLE_COMPRESSED:
-		  	return new SassCompressedRenderer();
+		  	return new Phamlp_Sass_Renderer_Compressed();
 			case self::STYLE_EXPANDED:
-		  	return new SassExpandedRenderer();
+		  	return new Phamlp_Sass_Renderer_Expanded();
 			case self::STYLE_NESTED:
-		  	return new SassNestedRenderer();
+		  	return new Phamlp_Sass_Renderer_Nested();
 		} // switch
 	}
 }

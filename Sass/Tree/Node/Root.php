@@ -20,7 +20,7 @@ class Phamlp_Sass_Tree_Node_Root extends Phamlp_Sass_Tree_Node {
 	 */
 	protected $script;
 	/**
-	 * @var Phamlp_Sass_Renderer_Renderer the renderer for this node
+	 * @var Phamlp_Sass_Renderer the renderer for this node
 	 */
 	protected $renderer;
 	/**
@@ -46,7 +46,7 @@ class Phamlp_Sass_Tree_Node_Root extends Phamlp_Sass_Tree_Node {
 		));
 		$this->parser = $parser;
 		$this->script = new Phamlp_Sass_Script_Parser();
-		$this->renderer = Phamlp_Sass_Renderer_Renderer::getRenderer($parser->style);
+		$this->renderer = Phamlp_Sass_Renderer::getRenderer($parser->style);
 		$this->root = $this;
 	}
 
