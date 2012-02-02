@@ -21,8 +21,6 @@
  * @subpackage	Sass
  */
 
-require_once('Phamlp_Sass_File.php');
-require_once('Phamlp_Sass_FilePahmlp_Phamlp_Sass_Exception.php');
 require_once('tree/SassNode.php');
 
 /**
@@ -287,7 +285,7 @@ class Phamlp_Sass_Parser {
 	 */
 	public function __construct($options = array()) {
 		if (!is_array($options)) {
-			throw new Phamlp_Sass_FilePahmlp_Phamlp_Sass_Exception('{what} must be a {type}', array('{what}'=>'options', '{type}'=>'array'));
+			throw new Pahmlp_Sass_Exception('{what} must be a {type}', array('{what}'=>'options', '{type}'=>'array'));
 		}
 		if (!empty($options['language'])) {
 			Phamlp::$language = $options['language'];
@@ -350,7 +348,7 @@ class Phamlp_Sass_Parser {
 		if (method_exists($this, $getter)) {
 			return $this->$getter();
 		}
-		throw new Phamlp_Sass_FilePahmlp_Phamlp_Sass_Exception('No getter function for {what}', array('{what}'=>$name));
+		throw new Pahmlp_Sass_Exception('No getter function for {what}', array('{what}'=>$name));
 	}
 	
 	public function getCache() {
@@ -463,7 +461,7 @@ class Phamlp_Sass_Parser {
 				$this->syntax = substr($this->filename, -4);
 			}
 			elseif ($this->syntax !== Phamlp_Sass_File::SASS && $this->syntax !== Phamlp_Sass_File::SCSS) {
-				throw new Phamlp_Sass_FilePahmlp_Phamlp_Sass_Exception('Invalid {what}', array('{what}'=>'syntax option'));
+				throw new Pahmlp_Sass_Exception('Invalid {what}', array('{what}'=>'syntax option'));
 			}
 
 			if ($this->cache) {
@@ -544,13 +542,13 @@ class Phamlp_Sass_Parser {
 				break;
 			case SassMixinDefinitionNode::isa($token):
 				if ($this->syntax === Phamlp_Sass_File::SCSS) {
-					throw new Phamlp_Sass_FilePahmlp_Phamlp_Sass_Exception('Mixin {which} shortcut not allowed in SCSS', array('{which}'=>'definition'), $this);
+					throw new Pahmlp_Sass_Exception('Mixin {which} shortcut not allowed in SCSS', array('{which}'=>'definition'), $this);
 				}
 				return new SassMixinDefinitionNode($token);
 				break;
 			case SassMixinNode::isa($token):
 				if ($this->syntax === Phamlp_Sass_File::SCSS) {
-					throw new Phamlp_Sass_FilePahmlp_Phamlp_Sass_Exception('Mixin {which} shortcut not allowed in SCSS', array('{which}'=>'include'), $this);
+					throw new Pahmlp_Sass_Exception('Mixin {which} shortcut not allowed in SCSS', array('{which}'=>'include'), $this);
 				}
 				return new SassMixinNode($token);
 				break;
@@ -615,7 +613,7 @@ class Phamlp_Sass_Parser {
 				}
 				else {
 					$this->source = $statement;
-					throw new Phamlp_Sass_FilePahmlp_Phamlp_Sass_Exception('Illegal comment type', array(), $this);
+					throw new Pahmlp_Sass_Exception('Illegal comment type', array(), $this);
 				}
 			}
 			// Selector statements can span multiple lines
@@ -650,7 +648,7 @@ class Phamlp_Sass_Parser {
 		if (!is_int($level) ||
 				preg_match("/[^{$this->indentChar}]/", substr($source, 0, $indent))) {
 			$this->source = $source;
-			throw new Phamlp_Sass_FilePahmlp_Phamlp_Sass_Exception('Invalid indentation', array(), $this);
+			throw new Pahmlp_Sass_Exception('Invalid indentation', array(), $this);
 		}
 		return $level;
 	}
@@ -681,7 +679,7 @@ class Phamlp_Sass_Parser {
 					elseif (substr($this->source, $srcpos-1, strlen(self::BEGIN_CSS_COMMENT))
 							=== self::BEGIN_CSS_COMMENT) {
 						if (ltrim($statement)) {
-							throw new Phamlp_Sass_FilePahmlp_Phamlp_Sass_Exception('Invalid {what}', array('{what}'=>'comment'), (object) array(
+							throw new Pahmlp_Sass_Exception('Invalid {what}', array('{what}'=>'comment'), (object) array(
 								'source' => $statement,
 								'filename' => $this->filename,
 								'line' => $this->line,
@@ -789,7 +787,7 @@ class Phamlp_Sass_Parser {
 						$source = $this->source[$i++];
 					}
 					if (!empty($source) && $this->getLevel($source) > $token->level) {
-						throw new Phamlp_Sass_FilePahmlp_Phamlp_Sass_Exception('Nesting not allowed beneath {what}', array('{what}'=>'@import directive'), $token);
+						throw new Pahmlp_Sass_Exception('Nesting not allowed beneath {what}', array('{what}'=>'@import directive'), $token);
 					}
 				}
 				return new SassImportNode($token);
@@ -825,7 +823,7 @@ class Phamlp_Sass_Parser {
 	 * If this is a space the number of spaces determines the indentSpaces; this
 	 * is always 1 if the indent character is a tab.
 	 * Only used for .sass files.
-	 * @throws Phamlp_Sass_FilePahmlp_Phamlp_Sass_Exception if the indent is mixed or
+	 * @throws Pahmlp_Sass_Exception if the indent is mixed or
 	 * the indent character can not be determined
 	 */
 	private function setIndentChar() {
@@ -836,7 +834,7 @@ class Phamlp_Sass_Parser {
 				if ($i < $len && in_array($source[$i], $this->indentChars)) {
 					$this->line = ++$l;
 					$this->source = $source;
-					throw new Phamlp_Sass_FilePahmlp_Phamlp_Sass_Exception('Mixed indentation not allowed', array(), $this);
+					throw new Pahmlp_Sass_Exception('Mixed indentation not allowed', array(), $this);
 				}
 				$this->indentSpaces = ($this->indentChar == ' ' ? $i : 1);
 				return;

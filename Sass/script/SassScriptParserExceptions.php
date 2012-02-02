@@ -9,14 +9,12 @@
  * @subpackage	Sass.script
  */
 
-require_once(dirname(__FILE__).'/../Phamlp_Sass_FilePahmlp_Phamlp_Sass_Exception.php');
-
 /**
  * SassScriptParserException class.
  * @package			PHamlP
  * @subpackage	Sass.script
  */
-class SassScriptParserException extends Phamlp_Sass_FilePahmlp_Phamlp_Sass_Exception {}
+class SassScriptParserException extends Pahmlp_Sass_Exception {}
 
 /**
  * SassScriptLexerException class.

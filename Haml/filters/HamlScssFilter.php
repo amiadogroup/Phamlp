@@ -11,7 +11,6 @@
  */
 
 require_once('HamlCssFilter.php');
-require_once(dirname(__FILE__).'/../../sass/Pahmlp_Sass_Parser.php');
 
 /**
  * {@link Sass http://sass-lang.com/} Filter for
