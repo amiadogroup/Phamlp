@@ -21,12 +21,12 @@ class SassExtentionsCompassFunctionsUrls {
 		
 		# Compute the $path to the stylesheet, either root relative or stylesheet relative
 		# or nil if the http_images_path is not set in the configuration.
-		if (Phamlp_Sass_Extention_Compass_Config::config('relative_assets'))
-			$http_css_path = self::compute_relative_path(Phamlp_Sass_Extention_Compass_Config::config('css_path'));
-		elseif (Phamlp_Sass_Extention_Compass_Config::config('http_css_path'))
-			$http_css_path = Phamlp_Sass_Extention_Compass_Config::config('http_css_path');
+		if (Phamlp_Sass_Extension_Compass_Config::config('relative_assets'))
+			$http_css_path = self::compute_relative_path(Phamlp_Sass_Extension_Compass_Config::config('css_path'));
+		elseif (Phamlp_Sass_Extension_Compass_Config::config('http_css_path'))
+			$http_css_path = Phamlp_Sass_Extension_Compass_Config::config('http_css_path');
 		else
-			$http_css_path = Phamlp_Sass_Extention_Compass_Config::config('css_dir');
+			$http_css_path = Phamlp_Sass_Extension_Compass_Config::config('css_dir');
 
 		return new Phamlp_Sass_Script_Literal_String(self::clean("$http_css_path/$path", $only_path));
 	}
@@ -41,10 +41,10 @@ class SassExtentionsCompassFunctionsUrls {
 
 		# Compute the $path to the font file, either root relative or stylesheet relative
 		# or nil if the http_fonts_path cannot be determined from the configuration.
-		if (Phamlp_Sass_Extention_Compass_Config::config('relative_assets'))
-			$http_fonts_path = self::compute_relative_path(Phamlp_Sass_Extention_Compass_Config::config('fonts_path'));
+		if (Phamlp_Sass_Extension_Compass_Config::config('relative_assets'))
+			$http_fonts_path = self::compute_relative_path(Phamlp_Sass_Extension_Compass_Config::config('fonts_path'));
 		else
-			$http_fonts_path = Phamlp_Sass_Extention_Compass_Config::config('http_fonts_path');
+			$http_fonts_path = Phamlp_Sass_Extension_Compass_Config::config('http_fonts_path');
 
 		return new Phamlp_Sass_Script_Literal_String(self::clean("$http_fonts_path/$path", $only_path));
 	}
@@ -52,7 +52,7 @@ class SassExtentionsCompassFunctionsUrls {
 	public function image_url($path, $only_path = null) {
 		$path = $path->value; # get to the string value of the literal.
 
-		if (preg_match('%^'.preg_quote(Phamlp_Sass_Extention_Compass_Config::config('http_images_path'), '%').'/(.*)%',$path, $matches))
+		if (preg_match('%^'.preg_quote(Phamlp_Sass_Extension_Compass_Config::config('http_images_path'), '%').'/(.*)%',$path, $matches))
 			# Treat root relative urls (without a protocol) like normal if they start with
 			# the images $path.
 			$path = $matches[1];
@@ -62,17 +62,17 @@ class SassExtentionsCompassFunctionsUrls {
 
 		# Compute the $path to the image, either root relative or stylesheet relative
 		# or nil if the http_images_path is not set in the configuration.
-		if (Phamlp_Sass_Extention_Compass_Config::config('relative_assets'))
-			$http_images_path = self::compute_relative_path(Phamlp_Sass_Extention_Compass_Config::config('images_path'));
-		elseif (Phamlp_Sass_Extention_Compass_Config::config('http_images_path'))
-			$http_images_path = Phamlp_Sass_Extention_Compass_Config::config('http_images_path');
+		if (Phamlp_Sass_Extension_Compass_Config::config('relative_assets'))
+			$http_images_path = self::compute_relative_path(Phamlp_Sass_Extension_Compass_Config::config('images_path'));
+		elseif (Phamlp_Sass_Extension_Compass_Config::config('http_images_path'))
+			$http_images_path = Phamlp_Sass_Extension_Compass_Config::config('http_images_path');
 		else
-			$http_images_path = Phamlp_Sass_Extention_Compass_Config::config('images_dir');
+			$http_images_path = Phamlp_Sass_Extension_Compass_Config::config('images_dir');
 
 		# Compute the real $path to the image on the file stystem if the images_dir is set.
-		if (Phamlp_Sass_Extention_Compass_Config::config('images_dir'))
-			$real_path = Phamlp_Sass_Extention_Compass_Config::config('project_path').
-				DIRECTORY_SEPARATOR.Phamlp_Sass_Extention_Compass_Config::config('images_dir').
+		if (Phamlp_Sass_Extension_Compass_Config::config('images_dir'))
+			$real_path = Phamlp_Sass_Extension_Compass_Config::config('project_path').
+				DIRECTORY_SEPARATOR.Phamlp_Sass_Extension_Compass_Config::config('images_dir').
 				DIRECTORY_SEPARATOR.$path;
 
 		# prepend the $path to the image if there's one
