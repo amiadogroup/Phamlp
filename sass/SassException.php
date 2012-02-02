@@ -1,5 +1,4 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  * Sass exception.
  * @author			Chris Yates <chris.l.yates@gmail.com>
@@ -9,14 +8,12 @@
  * @subpackage	Sass
  */
 
-require_once(dirname(__FILE__).'/../PhamlpException.php');
-
 /**
  * Sass exception class.
  * @package			PHamlP
  * @subpackage	Sass
  */
-class SassException extends PhamlpException {
+class SassException extends Exception {
 	/**
 	 * Sass Exception.
 	 * @param string Exception message

@@ -1,5 +1,4 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  * Haml exception.
  * @author			Chris Yates <chris.l.yates@gmail.com>
@@ -9,14 +8,12 @@
  * @subpackage	Haml
  */
 
-require_once(dirname(__FILE__).'/../PhamlpException.php');
-
 /**
  * Haml exception class.
  * @package			PHamlP
  * @subpackage	Haml
  */
-class HamlException extends PhamlpException {
+class HamlException extends Exception {
 	/**
 	 * Haml Exception. 
 	 * @param string Exception message
