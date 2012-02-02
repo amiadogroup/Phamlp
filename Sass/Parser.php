@@ -291,7 +291,7 @@ class Phamlp_Sass_Parser {
 		
 		if (!empty($options['extensions'])) {
 			foreach ($options['extensions'] as $extension=>$extOptions) {
-				$configClass = 'Phamlp_Sass_Extention_'.$extension.'_Config';
+				$configClass = 'Phamlp_Sass_Extension_'.$extension.'_Config';
 				$config = new $configClass;
 				$config->config($extOptions);
 				
