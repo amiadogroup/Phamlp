@@ -27,7 +27,7 @@ class Phamlp_Sass_File {
 	 * parsed file will be cached.
 	 * @param string filename to parse
 	 * @param Phamlp_Sass_Parser Sass parser
-	 * @return Phamlp_Sass_Tree_RootNode
+	 * @return Phamlp_Sass_Tree_Node_Root
 	 */
 	public static function getTree($filename, $parser) {
 		if ($parser->cache) {
@@ -142,7 +142,7 @@ class Phamlp_Sass_File {
 
 	/**
 	 * Saves a cached version of the file.
-	 * @param Phamlp_Sass_Tree_RootNode Sass tree to save
+	 * @param Phamlp_Sass_Tree_Node_Root Sass tree to save
 	 * @param string filename to save
 	 * @param string path to cache location
 	 * @return mixed the cached file if available or false if it is not

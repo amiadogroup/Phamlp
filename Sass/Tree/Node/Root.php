@@ -1,6 +1,6 @@
 <?php
 /**
- * Phamlp_Sass_Tree_RootNode class file.
+ * Phamlp_Sass_Tree_Node_Root class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
  * @copyright 	Copyright (c) 2010 PBM Web Development
  * @license			http://phamlp.googlecode.com/files/license.txt
@@ -11,12 +11,12 @@
 require_once(dirname(__FILE__).'/../script/SassScriptParser.php');
 
 /**
- * Phamlp_Sass_Tree_RootNode class.
+ * Phamlp_Sass_Tree_Node_Root class.
  * Also the root node of a document.
  * @package			PHamlP
  * @subpackage	Sass.tree
  */
-class Phamlp_Sass_Tree_RootNode extends Phamlp_Sass_Tree_Node {
+class Phamlp_Sass_Tree_Node_Root extends Phamlp_Sass_Tree_Node {
 	/**
 	 * @var SassScriptParser SassScript parser
 	 */
