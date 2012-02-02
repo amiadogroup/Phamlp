@@ -80,11 +80,11 @@ class Phamlp_Sass_Tree_Node_ImportException extends Phamlp_Sass_Tree_NodeExcepti
 class Phamlp_Sass_Tree_Node_Mixin_DefinitionException extends Phamlp_Sass_Tree_NodeException {}
 
 /**
- * SassMixinNodeException class.
+ * Phamlp_Sass_Tree_Node_MixinException class.
  * @package			PHamlP
  * @subpackage	Sass.tree
  */
-class SassMixinNodeException extends Phamlp_Sass_Tree_NodeException {}
+class Phamlp_Sass_Tree_Node_MixinException extends Phamlp_Sass_Tree_NodeException {}
 
 /**
  * Phamlp_Sass_Tree_Node_PropertyException class.
