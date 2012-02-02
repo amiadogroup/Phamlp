@@ -107,8 +107,8 @@ class HamlHelpers {
 	 * Iterates an array and using the block to generate a <li> element for each
 	 * array element.
 	 * Examples:<br/>
-	 * = list_of(array('red', 'orange', ...., 'violet'), 'color')<br/>
-	 * 	= color<br/>
+	 * = list_of(array('red', 'orange', ...., 'violet'), 'colour')<br/>
+	 * 	= colour<br/>
 	 * Produces:<br/>
 	 * <li>red</li><br/>
 	 * <li>orange</li><br/>

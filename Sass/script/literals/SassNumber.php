@@ -97,12 +97,12 @@ class SassNumber extends SassLiteral {
 
 	/**
 	 * Adds the value of other to the value of this
-	 * @param mixed SassNumber|SassColor: value to add
+	 * @param mixed SassNumber|SassColour: value to add
 	 * @return mixed SassNumber if other is a SassNumber or
-	 * SassColor if it is a SassColor
+	 * SassColour if it is a SassColour
 	 */
 	public function op_plus($other) {
-		if ($other instanceof SassColor) {
+		if ($other instanceof SassColour) {
 			return $other->op_plus($this);
 		}
 		elseif (!$other instanceof SassNumber) {
@@ -124,12 +124,12 @@ class SassNumber extends SassLiteral {
 
 	/**
 	 * Subtracts the value of other from this value
-	 * @param mixed SassNumber|SassColor: value to subtract
+	 * @param mixed SassNumber|SassColour: value to subtract
 	 * @return mixed SassNumber if other is a SassNumber or
-	 * SassColor if it is a SassColor
+	 * SassColour if it is a SassColour
 	 */
 	public function op_minus($other) {
-		if ($other instanceof SassColor) {
+		if ($other instanceof SassColour) {
 			return $other->op_minus($this);
 		}
 		elseif (!$other instanceof SassNumber) {
@@ -151,12 +151,12 @@ class SassNumber extends SassLiteral {
 
 	/**
 	 * Multiplies this value by the value of other
-	 * @param mixed SassNumber|SassColor: value to multiply by
+	 * @param mixed SassNumber|SassColour: value to multiply by
 	 * @return mixed SassNumber if other is a SassNumber or
-	 * SassColor if it is a SassColor
+	 * SassColour if it is a SassColour
 	 */
 	public function op_times($other) {
-		if ($other instanceof SassColor) {
+		if ($other instanceof SassColour) {
 			return $other->op_times($this);
 		}
 		elseif (!$other instanceof SassNumber) {
@@ -172,12 +172,12 @@ class SassNumber extends SassLiteral {
 
 	/**
 	 * Divides this value by the value of other
-	 * @param mixed SassNumber|SassColor: value to divide by
+	 * @param mixed SassNumber|SassColour: value to divide by
 	 * @return mixed SassNumber if other is a SassNumber or
-	 * SassColor if it is a SassColor
+	 * SassColour if it is a SassColour
 	 */
 	public function op_div($other) {
-		if ($other instanceof SassColor) {
+		if ($other instanceof SassColour) {
 			return $other->op_div($this);
 		}
 		elseif (!$other instanceof SassNumber) {
@@ -267,7 +267,7 @@ class SassNumber extends SassLiteral {
 	 * Takes the modulus (remainder) of this value divided by the value of other
 	 * @param string value to divide by
 	 * @return mixed SassNumber if other is a SassNumber or
-	 * SassColor if it is a SassColor
+	 * SassColour if it is a SassColour
 	 */
 	public function op_modulo($other) {
 		if (!$other instanceof SassNumber || !$other->isUnitless()) {

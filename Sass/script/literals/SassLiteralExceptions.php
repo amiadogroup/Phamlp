@@ -26,11 +26,11 @@ class SassLiteralException extends SassScriptParserException {}
 class SassBooleanException extends SassLiteralException {}
 
 /**
- * SassColorException class.
+ * SassColourException class.
  * @package			PHamlP
  * @subpackage	Sass.script.literals
  */
-class SassColorException extends SassLiteralException {}
+class SassColourException extends SassLiteralException {}
 
 /**
  * SassNumberException class.

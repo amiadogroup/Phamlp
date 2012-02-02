@@ -25,7 +25,7 @@ abstract class SassLiteral {
 	 */
 	static private $typeOf = array(
 		'SassBoolean' => 'bool',
-		'SassColor'  => 'color',
+		'SassColour'  => 'color',
 		'SassNumber'  => 'number',
 		'SassString'  => 'string'
 	);
