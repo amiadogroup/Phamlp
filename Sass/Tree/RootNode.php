@@ -1,5 +1,4 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  * Phamlp_Sass_Tree_RootNode class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
@@ -10,7 +9,6 @@
  */
 
 require_once(dirname(__FILE__).'/../script/SassScriptParser.php');
-require_once(dirname(__FILE__).'/../renderers/Phamlp_Sass_Renderer_Renderer.php');
 
 /**
  * Phamlp_Sass_Tree_RootNode class.
