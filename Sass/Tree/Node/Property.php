@@ -1,7 +1,7 @@
 <?php
 /* SVN FILE: $Id$ */
 /**
- * SassPropertyNode class file.
+ * Phamlp_Sass_Tree_Node_Property class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
  * @copyright 	Copyright (c) 2010 PBM Web Development
  * @license			http://phamlp.googlecode.com/files/license.txt
@@ -10,12 +10,12 @@
  */
 
 /**
- * SassPropertyNode class.
+ * Phamlp_Sass_Tree_Node_Property class.
  * Represents a CSS property.
  * @package			PHamlP
  * @subpackage	Sass.tree
  */
-class SassPropertyNode extends Phamlp_Sass_Tree_Node {
+class Phamlp_Sass_Tree_Node_Property extends Phamlp_Sass_Tree_Node {
 	const MATCH_PROPERTY_NEW = '/^([^\s=:"]+)\s*(?:(= )|:)(.*?)$/';
 	const MATCH_PROPERTY_OLD = '/^:([^\s=:]+)(?:\s*(=)\s*|\s+|$)(.*)/';
 	const MATCH_PSUEDO_SELECTOR = '/^:?\w[-\w]+\(?/i';
@@ -69,10 +69,10 @@ class SassPropertyNode extends Phamlp_Sass_Tree_Node {
 	private $value;
 
 	/**
-	 * SassPropertyNode constructor.
+	 * Phamlp_Sass_Tree_Node_Property constructor.
 	 * @param object source token
 	 * @param string property syntax
-	 * @return SassPropertyNode
+	 * @return Phamlp_Sass_Tree_Node_Property
 	 */
 	public function __construct($token, $syntax = 'new') {
 		parent::__construct($token);
@@ -130,7 +130,7 @@ class SassPropertyNode extends Phamlp_Sass_Tree_Node {
 	public function inNamespace() {
 		$parent = $this->parent;
 		do {
-			if ($parent instanceof SassPropertyNode) {
+			if ($parent instanceof Phamlp_Sass_Tree_Node_Property) {
 				return true;
 			}
 			$parent = $parent->parent;
@@ -146,7 +146,7 @@ class SassPropertyNode extends Phamlp_Sass_Tree_Node {
 		$namespace = array();
 		$parent = $this->parent;
 		do {
-			if ($parent instanceof SassPropertyNode) {
+			if ($parent instanceof Phamlp_Sass_Tree_Node_Property) {
 				$namespace[] = $parent->name;
 			}
 			$parent = $parent->parent;
@@ -186,7 +186,7 @@ class SassPropertyNode extends Phamlp_Sass_Tree_Node {
 				return false; 
 			}
 	  	if ($token->level === 0) {
-	  		throw new SassPropertyNodeException('Properties can not be assigned at root level', array(), $this);
+	  		throw new Phamlp_Sass_Tree_Node_PropertyException('Properties can not be assigned at root level', array(), $this);
 	  	}
 	  	else {
 				return true;

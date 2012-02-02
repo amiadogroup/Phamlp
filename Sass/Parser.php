@@ -535,8 +535,8 @@ class Phamlp_Sass_Parser {
 			case Phamlp_Sass_Tree_Node_Variable::isa($token):
 				return new Phamlp_Sass_Tree_Node_Variable($token);
 				break;
-			case SassPropertyNode::isa($token, $this->property_syntax):
-				return new SassPropertyNode($token, $this->property_syntax);
+			case Phamlp_Sass_Tree_Node_Property::isa($token, $this->property_syntax):
+				return new Phamlp_Sass_Tree_Node_Property($token, $this->property_syntax);
 				break;
 			case SassMixinDefinitionNode::isa($token):
 				if ($this->syntax === Phamlp_Sass_File::SCSS) {

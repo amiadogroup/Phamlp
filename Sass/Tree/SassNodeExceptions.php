@@ -87,11 +87,11 @@ class SassMixinDefinitionNodeException extends Phamlp_Sass_Tree_NodeException {}
 class SassMixinNodeException extends Phamlp_Sass_Tree_NodeException {}
 
 /**
- * SassPropertyNodeException class.
+ * Phamlp_Sass_Tree_Node_PropertyException class.
  * @package			PHamlP
  * @subpackage	Sass.tree
  */
-class SassPropertyNodeException extends Phamlp_Sass_Tree_NodeException {}
+class Phamlp_Sass_Tree_Node_PropertyException extends Phamlp_Sass_Tree_NodeException {}
 
 /**
  * SassRuleNodeException class.
