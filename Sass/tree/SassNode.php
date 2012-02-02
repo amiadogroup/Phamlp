@@ -1,7 +1,7 @@
 <?php
 /* SVN FILE: $Id$ */
 /**
- * SassNode class file.
+ * Phamlp_Sass_Tree_Node class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
  * @copyright 	Copyright (c) 2010 PBM Web Development
  * @license			http://phamlp.googlecode.com/files/license.txt
@@ -25,21 +25,21 @@ require_once('SassForNode.php');
 require_once('SassIfNode.php');
 require_once('SassElseNode.php');
 require_once('SassWhileNode.php');
-require_once('SassNodeExceptions.php');
+require_once('Phamlp_Sass_Tree_NodeExceptions.php');
 
 /**
- * SassNode class.
+ * Phamlp_Sass_Tree_Node class.
  * Base class for all Sass nodes.
  * @package			PHamlP
  * @subpackage	Sass.tree
  */
-class SassNode {
+class Phamlp_Sass_Tree_Node {
 	/**
-	 * @var SassNode parent of this node
+	 * @var Phamlp_Sass_Tree_Node parent of this node
 	 */
 	protected $parent;
 	/**
-	 * @var SassNode root node
+	 * @var Phamlp_Sass_Tree_Node root node
 	 */
 	protected $root;
 	/**
@@ -54,7 +54,7 @@ class SassNode {
 	/**
 	 * Constructor.
 	 * @param object source token
-	 * @return SassNode
+	 * @return Phamlp_Sass_Tree_Node
 	 */
 	public function __construct($token) {
 		$this->token = $token;
@@ -70,14 +70,14 @@ class SassNode {
 		if (method_exists($this, $getter)) {
 			return $this->$getter();
 		}
-		throw new SassNodeException('No getter function for {what}', array('{what}'=>$name), $this);
+		throw new Phamlp_Sass_Tree_NodeException('No getter function for {what}', array('{what}'=>$name), $this);
 	}
 
 	/**
 	 * Setter.
 	 * @param string name of property to set
 	 * @return mixed value of property
-	 * @return SassNode this node
+	 * @return Phamlp_Sass_Tree_Node this node
 	 */
 	public function __set($name, $value) {
 		$setter = 'set' . ucfirst($name);
@@ -85,7 +85,7 @@ class SassNode {
 			$this->$setter($value);
 			return $this;
 		}
-		throw new SassNodeException('No setter function for {what}', array('{what}'=>$name), $this);
+		throw new Phamlp_Sass_Tree_NodeException('No setter function for {what}', array('{what}'=>$name), $this);
 	}
 
 	/**
@@ -114,7 +114,7 @@ class SassNode {
 
 	/**
 	 * Adds a child to this node.
-	 * @return SassNode the child to add
+	 * @return Phamlp_Sass_Tree_Node the child to add
 	 */
 	public function addChild($child) {
 		if ($child instanceof SassElseNode) {
@@ -162,7 +162,7 @@ class SassNode {
 
 	/**
 	 * Returns the last child node of this node.
-	 * @return SassNode the last child node of this node
+	 * @return Phamlp_Sass_Tree_Node the last child node of this node
 	 */
 	public function getLastChild() {
 	  return $this->children[count($this->children) - 1];
@@ -337,6 +337,6 @@ class SassNode {
 	 * @return boolean true if the token represents this type of node, false if not
 	 */
 	public static function isa($token) {
-		throw new SassNodeException('Child classes must override this method');
+		throw new Phamlp_Sass_Tree_NodeException('Child classes must override this method');
 	}
 }

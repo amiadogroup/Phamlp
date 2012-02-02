@@ -25,7 +25,7 @@
  * @package			PHamlP
  * @subpackage	Sass.tree
  */
-class SassForNode extends SassNode {
+class SassForNode extends Phamlp_Sass_Tree_Node {
 	const MATCH = '/@for\s+[!\$](\w+)\s+from\s+(.+?)\s+(through|to)\s+(.+?)(?:\s+step\s+(.+))?$/i';
 
 	const VARIABLE = 1;

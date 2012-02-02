@@ -21,8 +21,6 @@
  * @subpackage	Sass
  */
 
-require_once('tree/SassNode.php');
-
 /**
  * Phamlp_Sass_Parser class.
  * Parses {@link http://sass-lang.com/ .sass and .sccs} files.
@@ -507,7 +505,7 @@ class Phamlp_Sass_Parser {
 	/**
 	 * Builds a parse tree under the parent node.
 	 * Called recursivly until the source is parsed.
-	 * @param SassNode the node
+	 * @param Phamlp_Sass_Tree_Node the node
 	 */
 	private function buildTree($parent) {
 		$node = $this->getNode($parent);
@@ -519,9 +517,9 @@ class Phamlp_Sass_Parser {
 	}
 
 	/**
-	 * Creates and returns the next SassNode.
-	 * The tpye of SassNode depends on the content of the SassToken.
-	 * @return SassNode a SassNode of the appropriate type. Null when no more
+	 * Creates and returns the next Phamlp_Sass_Tree_Node.
+	 * The tpye of Phamlp_Sass_Tree_Node depends on the content of the SassToken.
+	 * @return Phamlp_Sass_Tree_Node a Phamlp_Sass_Tree_Node of the appropriate type. Null when no more
 	 * source to parse.
 	 */
 	private function getNode($node) {
@@ -765,8 +763,8 @@ class Phamlp_Sass_Parser {
 	/**
 	 * Parses a directive
 	 * @param SassToken token to parse
-	 * @param SassNode parent node
-	 * @return SassNode a Sass directive node
+	 * @param Phamlp_Sass_Tree_Node parent node
+	 * @return Phamlp_Sass_Tree_Node a Sass directive node
 	 */
 	private function parseDirective($token, $parent) {
 		switch (SassDirectiveNode::extractDirective($token)) {

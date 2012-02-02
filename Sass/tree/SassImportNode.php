@@ -15,7 +15,7 @@
  * @package			PHamlP
  * @subpackage	Sass.tree
  */
-class SassImportNode extends SassNode {
+class SassImportNode extends Phamlp_Sass_Tree_Node {
 	const IDENTIFIER = '@';
 	const MATCH = '/^@import\s+(.+)/i';
 	const MATCH_CSS = '/^(.+\.css|url\(.+\)|.+" \w+|"http)/im';

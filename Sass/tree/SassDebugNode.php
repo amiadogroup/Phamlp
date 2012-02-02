@@ -15,7 +15,7 @@
  * @package			PHamlP
  * @subpackage	Sass.tree
  */
-class SassDebugNode extends SassNode {
+class SassDebugNode extends Phamlp_Sass_Tree_Node {
 	const IDENTIFIER = '@';
 	const MATCH = '/^@(?:debug|warn)\s+(.+?)\s*;?$/';
 	const MESSAGE = 1;

@@ -16,7 +16,7 @@
  * @package			PHamlP
  * @subpackage	Sass.tree
  */
-class SassIfNode extends SassNode {
+class SassIfNode extends Phamlp_Sass_Tree_Node {
 	const MATCH_IF = '/^@if\s+(.+)$/i';
 	const MATCH_ELSE = '/@else(\s+if\s+(.+))?/i';
 	const IF_EXPRESSION = 1;

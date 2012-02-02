@@ -15,7 +15,7 @@
  * @package			PHamlP
  * @subpackage	Sass.tree
  */
-class SassMixinDefinitionNode extends SassNode {
+class SassMixinDefinitionNode extends Phamlp_Sass_Tree_Node {
 	const NODE_IDENTIFIER = '=';
 	const MATCH = '/^(=|@mixin\s+)([-\w]+)\s*(?:\((.+?)\))?\s*$/i';
 	const IDENTIFIER = 1;

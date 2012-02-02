@@ -15,7 +15,7 @@
  * @package			PHamlP
  * @subpackage	Sass.tree
  */
-class SassPropertyNode extends SassNode {
+class SassPropertyNode extends Phamlp_Sass_Tree_Node {
 	const MATCH_PROPERTY_NEW = '/^([^\s=:"]+)\s*(?:(= )|:)(.*?)$/';
 	const MATCH_PROPERTY_OLD = '/^:([^\s=:]+)(?:\s*(=)\s*|\s+|$)(.*)/';
 	const MATCH_PSUEDO_SELECTOR = '/^:?\w[-\w]+\(?/i';

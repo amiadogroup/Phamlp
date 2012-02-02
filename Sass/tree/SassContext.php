@@ -31,7 +31,7 @@ class SassContext {
 	 */
 	protected $variables = array();
 	/**
-	 * @var SassNode the node being processed
+	 * @var Phamlp_Sass_Tree_Node the node being processed
 	 */
 	public $node; 
 

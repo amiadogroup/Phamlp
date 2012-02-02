@@ -15,7 +15,7 @@
  * @package			PHamlP
  * @subpackage	Sass.tree
  */
-class SassExtendNode extends SassNode {
+class SassExtendNode extends Phamlp_Sass_Tree_Node {
 	const IDENTIFIER = '@';
 	const MATCH = '/^@extend\s+(.+)/i';
 	const VALUE = 1;

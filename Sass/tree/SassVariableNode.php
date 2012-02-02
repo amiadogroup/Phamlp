@@ -15,7 +15,7 @@
  * @package			PHamlP
  * @subpackage	Sass.tree
  */
-class SassVariableNode extends SassNode {
+class SassVariableNode extends Phamlp_Sass_Tree_Node {
 	const MATCH = '/^([!$])([\w-]+)\s*:?\s*((\|\|)?=)?\s*(.+?)\s*(!default)?;?$/i';
 	const IDENTIFIER = 1;
 	const NAME = 2;

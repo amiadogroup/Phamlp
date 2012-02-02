@@ -15,7 +15,7 @@
  * @package			PHamlP
  * @subpackage	Sass.tree
  */
-class SassWhileNode extends SassNode {
+class SassWhileNode extends Phamlp_Sass_Tree_Node {
 	const MATCH = '/^@(do|while)\s+(.+)$/i';
 	const LOOP = 1;
 	const EXPRESSION = 2;

@@ -18,7 +18,7 @@ require_once(dirname(__FILE__).'/../renderers/SassRenderer.php');
  * @package			PHamlP
  * @subpackage	Sass.tree
  */
-class SassRootNode extends SassNode {
+class SassRootNode extends Phamlp_Sass_Tree_Node {
 	/**
 	 * @var SassScriptParser SassScript parser
 	 */
@@ -37,9 +37,9 @@ class SassRootNode extends SassNode {
 	protected $extenders = array();
 
 	/**
-	 * Root SassNode constructor.
+	 * Root Phamlp_Sass_Tree_Node constructor.
 	 * @param Phamlp_Sass_Parser Sass parser
-	 * @return SassNode
+	 * @return Phamlp_Sass_Tree_Node
 	 */
 	public function __construct($parser) { 
 		parent::__construct((object) array(
@@ -59,7 +59,7 @@ class SassRootNode extends SassNode {
 	 * Dynamic nodes are evaluated, files imported, etc.
 	 * Only static nodes for rendering are in the resulting tree.
 	 * @param SassContext the context in which this node is parsed
-	 * @return SassNode root node of the render tree
+	 * @return Phamlp_Sass_Tree_Node root node of the render tree
 	 */
 	public function parse($context) {
 		$node = clone $this;
@@ -92,9 +92,9 @@ class SassRootNode extends SassNode {
 	/**
 	 * Returns a value indicating if the line represents this type of node.
 	 * Child classes must override this method.
-	 * @throws SassNodeException if not overriden
+	 * @throws Phamlp_Sass_Tree_NodeException if not overriden
 	 */
 	public static function isa($line) {
-		throw new SassNodeException('Child classes must override this method');
+		throw new Phamlp_Sass_Tree_NodeException('Child classes must override this method');
 	}
 }

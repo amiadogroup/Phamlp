@@ -15,7 +15,7 @@
  * @package			PHamlP
  * @subpackage	Sass.tree
  */
-class SassCommentNode extends SassNode {
+class SassCommentNode extends Phamlp_Sass_Tree_Node {
 	const NODE_IDENTIFIER = '/';
 	const MATCH = '%^/\*\s*(.*?)\s*(\*/)?$%s';
 	const COMMENT = 1;

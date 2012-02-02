@@ -15,7 +15,7 @@
  * @package			PHamlP
  * @subpackage	Sass.tree
  */
-class SassRuleNode extends SassNode {
+class SassRuleNode extends Phamlp_Sass_Tree_Node {
 	const MATCH = '/^(.+?)(?:\s*\{)?$/';
 	const SELECTOR = 1;
 	const CONTINUED = ',';
