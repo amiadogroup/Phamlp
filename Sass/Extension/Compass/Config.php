@@ -14,7 +14,7 @@
  * @package			PHamlP
  * @subpackage	Sass.extensions.compass
  */
-class Phamlp_Sass_Extension_Compass_Config {
+class Phamlp_Sass_Extension_compass_Config {
 	public static $config;
 	private static $defaultConfig = array(
 						 'project_path' => '',
