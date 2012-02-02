@@ -119,7 +119,7 @@ class SassNode {
 	public function addChild($child) {
 		if ($child instanceof SassElseNode) {
 			if (!$this->lastChild instanceof SassIfNode) {
-				throw new SassException('@else(if) directive must come after @(else)if', array(), $child);
+				throw new Pahmlp_Sass_Exception('@else(if) directive must come after @(else)if', array(), $child);
 			}
 			$this->lastChild->addElse($child);
 		}
@@ -226,7 +226,7 @@ class SassNode {
 
 	/**
 	 * Returns the Sass parser.
-	 * @return SassParser the Sass parser
+	 * @return Phamlp_Sass_Parser the Sass parser
 	 */
 	public function getParser() {
 	  return $this->root->parser;

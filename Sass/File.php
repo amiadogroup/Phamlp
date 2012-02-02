@@ -1,7 +1,6 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
- * SassFile class file.
+ * Pahmlp_Sass_File class file.
  * File handling utilites.
  * @author			Chris Yates <chris.l.yates@gmail.com>
  * @copyright 	Copyright (c) 2010 PBM Web Development
@@ -11,11 +10,11 @@
  */
 
 /**
- * SassFile class.
+ * Pahmlp_Sass_File class.
  * @package			PHamlP
  * @subpackage	Sass
  */
-class SassFile {
+class Pahmlp_Sass_File {
 	const SASS = 'sass';
 	const SCSS = 'scss';
 	const SASSC = 'sassc';
@@ -27,7 +26,7 @@ class SassFile {
 	 * If caching is enabled a cached version will be used if possible; if not the
 	 * parsed file will be cached.
 	 * @param string filename to parse
-	 * @param SassParser Sass parser
+	 * @param Phamlp_Sass_Parser Sass parser
 	 * @return SassRootNode
 	 */
 	public static function getTree($filename, $parser) {
@@ -37,9 +36,9 @@ class SassFile {
 				return $cached;
 			}
 		}
-
-		$sassParser = new SassParser(array_merge($parser->options, array('line'=>1)));
-		$tree = $sassParser->parse($filename);
+		
+		$parser = new Phamlp_Sass_Parser(array_merge($parser->options, array('line'=>1)));
+		$tree = $parser->parse($filename);
 		if ($parser->cache) {
 			self::setCachedFile($tree, $filename, $parser->cache_location);
 		}
@@ -53,9 +52,9 @@ class SassFile {
 	 * If the filename does not end in .sass or .scss try the current syntax first
 	 * then, if a file is not found, try the other syntax.
 	 * @param string filename to find
-	 * @param SassParser Sass parser
+	 * @param Phamlp_Sass_Parser Sass parser
 	 * @return string path to file
-	 * @throws SassException if file not found
+	 * @throws Pahmlp_Sass_Exception if file not found
 	 */
 	public static function getFile($filename, $parser) {
 		$ext = substr($filename, -5);
@@ -92,7 +91,7 @@ class SassFile {
 			}		
 		}
 
-		throw new SassException('Unable to find {what}: {filename}', array('{what}'=>'import file', '{filename}'=>$filename));
+		throw new Pahmlp_Sass_Exception('Unable to find {what}: {filename}', array('{what}'=>'import file', '{filename}'=>$filename));
 	}
 
 	/**
