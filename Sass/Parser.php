@@ -529,8 +529,8 @@ class Phamlp_Sass_Parser {
 			case SassDirectiveNode::isa($token):
 				return $this->parseDirective($token, $node);
 				break;
-			case Phamlp_Sass_Tree_CommentNode::isa($token):
-				return new Phamlp_Sass_Tree_CommentNode($token);
+			case Phamlp_Sass_Tree_Node_Comment::isa($token):
+				return new Phamlp_Sass_Tree_Node_Comment($token);
 				break;
 			case SassVariableNode::isa($token):
 				return new SassVariableNode($token);

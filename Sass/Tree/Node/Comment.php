@@ -1,7 +1,7 @@
 <?php
 /* SVN FILE: $Id$ */
 /**
- * Phamlp_Sass_Tree_CommentNode class file.
+ * Phamlp_Sass_Tree_Node_Comment class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
  * @copyright 	Copyright (c) 2010 PBM Web Development
  * @license			http://phamlp.googlecode.com/files/license.txt
@@ -10,12 +10,12 @@
  */
 
 /**
- * Phamlp_Sass_Tree_CommentNode class.
+ * Phamlp_Sass_Tree_Node_Comment class.
  * Represents a CSS comment.
  * @package			PHamlP
  * @subpackage	Sass.tree
  */
-class Phamlp_Sass_Tree_CommentNode extends Phamlp_Sass_Tree_Node {
+class Phamlp_Sass_Tree_Node_Comment extends Phamlp_Sass_Tree_Node {
 	const NODE_IDENTIFIER = '/';
 	const MATCH = '%^/\*\s*(.*?)\s*(\*/)?$%s';
 	const COMMENT = 1;
@@ -23,7 +23,7 @@ class Phamlp_Sass_Tree_CommentNode extends Phamlp_Sass_Tree_Node {
 	private $value; 
 	
 	/**
-	 * Phamlp_Sass_Tree_CommentNode constructor.
+	 * Phamlp_Sass_Tree_Node_Comment constructor.
 	 * @param object source token
 	 * @return CommentNode
 	 */
