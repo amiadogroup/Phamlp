@@ -9,8 +9,6 @@
  * @subpackage	Sass.script.literals
  */
 
-require_once('Phamlp_Sass_Script_LiteralExceptions.php');
-
 /**
  * Phamlp_Sass_Script_Literal class.
  * Base class for all Sass literals.
