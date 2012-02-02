@@ -101,11 +101,11 @@ class SassPropertyNodeException extends Phamlp_Sass_Tree_NodeException {}
 class SassRuleNodeException extends Phamlp_Sass_Tree_NodeException {}
 
 /**
- * SassVariableNodeException class.
+ * Phamlp_Sass_Tree_Node_VariableException class.
  * @package			PHamlP
  * @subpackage	Sass.tree
  */
-class SassVariableNodeException extends Phamlp_Sass_Tree_NodeException {}
+class Phamlp_Sass_Tree_Node_VariableException extends Phamlp_Sass_Tree_NodeException {}
 
 /**
  * SassWhileNodeException class.

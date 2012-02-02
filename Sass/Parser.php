@@ -532,8 +532,8 @@ class Phamlp_Sass_Parser {
 			case Phamlp_Sass_Tree_Node_Comment::isa($token):
 				return new Phamlp_Sass_Tree_Node_Comment($token);
 				break;
-			case SassVariableNode::isa($token):
-				return new SassVariableNode($token);
+			case Phamlp_Sass_Tree_Node_Variable::isa($token):
+				return new Phamlp_Sass_Tree_Node_Variable($token);
 				break;
 			case SassPropertyNode::isa($token, $this->property_syntax):
 				return new SassPropertyNode($token, $this->property_syntax);
