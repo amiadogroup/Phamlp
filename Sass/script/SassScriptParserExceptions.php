@@ -14,7 +14,7 @@
  * @package			PHamlP
  * @subpackage	Sass.script
  */
-class SassScriptParserException extends Pahmlp_Sass_Exception {}
+class SassScriptParserException extends Phamlp_Sass_Exception {}
 
 /**
  * SassScriptLexerException class.

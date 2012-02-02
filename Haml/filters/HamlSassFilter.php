@@ -27,7 +27,7 @@ class HamlSassFilter extends HamlBaseFilter {
 	 * @return string filtered text
 	 */
 	public function run($text) {
-		$sass = new Pahmlp_Sass_Parser();
+		$sass = new Phamlp_Sass_Parser();
 		$css = new HamlCssFilter();
 		$css->init();
 

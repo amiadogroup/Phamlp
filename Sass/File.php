@@ -54,7 +54,7 @@ class Phamlp_Sass_File {
 	 * @param string filename to find
 	 * @param Phamlp_Sass_Parser Sass parser
 	 * @return string path to file
-	 * @throws Phamlp_Sass_FilePahmlp_Phamlp_Sass_Exception if file not found
+	 * @throws Phamlp_Sass_Exception if file not found
 	 */
 	public static function getFile($filename, $parser) {
 		$ext = substr($filename, -5);
@@ -91,7 +91,7 @@ class Phamlp_Sass_File {
 			}		
 		}
 
-		throw new Phamlp_Sass_FilePahmlp_Phamlp_Sass_Exception('Unable to find {what}: {filename}', array('{what}'=>'import file', '{filename}'=>$filename));
+		throw new Phamlp_Sass_Exception('Unable to find {what}: {filename}', array('{what}'=>'import file', '{filename}'=>$filename));
 	}
 
 	/**

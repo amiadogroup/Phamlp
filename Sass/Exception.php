@@ -13,7 +13,7 @@
  * @package			PHamlP
  * @subpackage	Sass
  */
-class Phamlp_Sass_FilePahmlp_Phamlp_Sass_Exception extends Exception {
+class Phamlp_Sass_Exception extends Exception {
 	/**
 	 * Sass Exception.
 	 * @param string Exception message
