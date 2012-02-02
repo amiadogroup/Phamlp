@@ -9,11 +9,6 @@
  * @subpackage	Sass.script
  */
 
-require_once('literals/SassBoolean.php');
-require_once('literals/SassColour.php');
-require_once('literals/SassNumber.php');
-require_once('literals/SassString.php');
-
 /**
  * Phamlp_Sass_Script_Lexer class.
  * Lexes SassSCript into tokens for the parser.
@@ -62,17 +57,17 @@ class Phamlp_Sass_Script_Lexer {
 				$tokens[] = new Phamlp_Sass_Script_Function(
 						$matches[Phamlp_Sass_Script_Function::NAME], $args);
 			}
-			elseif (($match = SassString::isa($string)) !== false) {
-				$tokens[] = new SassString($match);
+			elseif (($match = Phamlp_Sass_Script_Literal_String::isa($string)) !== false) {
+				$tokens[] = new Phamlp_Sass_Script_Literal_String($match);
 			}
-			elseif (($match = SassBoolean::isa($string)) !== false) {
-				$tokens[] = new SassBoolean($match);
+			elseif (($match = Phamlp_Sass_Script_Literal_Boolean::isa($string)) !== false) {
+				$tokens[] = new Phamlp_Sass_Script_Literal_Boolean($match);
 			}
-			elseif (($match = SassColour::isa($string)) !== false) {
-				$tokens[] = new SassColour($match);
+			elseif (($match = Phamlp_Sass_Script_Literal_Colour::isa($string)) !== false) {
+				$tokens[] = new Phamlp_Sass_Script_Literal_Colour($match);
 			}
-			elseif (($match = SassNumber::isa($string)) !== false) {				
-				$tokens[] = new SassNumber($match);
+			elseif (($match = Phamlp_Sass_Script_Literal_Number::isa($string)) !== false) {				
+				$tokens[] = new Phamlp_Sass_Script_Literal_Number($match);
 			}
 			elseif (($match = Phamlp_Sass_Script_Operation::isa($string)) !== false) {
 				$tokens[] = new Phamlp_Sass_Script_Operation($match);
@@ -92,7 +87,7 @@ class Phamlp_Sass_Script_Lexer {
 					$match .= $_string[0];
 					$_string = substr($_string, 1);			
 				}
-				$tokens[] = new SassString($match);
+				$tokens[] = new Phamlp_Sass_Script_Literal_String($match);
 			}			
 			$string = substr($string, strlen($match));
 		}

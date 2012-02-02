@@ -1,5 +1,5 @@
 <?php
-/* SVN FILE: $Id: SassBoolean.php 49 2010-04-04 10:51:24Z chris.l.yates $ */
+/* SVN FILE: $Id: Phamlp_Sass_Script_Literal_Boolean.php 49 2010-04-04 10:51:24Z chris.l.yates $ */
 /**
  * Compass extension SassScript inline data class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
@@ -20,7 +20,7 @@ class SassExtentionsCompassFunctionsInlineData {
 		$path = $path->value;
 		$real_path = SassExtentionsCompassConfig::config('images_path').DIRECTORY_SEPARATOR.$path;
 		$url = 'url(data:'.self::compute_mime_type($path, $mime_type).';base64,'.self::data($real_path).')';
-		return new SassString($url);
+		return new Phamlp_Sass_Script_Literal_String($url);
 	}
 
 	public function inline_font_files() {
@@ -36,7 +36,7 @@ class SassExtentionsCompassFunctionsInlineData {
 			$url = 'url(data:'.self::compute_mime_type($path).';base64,'.self::data($real_path).')';
 			$files[] = "$url format('".array_shift($args)."')";
 		}
-		return new SassString(join(", ", $files));
+		return new Phamlp_Sass_Script_Literal_String(join(", ", $files));
 	}
 
 	private function compute_mime_type($path, $mime_type = null) {

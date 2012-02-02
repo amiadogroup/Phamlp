@@ -9,12 +9,12 @@
  * and it will call SassFunctions::hsl().
  *
  * There are a few things to keep in mind when modifying this module.
- * First of all, the arguments passed are SassLiteral objects.
+ * First of all, the arguments passed are Phamlp_Sass_Script_Literal objects.
  * Literal objects are also expected to be returned.
  *
- * Most Literal objects support the SassLiteral->value accessor
+ * Most Literal objects support the Phamlp_Sass_Script_Literal->value accessor
  * for getting their values. Colour objects, though, must be accessed using
- * SassColour::rgb().
+ * Phamlp_Sass_Script_Literal_Colour::rgb().
  *
  * Second, making functions accessible from Sass introduces the temptation
  * to do things like database access within stylesheets.
@@ -45,38 +45,38 @@ class Phamlp_Sass_Script_Functions {
 	 */
 	
 	/**
-	 * Creates a SassColour object from red, green, and blue values.
-	 * @param SassNumber the red component.
+	 * Creates a Phamlp_Sass_Script_Literal_Colour object from red, green, and blue values.
+	 * @param Phamlp_Sass_Script_Literal_Number the red component.
 	 * A number between 0 and 255 inclusive, or between 0% and 100% inclusive
-	 * @param SassNumber the green component.
+	 * @param Phamlp_Sass_Script_Literal_Number the green component.
 	 * A number between 0 and 255 inclusive, or between 0% and 100% inclusive
-	 * @param SassNumber the blue component.
+	 * @param Phamlp_Sass_Script_Literal_Number the blue component.
 	 * A number between 0 and 255 inclusive, or between 0% and 100% inclusive
-	 * @return new SassColour SassColour object
+	 * @return new Phamlp_Sass_Script_Literal_Colour Phamlp_Sass_Script_Literal_Colour object
 	 * @throws Phamlp_Sass_Script_FunctionException if red, green, or blue are out of bounds
 	 */
 	public static function rgb($red, $green, $blue) {
-		return self::rgba($red, $green, $blue, new SassNumber(1));
+		return self::rgba($red, $green, $blue, new Phamlp_Sass_Script_Literal_Number(1));
 	}
 	
 	/**
-	 * Creates a SassColour object from red, green, and blue values and alpha 
+	 * Creates a Phamlp_Sass_Script_Literal_Colour object from red, green, and blue values and alpha 
 	 * channel (opacity).
 	 * There are two overloads:
 	 * * rgba(red, green, blue, alpha)
-	 * @param SassNumber the red component.
+	 * @param Phamlp_Sass_Script_Literal_Number the red component.
 	 * A number between 0 and 255 inclusive, or between 0% and 100% inclusive
-	 * @param SassNumber the green component.
+	 * @param Phamlp_Sass_Script_Literal_Number the green component.
 	 * A number between 0 and 255 inclusive, or between 0% and 100% inclusive
-	 * @param SassNumber the blue component.
+	 * @param Phamlp_Sass_Script_Literal_Number the blue component.
 	 * A number between 0 and 255 inclusive, or between 0% and 100% inclusive
-	 * @param SassNumber The alpha channel. A number between 0 and 1.
+	 * @param Phamlp_Sass_Script_Literal_Number The alpha channel. A number between 0 and 1.
 	 *
 	 * * rgba(colour, alpha)
-	 * @param SassColour a SassColour object
-	 * @param SassNumber The alpha channel. A number between 0 and 1.
+	 * @param Phamlp_Sass_Script_Literal_Colour a Phamlp_Sass_Script_Literal_Colour object
+	 * @param Phamlp_Sass_Script_Literal_Number The alpha channel. A number between 0 and 1.
 	 * 
-	 * @return new SassColour SassColour object
+	 * @return new Phamlp_Sass_Script_Literal_Colour Phamlp_Sass_Script_Literal_Colour object
 	 * @throws Phamlp_Sass_Script_FunctionException if any of the red, green, or blue 
 	 * colour components are out of bounds, or or the colour is not a colour, or
 	 * alpha is out of bounds
@@ -86,9 +86,9 @@ class Phamlp_Sass_Script_Functions {
 			case 2:
 				$colour = func_get_arg(0);
 				$alpha = func_get_arg(1);					
-				SassLiteral::assertType($colour, 'SassColour');
-				SassLiteral::assertType($alpha, 'SassNumber');
-				SassLiteral::assertInRange($alpha, 0, 1);
+				Phamlp_Sass_Script_Literal::assertType($colour, 'Phamlp_Sass_Script_Literal_Colour');
+				Phamlp_Sass_Script_Literal::assertType($alpha, 'Phamlp_Sass_Script_Literal_Number');
+				Phamlp_Sass_Script_Literal::assertInRange($alpha, 0, 1);
 				return $colour->with(array('alpha' => $alpha->value));
 				break;
 			case 4:
@@ -96,20 +96,20 @@ class Phamlp_Sass_Script_Functions {
 				$components = func_get_args();
 				$alpha = array_pop($components);
 				foreach($components as $component) {
-					SassLiteral::assertType($component, 'SassNumber');
+					Phamlp_Sass_Script_Literal::assertType($component, 'Phamlp_Sass_Script_Literal_Number');
 					if ($component->units == '%') {
-						SassLiteral::assertInRange($component, 0, 100, '%');
+						Phamlp_Sass_Script_Literal::assertInRange($component, 0, 100, '%');
 						$rgba[] = $component->value * 2.55;
 					}
 					else {
-						SassLiteral::assertInRange($component, 0, 255);
+						Phamlp_Sass_Script_Literal::assertInRange($component, 0, 255);
 						$rgba[] = $component->value;
 					}
 				}
-				SassLiteral::assertType($alpha, 'SassNumber');
-				SassLiteral::assertInRange($alpha, 0, 1);
+				Phamlp_Sass_Script_Literal::assertType($alpha, 'Phamlp_Sass_Script_Literal_Number');
+				Phamlp_Sass_Script_Literal::assertInRange($alpha, 0, 1);
 				$rgba[] = $alpha->value;
-				return new SassColour($rgba);
+				return new Phamlp_Sass_Script_Literal_Colour($rgba);
 				break;
 			default:
 				throw new Phamlp_Sass_Script_FunctionException('Incorrect argument count for {method}; expected {expected}, received {received}', array('{method}' => __METHOD__, '{expected}' => '2 or 4', '{received}' => func_num_args()), Phamlp_Sass_Script_Parser::$context->node);
@@ -117,7 +117,7 @@ class Phamlp_Sass_Script_Functions {
 	}
 
 	/**
-	 * Creates a SassColour object from hue, saturation, and lightness.
+	 * Creates a Phamlp_Sass_Script_Literal_Colour object from hue, saturation, and lightness.
 	 * Uses the algorithm from the
 	 * {@link http://www.w3.org/TR/css3-colour/#hsl-colour CSS3 spec}.
 	 * @param float The hue of the colour in degrees.
@@ -126,36 +126,36 @@ class Phamlp_Sass_Script_Functions {
 	 * Must be between '0%' and 100%, inclusive
 	 * @param mixed The lightness of the colour as a percentage.
 	 * Must be between 0% and 100%, inclusive
-	 * @return new SassColour The resulting colour
+	 * @return new Phamlp_Sass_Script_Literal_Colour The resulting colour
 	 * @throws Phamlp_Sass_Script_FunctionException if saturation or lightness are out of bounds
 	 */
 	public static function hsl($h, $s, $l) {
-		return self::hsla($h, $s, $l, new SassNumber(1));
+		return self::hsla($h, $s, $l, new Phamlp_Sass_Script_Literal_Number(1));
 	}
 
 	/**
-	 * Creates a SassColour object from hue, saturation, lightness and alpha 
+	 * Creates a Phamlp_Sass_Script_Literal_Colour object from hue, saturation, lightness and alpha 
 	 * channel (opacity).
-	 * @param SassNumber The hue of the colour in degrees.
+	 * @param Phamlp_Sass_Script_Literal_Number The hue of the colour in degrees.
 	 * Should be between 0 and 360 inclusive
-	 * @param SassNumber The saturation of the colour as a percentage.
+	 * @param Phamlp_Sass_Script_Literal_Number The saturation of the colour as a percentage.
 	 * Must be between 0% and 100% inclusive
-	 * @param SassNumber The lightness of the colour as a percentage.
+	 * @param Phamlp_Sass_Script_Literal_Number The lightness of the colour as a percentage.
 	 * Must be between 0% and 100% inclusive
 	 * @param float The alpha channel. A number between 0 and 1. 
-	 * @return new SassColour The resulting colour
+	 * @return new Phamlp_Sass_Script_Literal_Colour The resulting colour
 	 * @throws Phamlp_Sass_Script_FunctionException if saturation, lightness or alpha are
 	 * out of bounds
 	 */
 	public static function hsla($h, $s, $l, $a) {
-		SassLiteral::assertType($h, 'SassNumber');
-		SassLiteral::assertType($s, 'SassNumber');
-		SassLiteral::assertType($l, 'SassNumber');
-		SassLiteral::assertType($a, 'SassNumber');
-		SassLiteral::assertInRange($s, 0, 100, '%');
-		SassLiteral::assertInRange($l, 0, 100, '%');
-		SassLiteral::assertInRange($a, 0,   1);
-		return new SassColour(array('hue'=>$h, 'saturation'=>$s, 'lightness'=>$l, 'alpha'=>$a));
+		Phamlp_Sass_Script_Literal::assertType($h, 'Phamlp_Sass_Script_Literal_Number');
+		Phamlp_Sass_Script_Literal::assertType($s, 'Phamlp_Sass_Script_Literal_Number');
+		Phamlp_Sass_Script_Literal::assertType($l, 'Phamlp_Sass_Script_Literal_Number');
+		Phamlp_Sass_Script_Literal::assertType($a, 'Phamlp_Sass_Script_Literal_Number');
+		Phamlp_Sass_Script_Literal::assertInRange($s, 0, 100, '%');
+		Phamlp_Sass_Script_Literal::assertInRange($l, 0, 100, '%');
+		Phamlp_Sass_Script_Literal::assertInRange($a, 0,   1);
+		return new Phamlp_Sass_Script_Literal_Colour(array('hue'=>$h, 'saturation'=>$s, 'lightness'=>$l, 'alpha'=>$a));
 	}
 	
 	/*
@@ -164,90 +164,90 @@ class Phamlp_Sass_Script_Functions {
 
 	/**
 	 * Returns the red component of a colour.
-	 * @param SassColour The colour
-	 * @return new SassNumber The red component of colour
+	 * @param Phamlp_Sass_Script_Literal_Colour The colour
+	 * @return new Phamlp_Sass_Script_Literal_Number The red component of colour
 	 * @throws Phamlp_Sass_Script_FunctionException If $colour is not a colour
 	 */
 	public static function red($colour) {
-		SassLiteral::assertType($colour, 'SassColour');
-		return new SassNumber($colour->red);
+		Phamlp_Sass_Script_Literal::assertType($colour, 'Phamlp_Sass_Script_Literal_Colour');
+		return new Phamlp_Sass_Script_Literal_Number($colour->red);
 	}
 
 	/**
 	 * Returns the green component of a colour.
-	 * @param SassColour The colour
-	 * @return new SassNumber The green component of colour
+	 * @param Phamlp_Sass_Script_Literal_Colour The colour
+	 * @return new Phamlp_Sass_Script_Literal_Number The green component of colour
 	 * @throws Phamlp_Sass_Script_FunctionException If $colour is not a colour
 	 */
 	public static function green($colour) {
-		SassLiteral::assertType($colour, 'SassColour');
-		return new SassNumber($colour->green);
+		Phamlp_Sass_Script_Literal::assertType($colour, 'Phamlp_Sass_Script_Literal_Colour');
+		return new Phamlp_Sass_Script_Literal_Number($colour->green);
 	}
 	
 	/**
 	 * Returns the blue component of a colour.
-	 * @param SassColour The colour
-	 * @return new SassNumber The blue component of colour
+	 * @param Phamlp_Sass_Script_Literal_Colour The colour
+	 * @return new Phamlp_Sass_Script_Literal_Number The blue component of colour
 	 * @throws Phamlp_Sass_Script_FunctionException If $colour is not a colour
 	 */
 	public static function blue($colour) {
-		SassLiteral::assertType($colour, 'SassColour');
-		return new SassNumber($colour->blue);
+		Phamlp_Sass_Script_Literal::assertType($colour, 'Phamlp_Sass_Script_Literal_Colour');
+		return new Phamlp_Sass_Script_Literal_Number($colour->blue);
 	}
 
 	/**
 	 * Returns the hue component of a colour.
-	 * @param SassColour The colour
-	 * @return new SassNumber The hue component of colour
+	 * @param Phamlp_Sass_Script_Literal_Colour The colour
+	 * @return new Phamlp_Sass_Script_Literal_Number The hue component of colour
 	 * @throws Phamlp_Sass_Script_FunctionException If $colour is not a colour
 	 */
 	public static function hue($colour) {
-		SassLiteral::assertType($colour, 'SassColour');
-		return new SassNumber($colour->hue);
+		Phamlp_Sass_Script_Literal::assertType($colour, 'Phamlp_Sass_Script_Literal_Colour');
+		return new Phamlp_Sass_Script_Literal_Number($colour->hue);
 	}
 
 	/**
 	 * Returns the saturation component of a colour.
-	 * @param SassColour The colour
-	 * @return new SassNumber The saturation component of colour
+	 * @param Phamlp_Sass_Script_Literal_Colour The colour
+	 * @return new Phamlp_Sass_Script_Literal_Number The saturation component of colour
 	 * @throws Phamlp_Sass_Script_FunctionException If $colour is not a colour
 	 */
 	public static function saturation($colour) {
-		SassLiteral::assertType($colour, 'SassColour');
-		return new SassNumber($colour->saturation);
+		Phamlp_Sass_Script_Literal::assertType($colour, 'Phamlp_Sass_Script_Literal_Colour');
+		return new Phamlp_Sass_Script_Literal_Number($colour->saturation);
 	}
 
 	/**
 	 * Returns the lightness component of a colour.
-	 * @param SassColour The colour
-	 * @return new SassNumber The lightness component of colour
+	 * @param Phamlp_Sass_Script_Literal_Colour The colour
+	 * @return new Phamlp_Sass_Script_Literal_Number The lightness component of colour
 	 * @throws Phamlp_Sass_Script_FunctionException If $colour is not a colour
 	 */
 	public static function lightness($colour) {
-		SassLiteral::assertType($colour, 'SassColour');
-		return new SassNumber($colour->lightness);
+		Phamlp_Sass_Script_Literal::assertType($colour, 'Phamlp_Sass_Script_Literal_Colour');
+		return new Phamlp_Sass_Script_Literal_Number($colour->lightness);
 	}
 
 	/**
 	 * Returns the alpha component (opacity) of a colour.
-	 * @param SassColour The colour
-	 * @return new SassNumber The alpha component (opacity) of colour
+	 * @param Phamlp_Sass_Script_Literal_Colour The colour
+	 * @return new Phamlp_Sass_Script_Literal_Number The alpha component (opacity) of colour
 	 * @throws Phamlp_Sass_Script_FunctionException If $colour is not a colour
 	 */
 	public static function alpha($colour) {
-		SassLiteral::assertType($colour, 'SassColour');
-		return new SassNumber($colour->alpha);
+		Phamlp_Sass_Script_Literal::assertType($colour, 'Phamlp_Sass_Script_Literal_Colour');
+		return new Phamlp_Sass_Script_Literal_Number($colour->alpha);
 	}
 
 	/**
 	 * Returns the alpha component (opacity) of a colour.
-	 * @param SassColour The colour
-	 * @return new SassNumber The alpha component (opacity) of colour
+	 * @param Phamlp_Sass_Script_Literal_Colour The colour
+	 * @return new Phamlp_Sass_Script_Literal_Number The alpha component (opacity) of colour
 	 * @throws Phamlp_Sass_Script_FunctionException If $colour is not a colour
 	 */
 	public static function opacity($colour) {
-		SassLiteral::assertType($colour, 'SassColour');
-		return new SassNumber($colour->alpha);
+		Phamlp_Sass_Script_Literal::assertType($colour, 'Phamlp_Sass_Script_Literal_Colour');
+		return new Phamlp_Sass_Script_Literal_Number($colour->alpha);
 	}
 	
 	/*
@@ -256,30 +256,30 @@ class Phamlp_Sass_Script_Functions {
 
 	/**
 	 * Changes the hue of a colour while retaining the lightness and saturation.
-	 * @param SassColour The colour to adjust
-	 * @param SassNumber The amount to adjust the colour by
-	 * @return new SassColour The adjusted colour
+	 * @param Phamlp_Sass_Script_Literal_Colour The colour to adjust
+	 * @param Phamlp_Sass_Script_Literal_Number The amount to adjust the colour by
+	 * @return new Phamlp_Sass_Script_Literal_Colour The adjusted colour
 	 * @throws Phamlp_Sass_Script_FunctionException If $colour is not a colour or
 	 * $degrees is not a number
 	 */
 	public static function adjust_hue($colour, $degrees) {
-		SassLiteral::assertType($colour, 'SassColour');
-		SassLiteral::assertType($degrees, 'SassNumber');
+		Phamlp_Sass_Script_Literal::assertType($colour, 'Phamlp_Sass_Script_Literal_Colour');
+		Phamlp_Sass_Script_Literal::assertType($degrees, 'Phamlp_Sass_Script_Literal_Number');
 		return $colour->with(array('hue' => $colour->hue + $degrees->value));
 	}
 
 	/**
 	 * Makes a colour lighter.
-	 * @param SassColour The colour to lighten
-	 * @param SassNumber The amount to lighten the colour by
-	 * @param SassBoolean Whether the amount is a proportion of the current value
+	 * @param Phamlp_Sass_Script_Literal_Colour The colour to lighten
+	 * @param Phamlp_Sass_Script_Literal_Number The amount to lighten the colour by
+	 * @param Phamlp_Sass_Script_Literal_Boolean Whether the amount is a proportion of the current value
 	 * (true) or the total range (false).
 	 * The default is false - the amount is a proportion of the total range.
 	 * If the colour lightness value is 40% and the amount is 50%,
 	 * the resulting colour lightness value is 90% if the amount is a proportion
 	 * of the total range, whereas it is 60% if the amount is a proportion of the
 	 * current value.
-	 * @return new SassColour The lightened colour
+	 * @return new Phamlp_Sass_Script_Literal_Colour The lightened colour
 	 * @throws Phamlp_Sass_Script_FunctionException If $colour is not a colour or
 	 * $amount is not a number
 	 * @see lighten_rel
@@ -290,16 +290,16 @@ class Phamlp_Sass_Script_Functions {
 
 	/**
 	 * Makes a colour darker.
-	 * @param SassColour The colour to darken
-	 * @param SassNumber The amount to darken the colour by
-	 * @param SassBoolean Whether the amount is a proportion of the current value
+	 * @param Phamlp_Sass_Script_Literal_Colour The colour to darken
+	 * @param Phamlp_Sass_Script_Literal_Number The amount to darken the colour by
+	 * @param Phamlp_Sass_Script_Literal_Boolean Whether the amount is a proportion of the current value
 	 * (true) or the total range (false).
 	 * The default is false - the amount is a proportion of the total range.
 	 * If the colour lightness value is 80% and the amount is 50%,
 	 * the resulting colour lightness value is 30% if the amount is a proportion
 	 * of the total range, whereas it is 40% if the amount is a proportion of the
 	 * current value.
-	 * @return new SassColour The darkened colour
+	 * @return new Phamlp_Sass_Script_Literal_Colour The darkened colour
 	 * @throws Phamlp_Sass_Script_FunctionException If $colour is not a colour or
 	 * $amount is not a number
 	 * @see adjust
@@ -310,16 +310,16 @@ class Phamlp_Sass_Script_Functions {
 
 	/**
 	 * Makes a colour more saturated.
-	 * @param SassColour The colour to saturate
-	 * @param SassNumber The amount to saturate the colour by
-	 * @param SassBoolean Whether the amount is a proportion of the current value
+	 * @param Phamlp_Sass_Script_Literal_Colour The colour to saturate
+	 * @param Phamlp_Sass_Script_Literal_Number The amount to saturate the colour by
+	 * @param Phamlp_Sass_Script_Literal_Boolean Whether the amount is a proportion of the current value
 	 * (true) or the total range (false).
 	 * The default is false - the amount is a proportion of the total range.
 	 * If the colour saturation value is 40% and the amount is 50%,
 	 * the resulting colour saturation value is 90% if the amount is a proportion
 	 * of the total range, whereas it is 60% if the amount is a proportion of the
 	 * current value.
-	 * @return new SassColour The saturated colour
+	 * @return new Phamlp_Sass_Script_Literal_Colour The saturated colour
 	 * @throws Phamlp_Sass_Script_FunctionException If $colour is not a colour or
 	 * $amount is not a number
 	 * @see adjust
@@ -330,16 +330,16 @@ class Phamlp_Sass_Script_Functions {
 
 	/**
 	 * Makes a colour less saturated.
-	 * @param SassColour The colour to desaturate
-	 * @param SassNumber The amount to desaturate the colour by
-	 * @param SassBoolean Whether the amount is a proportion of the current value
+	 * @param Phamlp_Sass_Script_Literal_Colour The colour to desaturate
+	 * @param Phamlp_Sass_Script_Literal_Number The amount to desaturate the colour by
+	 * @param Phamlp_Sass_Script_Literal_Boolean Whether the amount is a proportion of the current value
 	 * (true) or the total range (false).
 	 * The default is false - the amount is a proportion of the total range.
 	 * If the colour saturation value is 80% and the amount is 50%,
 	 * the resulting colour saturation value is 30% if the amount is a proportion
 	 * of the total range, whereas it is 40% if the amount is a proportion of the
 	 * current value.
-	 * @return new SassColour The desaturateed colour
+	 * @return new Phamlp_Sass_Script_Literal_Colour The desaturateed colour
 	 * @throws Phamlp_Sass_Script_FunctionException If $colour is not a colour or
 	 * $amount is not a number
 	 * @see adjust
@@ -350,14 +350,14 @@ class Phamlp_Sass_Script_Functions {
 
 	/**
 	 * Makes a colour more opaque.
-	 * @param SassColour The colour to opacify
-	 * @param SassNumber The amount to opacify the colour by
+	 * @param Phamlp_Sass_Script_Literal_Colour The colour to opacify
+	 * @param Phamlp_Sass_Script_Literal_Number The amount to opacify the colour by
 	 * If this is a unitless number between 0 and 1 the adjustment is absolute,
 	 * if it is a percentage the adjustment is relative.
 	 * If the colour alpha value is 0.4
 	 * if the amount is 0.5 the resulting colour alpha value  is 0.9,
 	 * whereas if the amount is 50% the resulting colour alpha value  is 0.6.
-	 * @return new SassColour The opacified colour
+	 * @return new Phamlp_Sass_Script_Literal_Colour The opacified colour
 	 * @throws Phamlp_Sass_Script_FunctionException If $colour is not a colour or
 	 * $amount is not a number
 	 * @see opacify_rel
@@ -369,14 +369,14 @@ class Phamlp_Sass_Script_Functions {
 
 	/**
 	 * Makes a colour more transparent.
-	 * @param SassColour The colour to transparentize
-	 * @param SassNumber The amount to transparentize the colour by.
+	 * @param Phamlp_Sass_Script_Literal_Colour The colour to transparentize
+	 * @param Phamlp_Sass_Script_Literal_Number The amount to transparentize the colour by.
 	 * If this is a unitless number between 0 and 1 the adjustment is absolute,
 	 * if it is a percentage the adjustment is relative.
 	 * If the colour alpha value is 0.8
 	 * if the amount is 0.5 the resulting colour alpha value  is 0.3,
 	 * whereas if the amount is 50% the resulting colour alpha value  is 0.4.
-	 * @return new SassColour The transparentized colour
+	 * @return new Phamlp_Sass_Script_Literal_Colour The transparentized colour
 	 * @throws Phamlp_Sass_Script_FunctionException If $colour is not a colour or
 	 * $amount is not a number
 	 */
@@ -388,11 +388,11 @@ class Phamlp_Sass_Script_Functions {
 	/**
 	 * Makes a colour more opaque.
 	 * Alias for {@link opacify}.
-	 * @param SassColour The colour to opacify
-	 * @param SassNumber The amount to opacify the colour by
-	 * @param SassBoolean Whether the amount is a proportion of the current value
+	 * @param Phamlp_Sass_Script_Literal_Colour The colour to opacify
+	 * @param Phamlp_Sass_Script_Literal_Number The amount to opacify the colour by
+	 * @param Phamlp_Sass_Script_Literal_Boolean Whether the amount is a proportion of the current value
 	 * (true) or the total range (false).
-	 * @return new SassColour The opacified colour
+	 * @return new Phamlp_Sass_Script_Literal_Colour The opacified colour
 	 * @throws Phamlp_Sass_Script_FunctionException If $colour is not a colour or
 	 * $amount is not a number
 	 * @see opacify
@@ -404,11 +404,11 @@ class Phamlp_Sass_Script_Functions {
 	/**
 	 * Makes a colour more transparent.
 	 * Alias for {@link transparentize}.
-	 * @param SassColour The colour to transparentize
-	 * @param SassNumber The amount to transparentize the colour by
-	 * @param SassBoolean Whether the amount is a proportion of the current value
+	 * @param Phamlp_Sass_Script_Literal_Colour The colour to transparentize
+	 * @param Phamlp_Sass_Script_Literal_Number The amount to transparentize the colour by
+	 * @param Phamlp_Sass_Script_Literal_Boolean Whether the amount is a proportion of the current value
 	 * (true) or the total range (false).
-	 * @return new SassColour The transparentized colour
+	 * @return new Phamlp_Sass_Script_Literal_Colour The transparentized colour
 	 * @throws Phamlp_Sass_Script_FunctionException If $colour is not a colour or
 	 * $amount is not a number
 	 * @see transparentize
@@ -420,33 +420,33 @@ class Phamlp_Sass_Script_Functions {
 	/**
 	 * Returns the complement of a colour.
 	 * Rotates the hue by 180 degrees.
-	 * @param SassColour The colour
-	 * @return new SassColour The comlemented colour
+	 * @param Phamlp_Sass_Script_Literal_Colour The colour
+	 * @return new Phamlp_Sass_Script_Literal_Colour The comlemented colour
 	 * @uses adjust_hue()
 	 */
 	public static function complement($colour) {
-		return self::adjust_hue($colour, new SassNumber('180deg'));
+		return self::adjust_hue($colour, new Phamlp_Sass_Script_Literal_Number('180deg'));
 	}
 
 	/**
 	 * Greyscale for non-english speakers.
-	 * @param SassColour The colour
-	 * @return new SassColour The greyscale colour
+	 * @param Phamlp_Sass_Script_Literal_Colour The colour
+	 * @return new Phamlp_Sass_Script_Literal_Colour The greyscale colour
 	 * @see desaturate
 	 */
 	public static function grayscale($colour) {
-		return self::desaturate($colour, new SassNumber(100));
+		return self::desaturate($colour, new Phamlp_Sass_Script_Literal_Number(100));
 	}
 
 	/**
 	 * Converts a colour to greyscale.
 	 * Reduces the saturation to zero.
-	 * @param SassColour The colour
-	 * @return new SassColour The greyscale colour
+	 * @param Phamlp_Sass_Script_Literal_Colour The colour
+	 * @return new Phamlp_Sass_Script_Literal_Colour The greyscale colour
 	 * @see desaturate
 	 */
 	public static function greyscale($colour) {
-		return self::desaturate($colour, new SassNumber(100));
+		return self::desaturate($colour, new Phamlp_Sass_Script_Literal_Number(100));
 	}
 
 	/**
@@ -463,19 +463,19 @@ class Phamlp_Sass_Script_Functions {
 	 *   mix(#f00, #00f, 25%) => #3f00bf
 	 *   mix(rgba(255, 0, 0, 0.5), #00f) => rgba(63, 0, 191, 0.75)
 	 *
-	 * @param SassColour The first colour
-	 * @param SassColour The second colour
+	 * @param Phamlp_Sass_Script_Literal_Colour The first colour
+	 * @param Phamlp_Sass_Script_Literal_Colour The second colour
 	 * @param float Percentage of the first colour to use
-	 * @return new SassColour The mixed colour
+	 * @return new Phamlp_Sass_Script_Literal_Colour The mixed colour
 	 * @throws Phamlp_Sass_Script_FunctionException If $colour1 or $colour2 is
 	 * not a colour
 	 */
 	public static function mix($colour1, $colour2, $weight = null) {
-		if (is_null($weight)) $weight = new SassNumber('50%');
-		SassLiteral::assertType($colour1, 'SassColour');
-		SassLiteral::assertType($colour2, 'SassColour');
-		SassLiteral::assertType($weight, 'SassNumber');
-		SassLiteral::assertInRange($weight, 0, 100, '%');
+		if (is_null($weight)) $weight = new Phamlp_Sass_Script_Literal_Number('50%');
+		Phamlp_Sass_Script_Literal::assertType($colour1, 'Phamlp_Sass_Script_Literal_Colour');
+		Phamlp_Sass_Script_Literal::assertType($colour2, 'Phamlp_Sass_Script_Literal_Colour');
+		Phamlp_Sass_Script_Literal::assertType($weight, 'Phamlp_Sass_Script_Literal_Number');
+		Phamlp_Sass_Script_Literal::assertInRange($weight, 0, 100, '%');
 		
 		/*
 		 * This algorithm factors in both the user-provided weight
@@ -514,13 +514,13 @@ class Phamlp_Sass_Script_Functions {
 			$rgba[$key] = $value * $w1 + $rgb2[$key] * $w2;
 		} // foreach
 		$rgba[] = $colour1->alpha * $p + $colour2->alpha * (1 - $p);
-		return new SassColour($rgba);
+		return new Phamlp_Sass_Script_Literal_Colour($rgba);
 	}
 	
 	/**
 	 * Adjusts the colour
-	 * @param SassColour the colour to adjust
-	 * @param SassNumber the amount to adust by
+	 * @param Phamlp_Sass_Script_Literal_Colour the colour to adjust
+	 * @param Phamlp_Sass_Script_Literal_Number the amount to adust by
 	 * @param boolean whether the amount is a proportion of the current value or
 	 * the total range
 	 * @param string the attribute to adjust
@@ -530,11 +530,11 @@ class Phamlp_Sass_Script_Functions {
 	 * @param string amount units
 	 */
 	private static function adjust($colour, $amount, $ofCurrent, $attribute, $op, $min, $max, $units='') {
-		SassLiteral::assertType($colour, 'SassColour');
-		SassLiteral::assertType($amount, 'SassNumber');
-		SassLiteral::assertInRange($amount, $min, $max, $units);
+		Phamlp_Sass_Script_Literal::assertType($colour, 'Phamlp_Sass_Script_Literal_Colour');
+		Phamlp_Sass_Script_Literal::assertType($amount, 'Phamlp_Sass_Script_Literal_Number');
+		Phamlp_Sass_Script_Literal::assertInRange($amount, $min, $max, $units);
 		if (!is_bool($ofCurrent)) {
-			SassLiteral::assertType($ofCurrent, 'SassBoolean');
+			Phamlp_Sass_Script_Literal::assertType($ofCurrent, 'Phamlp_Sass_Script_Literal_Boolean');
 			$ofCurrent = $ofCurrent->value;
 		}
 		
@@ -559,13 +559,13 @@ class Phamlp_Sass_Script_Functions {
 	 *		 abs(10px) => 10px
 	 *		 abs(-10px) => 10px
 	 *
-	 * @param SassNumber The number to round
-	 * @return SassNumber The absolute value of the number
+	 * @param Phamlp_Sass_Script_Literal_Number The number to round
+	 * @return Phamlp_Sass_Script_Literal_Number The absolute value of the number
 	 * @throws Phamlp_Sass_Script_FunctionException If $number is not a number
 	 */
 	public static function abs($number) {
-		SassLiteral::assertType($number, 'SassNumber');
-		return new SassNumber(abs($number->value).$number->units);
+		Phamlp_Sass_Script_Literal::assertType($number, 'Phamlp_Sass_Script_Literal_Number');
+		return new Phamlp_Sass_Script_Literal_Number(abs($number->value).$number->units);
 	}
 
 	/**
@@ -574,13 +574,13 @@ class Phamlp_Sass_Script_Functions {
 	 *		 ceil(10.4px) => 11px
 	 *		 ceil(10.6px) => 11px
 	 *
-	 * @param SassNumber The number to round
-	 * @return new SassNumber The rounded number
+	 * @param Phamlp_Sass_Script_Literal_Number The number to round
+	 * @return new Phamlp_Sass_Script_Literal_Number The rounded number
 	 * @throws Phamlp_Sass_Script_FunctionException If $number is not a number
 	 */
 	public static function ceil($number) {
-		SassLiteral::assertType($number, 'SassNumber');
-		return new SassNumber(ceil($number->value).$number->units);
+		Phamlp_Sass_Script_Literal::assertType($number, 'Phamlp_Sass_Script_Literal_Number');
+		return new Phamlp_Sass_Script_Literal_Number(ceil($number->value).$number->units);
 	}
 
 	/**
@@ -589,13 +589,13 @@ class Phamlp_Sass_Script_Functions {
 	 *		 floor(10.4px) => 10px
 	 *		 floor(10.6px) => 10px
 	 *
-	 * @param SassNumber The number to round
-	 * @return new SassNumber The rounded number
+	 * @param Phamlp_Sass_Script_Literal_Number The number to round
+	 * @return new Phamlp_Sass_Script_Literal_Number The rounded number
 	 * @throws Phamlp_Sass_Script_FunctionException If $value is not a number
 	 */
 	public static function floor($number) {
-		SassLiteral::assertType($number, 'SassNumber');
-		return new SassNumber(floor($number->value).$number->units);
+		Phamlp_Sass_Script_Literal::assertType($number, 'Phamlp_Sass_Script_Literal_Number');
+		return new Phamlp_Sass_Script_Literal_Number(floor($number->value).$number->units);
 	}
 
 	/**
@@ -604,28 +604,28 @@ class Phamlp_Sass_Script_Functions {
 	 *		 round(10.4px) => 10px
 	 *		 round(10.6px) => 11px
 	 *
-	 * @param SassNumber The number to round
-	 * @return new SassNumber The rounded number
+	 * @param Phamlp_Sass_Script_Literal_Number The number to round
+	 * @return new Phamlp_Sass_Script_Literal_Number The rounded number
 	 * @throws Phamlp_Sass_Script_FunctionException If $number is not a number
 	 */
 	public static function round($number) {
-		SassLiteral::assertType($number, 'SassNumber');
-		return new SassNumber(round($number->value).$number->units);
+		Phamlp_Sass_Script_Literal::assertType($number, 'Phamlp_Sass_Script_Literal_Number');
+		return new Phamlp_Sass_Script_Literal_Number(round($number->value).$number->units);
 	}
 	
 	/**
 	 * Returns true if two numbers are similar enough to be added, subtracted,
 	 * or compared.
-	 * @param SassNumber The first number to test
-	 * @param SassNumber The second number to test
-	 * @return new SassBoolean True if the numbers are similar
+	 * @param Phamlp_Sass_Script_Literal_Number The first number to test
+	 * @param Phamlp_Sass_Script_Literal_Number The second number to test
+	 * @return new Phamlp_Sass_Script_Literal_Boolean True if the numbers are similar
 	 * @throws Phamlp_Sass_Script_FunctionException If $number1 or $number2 is not
 	 * a number
 	 */
 	public static function comparable($number1, $number2) {
-		SassLiteral::assertType($number1, 'SassNumber');
-		SassLiteral::assertType($number2, 'SassNumber');
-		return new SassBoolean($number1->isComparableTo($number2));
+		Phamlp_Sass_Script_Literal::assertType($number1, 'Phamlp_Sass_Script_Literal_Number');
+		Phamlp_Sass_Script_Literal::assertType($number2, 'Phamlp_Sass_Script_Literal_Number');
+		return new Phamlp_Sass_Script_Literal_Boolean($number1->isComparableTo($number2));
 	}
 	
 	/**
@@ -633,13 +633,13 @@ class Phamlp_Sass_Script_Functions {
 	 * For example:
 	 *		 percentage(100px / 50px) => 200%
 	 *
-	 * @param SassNumber The decimal number to convert to a percentage
-	 * @return new SassNumber The number as a percentage
+	 * @param Phamlp_Sass_Script_Literal_Number The decimal number to convert to a percentage
+	 * @return new Phamlp_Sass_Script_Literal_Number The number as a percentage
 	 * @throws Phamlp_Sass_Script_FunctionException If $number isn't a unitless number
 	 */
 	public static function percentage($number) {
-		if (!$number instanceof SassNumber || $number->hasUnits()) {
-			throw new Phamlp_Sass_Script_FunctionException('{what} must be a {type}', array('{what}'=>'number', '{type}'=>'unitless SassNumber'), Phamlp_Sass_Script_Parser::$context->node);
+		if (!$number instanceof Phamlp_Sass_Script_Literal_Number || $number->hasUnits()) {
+			throw new Phamlp_Sass_Script_FunctionException('{what} must be a {type}', array('{what}'=>'number', '{type}'=>'unitless Phamlp_Sass_Script_Literal_Number'), Phamlp_Sass_Script_Parser::$context->node);
 		}
 		$number->value *= 100;
 		$number->units = '%';
@@ -649,8 +649,8 @@ class Phamlp_Sass_Script_Functions {
 	/**
 	 * Inspects the unit of the number, returning it as a quoted string.
 	 * Alias for units.
-	 * @param SassNumber The number to inspect
-	 * @return new SassString The units of the number
+	 * @param Phamlp_Sass_Script_Literal_Number The number to inspect
+	 * @return new Phamlp_Sass_Script_Literal_String The units of the number
 	 * @throws Phamlp_Sass_Script_FunctionException If $number is not a number
 	 * @see units
 	 */
@@ -660,25 +660,25 @@ class Phamlp_Sass_Script_Functions {
 
 	/**
 	 * Inspects the units of the number, returning it as a quoted string.
-	 * @param SassNumber The number to inspect
-	 * @return new SassString The units of the number
+	 * @param Phamlp_Sass_Script_Literal_Number The number to inspect
+	 * @return new Phamlp_Sass_Script_Literal_String The units of the number
 	 * @throws Phamlp_Sass_Script_FunctionException If $number is not a number
 	 */
 	public static function units($number) {
-		SassLiteral::assertType($number, 'SassNumber');
-		return new SassString($number->units);
+		Phamlp_Sass_Script_Literal::assertType($number, 'Phamlp_Sass_Script_Literal_Number');
+		return new Phamlp_Sass_Script_Literal_String($number->units);
 	}
 
 	/**
 	 * Inspects the unit of the number, returning a boolean indicating if it is
 	 * unitless.
-	 * @param SassNumber The number to inspect
-	 * @return new SassBoolean True if the number is unitless, false if it has units.
+	 * @param Phamlp_Sass_Script_Literal_Number The number to inspect
+	 * @return new Phamlp_Sass_Script_Literal_Boolean True if the number is unitless, false if it has units.
 	 * @throws Phamlp_Sass_Script_FunctionException If $number is not a number
 	 */
 	public static function unitless() {
-		SassLiteral::assertType($number, 'SassNumber');
-		return new SassBoolean(!$number->hasUnits());
+		Phamlp_Sass_Script_Literal::assertType($number, 'Phamlp_Sass_Script_Literal_Number');
+		return new Phamlp_Sass_Script_Literal_Boolean(!$number->hasUnits());
 	}
 	
 	/*
@@ -689,26 +689,26 @@ class Phamlp_Sass_Script_Functions {
 	 * Add quotes to a string if the string isn't quoted,
 	 * or returns the same string if it is.
 	 * @param string String to quote
-	 * @return new SassString Quoted string
+	 * @return new Phamlp_Sass_Script_Literal_String Quoted string
 	 * @throws Phamlp_Sass_Script_FunctionException If $string is not a string
 	 * @see unquote
 	 */
 	public static function quote($string) {
-		SassLiteral::assertType($string, 'SassString');
-		return new SassString('"'.$string->value.'"');
+		Phamlp_Sass_Script_Literal::assertType($string, 'Phamlp_Sass_Script_Literal_String');
+		return new Phamlp_Sass_Script_Literal_String('"'.$string->value.'"');
 	}
 
 	/**
 	 * Removes quotes from a string if the string is quoted, or returns the same
 	 * string if it's not.
 	 * @param string String to unquote
-	 * @return new SassString Unuoted string
+	 * @return new Phamlp_Sass_Script_Literal_String Unuoted string
 	 * @throws Phamlp_Sass_Script_FunctionException If $string is not a string
 	 * @see quote
 	 */
 	public static function unquote($string) {
-		SassLiteral::assertType($string, 'SassString');
-		return new SassString($string->value);
+		Phamlp_Sass_Script_Literal::assertType($string, 'Phamlp_Sass_Script_Literal_String');
+		return new Phamlp_Sass_Script_Literal_String($string->value);
 	}
 
 	/**
@@ -718,8 +718,8 @@ class Phamlp_Sass_Script_Functions {
 	 * @throws Phamlp_Sass_Script_FunctionException If $string is not a string
 	 */
 	public static function get_var($string) {
-		SassLiteral::assertType($string, 'SassString');
-		return new SassString($string->toVar());
+		Phamlp_Sass_Script_Literal::assertType($string, 'Phamlp_Sass_Script_Literal_String');
+		return new Phamlp_Sass_Script_Literal_String($string->toVar());
 	}
 	
 	/*
@@ -728,14 +728,14 @@ class Phamlp_Sass_Script_Functions {
 	
 	/**
 	 * Inspects the type of the argument, returning it as an unquoted string.
-	 * @param SassLiteral The object to inspect
-	 * @return new SassString The type of object
+	 * @param Phamlp_Sass_Script_Literal The object to inspect
+	 * @return new Phamlp_Sass_Script_Literal_String The type of object
 	 * @throws Phamlp_Sass_Script_FunctionException If $obj is not an instance of a
-	 * SassLiteral
+	 * Phamlp_Sass_Script_Literal
 	 */
 	public static function type_of($obj) {
-		SassLiteral::assertType($obj, SassLiteral);
-		return new SassString($obj->typeOf);
+		Phamlp_Sass_Script_Literal::assertType($obj, Phamlp_Sass_Script_Literal);
+		return new Phamlp_Sass_Script_Literal_String($obj->typeOf);
 	}
 	
 	/**

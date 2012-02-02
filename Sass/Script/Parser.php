@@ -59,7 +59,7 @@ class Phamlp_Sass_Script_Parser {
 	 * @param string expression to parse
 	 * @param Phamlp_Sass_Tree_Context the context in which the expression is evaluated
 	 * @param	integer the environment in which the expression is evaluated
-	 * @return SassLiteral parsed value
+	 * @return Phamlp_Sass_Script_Literal parsed value
 	 */
 	public function evaluate($expression, $context, $environment=self::DEFAULT_ENV) {
 		self::$context = $context;
@@ -72,9 +72,9 @@ class Phamlp_Sass_Script_Parser {
 			if ($token instanceof Phamlp_Sass_Script_Function) {
 				array_push($operands, $token->perform());
 			}
-			elseif ($token instanceof SassLiteral) {
-				if ($token instanceof SassString) {
-					$token = new SassString($this->interpolate($token->toString(), self::$context));
+			elseif ($token instanceof Phamlp_Sass_Script_Literal) {
+				if ($token instanceof Phamlp_Sass_Script_Literal_String) {
+					$token = new Phamlp_Sass_Script_Literal_String($this->interpolate($token->toString(), self::$context));
 				}
 				array_push($operands, $token);
 			}
@@ -121,8 +121,8 @@ class Phamlp_Sass_Script_Parser {
 			}
 
 			// If the token is a number or function add it to the output queue.
- 			if ($token instanceof SassLiteral || $token instanceof Phamlp_Sass_Script_Function) {
- 				if ($environment === self::CSS_PROPERTY && $token instanceof SassNumber && !$parenthesis) {
+ 			if ($token instanceof Phamlp_Sass_Script_Literal || $token instanceof Phamlp_Sass_Script_Function) {
+ 				if ($environment === self::CSS_PROPERTY && $token instanceof Phamlp_Sass_Script_Literal_Number && !$parenthesis) {
 					$token->inExpression = false; 
  				}
 				array_push($outputQueue, $token);

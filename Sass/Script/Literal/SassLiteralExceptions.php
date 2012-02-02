@@ -14,32 +14,32 @@
  * @package			PHamlP
  * @subpackage	Sass.script.literals
  */
-class SassLiteralException extends Phamlp_Sass_Script_ParserException {}
+class Phamlp_Sass_Script_LiteralException extends Phamlp_Sass_Script_ParserException {}
 
 /**
- * SassBooleanException class.
+ * Phamlp_Sass_Script_Literal_BooleanException class.
  * @package			PHamlP
  * @subpackage	Sass.script.literals
  */
-class SassBooleanException extends SassLiteralException {}
+class Phamlp_Sass_Script_Literal_BooleanException extends Phamlp_Sass_Script_LiteralException {}
 
 /**
- * SassColourException class.
+ * Phamlp_Sass_Script_Literal_ColourException class.
  * @package			PHamlP
  * @subpackage	Sass.script.literals
  */
-class SassColourException extends SassLiteralException {}
+class Phamlp_Sass_Script_Literal_ColourException extends Phamlp_Sass_Script_LiteralException {}
 
 /**
- * SassNumberException class.
+ * Phamlp_Sass_Script_Literal_NumberException class.
  * @package			PHamlP
  * @subpackage	Sass.script.literals
  */
-class SassNumberException extends SassLiteralException {}
+class Phamlp_Sass_Script_Literal_NumberException extends Phamlp_Sass_Script_LiteralException {}
 
 /**
- * SassStringException class.
+ * Phamlp_Sass_Script_Literal_StringException class.
  * @package			PHamlP
  * @subpackage	Sass.script.literals
  */
-class SassStringException extends SassLiteralException {}
+class Phamlp_Sass_Script_Literal_StringException extends Phamlp_Sass_Script_LiteralException {}

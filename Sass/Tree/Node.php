@@ -272,7 +272,7 @@ class Phamlp_Sass_Tree_Node {
 	 * Evaluates a SassScript expression.
 	 * @param string expression to evaluate
 	 * @param Phamlp_Sass_Tree_Context the context in which the expression is evaluated
-	 * @return SassLiteral value of parsed expression
+	 * @return Phamlp_Sass_Script_Literal value of parsed expression
 	 */
 	protected function evaluate($expression, $context, $x=null) {
 		$context->node = $this;

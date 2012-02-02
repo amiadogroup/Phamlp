@@ -112,8 +112,8 @@ class Phamlp_Sass_Script_Operation {
 
 	/**
 	 * Performs this operation.
-	 * @param array operands for the operation. The operands are SassLiterals
-	 * @return SassLiteral the result of the operation
+	 * @param array operands for the operation. The operands are Phamlp_Sass_Script_Literals
+	 * @return Phamlp_Sass_Script_Literal the result of the operation
 	 * @throws Phamlp_Sass_Script_OperationException if the oprand count is incorrect or
 	 * the operation is undefined
 	 */

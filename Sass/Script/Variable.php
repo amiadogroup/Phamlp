@@ -37,7 +37,7 @@ class Phamlp_Sass_Script_Variable {
 	/**
 	 * Returns the SassScript object for this variable.
 	 * @param Phamlp_Sass_Tree_Context context of the variable
-	 * @return SassLiteral the SassScript object for this variable
+	 * @return Phamlp_Sass_Script_Literal the SassScript object for this variable
 	 */
 	public function evaluate($context) {
 		return $context->getVariable($this->name);

@@ -91,7 +91,7 @@ class Phamlp_Sass_Tree_Node_For extends Phamlp_Sass_Tree_Node {
 
 		$context = new Phamlp_Sass_Tree_Context($context);
 		for ($i = $from; ($from < $to ? $i < $to : $i > $to); $i = $i + $step) {
-			$context->setVariable($this->variable, new SassNumber($i));
+			$context->setVariable($this->variable, new Phamlp_Sass_Script_Literal_Number($i));
 			$children = array_merge($children, $this->parseChildren($context));
 		}
 		return $children;

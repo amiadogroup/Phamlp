@@ -1,5 +1,5 @@
 <?php
-/* SVN FILE: $Id: SassBoolean.php 49 2010-04-04 10:51:24Z chris.l.yates $ */
+/* SVN FILE: $Id: Phamlp_Sass_Script_Literal_Boolean.php 49 2010-04-04 10:51:24Z chris.l.yates $ */
 /**
  * Compass extension SassScript lists functions class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
@@ -20,27 +20,27 @@ class SassExtentionsCompassFunctionsLists {
 	
 	# Return the first value from a space separated list.
 	public static function first_value_of($list) {
-		if ($list instanceof SassString) {
+		if ($list instanceof Phamlp_Sass_Script_Literal_String) {
 			$items = preg_split(self::SPACE_SEPARATOR, $list->value);
-			return new SassString($items[0]);
+			return new Phamlp_Sass_Script_Literal_String($items[0]);
 		}
 		else return $list;
 	}
 	
 	# Return the nth value from a space separated list.
 	public static function nth_value_of($list, $n) {
-		if ($list instanceof SassString) {
+		if ($list instanceof Phamlp_Sass_Script_Literal_String) {
 			$items = preg_split(self::SPACE_SEPARATOR, $list->value);
-			return new SassString($items[$n->toInt()-1]);
+			return new Phamlp_Sass_Script_Literal_String($items[$n->toInt()-1]);
 		}
 		else return $list;
 	}
 	
 	# Return the last value from a space separated list.
 	public static function last_value_of($list) {
-		if ($list instanceof SassString) {
+		if ($list instanceof Phamlp_Sass_Script_Literal_String) {
 			$items = array_reverse(preg_split(self::SPACE_SEPARATOR, $list->value));
-			return new SassString($items[0]);
+			return new Phamlp_Sass_Script_Literal_String($items[0]);
 		}
 		else return $list;
 	}

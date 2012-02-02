@@ -1,5 +1,5 @@
 <?php
-/* SVN FILE: $Id: SassBoolean.php 49 2010-04-04 10:51:24Z chris.l.yates $ */
+/* SVN FILE: $Id: Phamlp_Sass_Script_Literal_Boolean.php 49 2010-04-04 10:51:24Z chris.l.yates $ */
 /**
  * Compass extension SassScript urls functions class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
@@ -28,7 +28,7 @@ class SassExtentionsCompassFunctionsUrls {
 		else
 			$http_css_path = SassExtentionsCompassConfig::config('css_dir');
 
-		return new SassString(self::clean("$http_css_path/$path", $only_path));
+		return new Phamlp_Sass_Script_Literal_String(self::clean("$http_css_path/$path", $only_path));
 	}
 
 	public function font_url($path, $only_path = null) {
@@ -36,7 +36,7 @@ class SassExtentionsCompassFunctionsUrls {
 
 		# Short circuit if they have provided an absolute url.
 		if (self::is_absolute_path($path)) {
-			return new SassString("url('$path')");
+			return new Phamlp_Sass_Script_Literal_String("url('$path')");
 		}
 
 		# Compute the $path to the font file, either root relative or stylesheet relative
@@ -46,7 +46,7 @@ class SassExtentionsCompassFunctionsUrls {
 		else
 			$http_fonts_path = SassExtentionsCompassConfig::config('http_fonts_path');
 
-		return new SassString(self::clean("$http_fonts_path/$path", $only_path));
+		return new Phamlp_Sass_Script_Literal_String(self::clean("$http_fonts_path/$path", $only_path));
 	}
 
 	public function image_url($path, $only_path = null) {
@@ -58,7 +58,7 @@ class SassExtentionsCompassFunctionsUrls {
 			$path = $matches[1];
 		elseif (self::is_absolute_path($path))
 			# Short curcuit if they have provided an absolute url.
-			return new SassString("url('$path')");
+			return new Phamlp_Sass_Script_Literal_String("url('$path')");
 
 		# Compute the $path to the image, either root relative or stylesheet relative
 		# or nil if the http_images_path is not set in the configuration.
@@ -94,14 +94,14 @@ class SassExtentionsCompassFunctionsUrls {
 		# prepend the asset host if there is one.
 		$path = "#{asset_host}#{'/' unless $path[0..0] == "/"}#{$path}" if asset_host*/
 
-		return new SassString(self::clean($path, $only_path));
+		return new Phamlp_Sass_Script_Literal_String(self::clean($path, $only_path));
 	}
 	
 	# takes off any leading "./".
 	# if $only_path emits a $path, else emits a url
 	private function clean($url, $only_path) {
-		if (!$only_path instanceof SassBoolean) {
-			$only_path = new SassBoolean('false');
+		if (!$only_path instanceof Phamlp_Sass_Script_Literal_Boolean) {
+			$only_path = new Phamlp_Sass_Script_Literal_Boolean('false');
 		}
 		
 		$url = (substr($url, 0, 2) === './' ? substr($url, 2) : $url);		

@@ -1,5 +1,5 @@
 <?php
-/* SVN FILE: $Id: SassBoolean.php 49 2010-04-04 10:51:24Z chris.l.yates $ */
+/* SVN FILE: $Id: Phamlp_Sass_Script_Literal_Boolean.php 49 2010-04-04 10:51:24Z chris.l.yates $ */
 /**
  * Compass extension SassScript selectors functions class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
@@ -65,7 +65,7 @@ class SassExtentionsCompassFunctionsSelectors {
 			$ancestors = $nested;		
 		}
 		sort($nested);
-		return new SassString(join(', ', $nested));
+		return new Phamlp_Sass_Script_Literal_String(join(', ', $nested));
 	}
 
 	# Permute two selectors, the first may be comma delimited.
@@ -86,7 +86,7 @@ class SassExtentionsCompassFunctionsSelectors {
 				$appended[] = $ancestor.$descendant;
 			}
 		}
-		return new SassString(join(', ', $appended));
+		return new Phamlp_Sass_Script_Literal_String(join(', ', $appended));
 	}
 
 	# Return the header selectors for the levels indicated
@@ -96,16 +96,16 @@ class SassExtentionsCompassFunctionsSelectors {
 	# headers(4) => h1, h2, h3, h4
 	# headers(2,4) => h2, h3, h4
 	public static function headers($from = null, $to = null) {
-		if (!$from || ($from instanceof SassString && $from->value === "all")) {
-			$from = new SassNumber(1);
-			$to = new SassNumber(6);
+		if (!$from || ($from instanceof Phamlp_Sass_Script_Literal_String && $from->value === "all")) {
+			$from = new Phamlp_Sass_Script_Literal_Number(1);
+			$to = new Phamlp_Sass_Script_Literal_Number(6);
 		}
 		elseif ($from && !$to) {
 			$to = $from;
-			$from = new SassNumber(1);
+			$from = new Phamlp_Sass_Script_Literal_Number(1);
 		}
 		
-		return new SassString('h' . join(', h', range($from->value, $to->value)));
+		return new Phamlp_Sass_Script_Literal_String('h' . join(', h', range($from->value, $to->value)));
 	}
 	
 	public static function headings($from = null, $to = null) {
@@ -117,12 +117,12 @@ class SassExtentionsCompassFunctionsSelectors {
 	# enumerate('foo', 1, 4) => foo-1, foo-2, foo-3, foo-4
 	public static function enumerate($prefix, $from, $to, $separator = null) {
 		$_prefix = $prefix->value . (!$separator ? '-' : $separator->value);
-	  return new SassString($_prefix . join(', '.$_prefix, range($from->value, $to->value)));
+	  return new Phamlp_Sass_Script_Literal_String($_prefix . join(', '.$_prefix, range($from->value, $to->value)));
 	}
 	
 	# returns a comma delimited string for all the
 	# elements according to their default css3 display value.
 	public static function elements_of_type($display) {
-		return new SassString(join(', ', self::$defaultDisplay[$display->value]));
+		return new Phamlp_Sass_Script_Literal_String(join(', ', self::$defaultDisplay[$display->value]));
 	}
 }

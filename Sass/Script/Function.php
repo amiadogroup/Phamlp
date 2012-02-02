@@ -67,12 +67,12 @@ class Phamlp_Sass_Script_Function {
 			return call_user_func_array(array('Phamlp_Sass_Script_Functions', $name), $this->args);
 		}
 		
-		// CSS function: create a SassString that will emit the function into the CSS
+		// CSS function: create a Phamlp_Sass_Script_Literal_String that will emit the function into the CSS
 		$args = array();
 		foreach ($this->args as $arg) {
 			$args[] = $arg->toString();
 		}
-		return new SassString($this->name . '(' . join(', ', $args) . ')');
+		return new Phamlp_Sass_Script_Literal_String($this->name . '(' . join(', ', $args) . ')');
 	}
 
 	/**

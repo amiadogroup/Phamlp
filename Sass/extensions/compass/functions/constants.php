@@ -1,5 +1,5 @@
 <?php
-/* SVN FILE: $Id: SassBoolean.php 49 2010-04-04 10:51:24Z chris.l.yates $ */
+/* SVN FILE: $Id: Phamlp_Sass_Script_Literal_Boolean.php 49 2010-04-04 10:51:24Z chris.l.yates $ */
 /**
  * Compass extension SassScript constants functions class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
@@ -39,6 +39,6 @@ class SassExtentionsCompassFunctionsConstants {
 					throw new Exception('Cannot determine the opposite of '.trim($position));
 			}
 		}
-		return new SassString(join(' ', $opposites));
+		return new Phamlp_Sass_Script_Literal_String(join(' ', $opposites));
 	}
 }
