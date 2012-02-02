@@ -47,7 +47,7 @@ class SassCompactRenderer extends SassCompressedRenderer {
 	 * @return string the rendered commnt
 	 */
 	public function renderComment($node) {
-		$nl = ($node->parent instanceof SassRuleNode?'':"\n");
+		$nl = ($node->parent instanceof Phamlp_Sass_Tree_Node_Rule?'':"\n");
 	  return "$nl/* " . join("\n * ", $node->children) . " */$nl" ;
 	}
 

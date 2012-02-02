@@ -551,7 +551,7 @@ class Phamlp_Sass_Parser {
 				return new Phamlp_Sass_Tree_Node_Mixin($token);
 				break;
 			default:
-				return new SassRuleNode($token);
+				return new Phamlp_Sass_Tree_Node_Rule($token);
 				break;
 		} // switch
 	}
@@ -615,7 +615,7 @@ class Phamlp_Sass_Parser {
 				}
 			}
 			// Selector statements can span multiple lines
-			elseif (substr($statement, -1) === SassRuleNode::CONTINUED) {
+			elseif (substr($statement, -1) === Phamlp_Sass_Tree_Node_Rule::CONTINUED) {
 				// Build the selector statement
 				while($this->getLevel($this->source[0]) === $level) {
 					$statement .= ltrim(array_shift($this->source));
