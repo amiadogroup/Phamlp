@@ -1,7 +1,7 @@
 <?php
 /* SVN FILE: $Id$ */
 /**
- * HamlCodeBlockNode class file.
+ * Phamlp_Haml_Tree_Node_CodeBlock class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
  * @copyright 	Copyright (c) 2010 PBM Web Development
  * @license			http://phamlp.googlecode.com/files/license.txt
@@ -9,18 +9,18 @@
  * @subpackage	Haml.tree
  */
 
-require_once('HamlRootNode.php');
-require_once('HamlNodeExceptions.php');
+require_once('Phamlp_Haml_Tree_Node_Root.php');
+require_once('Phamlp_Haml_Tree_NodeExceptions.php');
 
 /**
- * HamlCodeBlockNode class.
+ * Phamlp_Haml_Tree_Node_CodeBlock class.
  * Represents a code block - if, elseif, else, foreach, do, and while.
  * @package			PHamlP
  * @subpackage	Haml.tree
  */
-class HamlCodeBlockNode extends HamlNode {
+class Phamlp_Haml_Tree_Node_CodeBlock extends Phamlp_Haml_Tree_Node {
 	/**
-	 * @var HamlCodeBlockNode else nodes for if statements
+	 * @var Phamlp_Haml_Tree_Node_CodeBlock else nodes for if statements
 	 */
 	public $else;
 	/**

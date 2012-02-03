@@ -1,7 +1,7 @@
 <?php
 /* SVN FILE: $Id$ */
 /**
- * HamlHelperNode class file.
+ * Phamlp_Haml_Tree_Node_Helper class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
  * @copyright 	Copyright (c) 2010 PBM Web Development
  * @license			http://phamlp.googlecode.com/files/license.txt
@@ -10,13 +10,13 @@
  */
 
 /**
- * HamlHelperNode class.
+ * Phamlp_Haml_Tree_Node_Helper class.
  * Represent a helper in the Haml source.
  * The helper is run on the output from child nodes when the node is rendered.
  * @package			PHamlP
  * @subpackage	Haml.tree
  */
-class HamlHelperNode extends HamlNode {
+class Phamlp_Haml_Tree_Node_Helper extends Phamlp_Haml_Tree_Node {
 	const MATCH = '/(.*?)(\w+)\((.+?)\)(?:\s+(.*))?$/';
 	const PRE = 1;
 	const NAME = 2;
@@ -41,11 +41,11 @@ class HamlHelperNode extends HamlNode {
 	private $args;
 
 	/**
-	 * HamlFilterNode constructor.
+	 * Phamlp_Haml_Tree_Node_Filter constructor.
 	 * Sets the filter.
 	 * @param string helper class.
 	 * @param string helper call.
-	 * @return HamlHelperNode
+	 * @return Phamlp_Haml_Tree_Node_Helper
 	 */
 	public function __construct($class, $pre, $name, $args, $parent) {
 	  $this->class = $class;

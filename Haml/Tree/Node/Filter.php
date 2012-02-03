@@ -1,7 +1,7 @@
 <?php
 /* SVN FILE: $Id$ */
 /**
- * HamlFilterNode class file.
+ * Phamlp_Haml_Tree_Node_Filter class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
  * @copyright 	Copyright (c) 2010 PBM Web Development
  * @license			http://phamlp.googlecode.com/files/license.txt
@@ -10,23 +10,23 @@
  */
 
 /**
- * HamlFilterNode class.
+ * Phamlp_Haml_Tree_Node_Filter class.
  * Represent a filter in the Haml source.
  * The filter is run on the output from child nodes when the node is rendered.
  * @package			PHamlP
  * @subpackage	Haml.tree
  */
-class HamlFilterNode extends HamlNode {
+class Phamlp_Haml_Tree_Node_Filter extends Phamlp_Haml_Tree_Node {
 	/**
 	 * @var HamlBaseFilter the filter to run
 	 */
 	private $filter;
 
 	/**
-	 * HamlFilterNode constructor.
+	 * Phamlp_Haml_Tree_Node_Filter constructor.
 	 * Sets the filter.
 	 * @param HamlBaseFilter the filter to run
-	 * @return HamlFilterNode
+	 * @return Phamlp_Haml_Tree_Node_Filter
 	 */
 	public function __construct($filter, $parent) {
 	  $this->filter = $filter;	  

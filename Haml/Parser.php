@@ -52,7 +52,7 @@
  * @subpackage	Haml
  */
 
-require_once('tree/HamlNode.php');
+require_once('tree/Phamlp_Haml_Tree_Node.php');
 
 /**
  * Phamlp_Haml_Parser class.
@@ -435,7 +435,7 @@ class Phamlp_Haml_Parser {
 	/**
 	 * Parse Haml source into a document tree.
 	 * @param string Haml source
-	 * @return HamlRootNode the root of this document tree
+	 * @return Phamlp_Haml_Tree_Node_Root the root of this document tree
 	 */
 	private function toTree($source) {
 		$this->source = explode("\n", $source);
@@ -443,7 +443,7 @@ class Phamlp_Haml_Parser {
 
 		preg_match_all(self::REGEX_HAML, $source, $this->source, PREG_SET_ORDER);
 		unset($source);
-		$root = new HamlRootNode(array(
+		$root = new Phamlp_Haml_Tree_Node_Root(array(
 			'format' => $this->format,
 			'style' => $this->style,
 			'attrWrapper' => $this->attrWrapper,
@@ -455,14 +455,14 @@ class Phamlp_Haml_Parser {
 
 	/**
 	 * Builds a parse tree under the parent node.
-	 * @param HamlNode the parent node
+	 * @param Phamlp_Haml_Tree_Node the parent node
 	 */
 	private function buildTree($parent) {
 		while (!empty($this->source) && $this->isChildOf($parent, $this->source[0])) {
 			$line = $this->getNextLine();
 			if (!empty($line)) {
 				$node = ($this->inFilter ?
-					new HamlNode($line[self::HAML_SOURCE], $parent) :
+					new Phamlp_Haml_Tree_Node($line[self::HAML_SOURCE], $parent) :
 					$this->parseLine($line, $parent));
 
 				if (!empty($node)) {
@@ -477,16 +477,16 @@ class Phamlp_Haml_Parser {
 
 	/**
 	 * Adds children to a node if the current line has children.
-	 * @param HamlNode the node to add children to
+	 * @param Phamlp_Haml_Tree_Node the node to add children to
 	 * @param array line to test
 	 */
 	private function addChildren($node, $line) {
-		if ($node instanceof HamlFilterNode) {
+		if ($node instanceof Phamlp_Haml_Tree_Node_Filter) {
 			$this->inFilter = true;
 		}
 		if ($this->hasChild($line, $this->inFilter)) {
 			$this->buildTree($node);
-			if ($node instanceof HamlFilterNode) {
+			if ($node instanceof Phamlp_Haml_Tree_Node_Filter) {
 				$this->inFilter = false;
 			}
 		}
@@ -531,7 +531,7 @@ class Phamlp_Haml_Parser {
 	/**
 	 * Returns a value indicating if $line is a child of a node.
 	 * A blank line is a child of a node.
-	 * @param HamlNode the node
+	 * @param Phamlp_Haml_Tree_Node the node
 	 * @param array the line to check
 	 * @return boolean true if the line is a child of the node, false if not
 	 */
@@ -622,10 +622,10 @@ class Phamlp_Haml_Parser {
 	}
 
 	/**
-	 * Parse a line of Haml into a HamlNode for the document tree
+	 * Parse a line of Haml into a Phamlp_Haml_Tree_Node for the document tree
 	 * @param array line to parse
-	 * @param HamlNode parent node
-	 * @return HamlNode
+	 * @param Phamlp_Haml_Tree_Node parent node
+	 * @return Phamlp_Haml_Tree_Node
 	 */
 	private function parseLine($line, $parent) {
 		if ($this->isHamlComment($line)) {
@@ -737,8 +737,8 @@ class Phamlp_Haml_Parser {
 	 * @return boolean true if the line is a HamlHelper, false if not
 	 */
 	private function isHelper($line) {
-		return (preg_match(HamlHelperNode::MATCH, $line[self::HAML_CONTENT], $matches)
-			? method_exists($this->helperClass, $matches[HamlHelperNode::NAME]) : false);
+		return (preg_match(Phamlp_Haml_Tree_Node_Helper::MATCH, $line[self::HAML_CONTENT], $matches)
+			? method_exists($this->helperClass, $matches[Phamlp_Haml_Tree_Node_Helper::NAME]) : false);
 	}
 
 	/**
@@ -988,25 +988,25 @@ class Phamlp_Haml_Parser {
 	/**
 	 * Parse code
 	 * @param array line to parse
-	 * @param HamlNode parent node
-	 * @return HamlCodeBlockNode
+	 * @param Phamlp_Haml_Tree_Node parent node
+	 * @return Phamlp_Haml_Tree_Node_CodeBlock
 	 */
 	private function parseCode($line, $parent) {
 		if (preg_match('/^(if|foreach|for|switch|do|while)\b(.*)$/',
 				$line[self::HAML_CONTENT], $block)) {
 			if ($block[1] === 'do') {
-				$node = new HamlCodeBlockNode('<?php do { ?>', $parent);
+				$node = new Phamlp_Haml_Tree_Node_CodeBlock('<?php do { ?>', $parent);
 				$node->doWhile = 'while' . $block[2] . ';';
 			}
 			elseif ($block[1] === 'switch') {
-				$node = new HamlCodeBlockNode("<?php {$line[self::HAML_CONTENT]} {", $parent);
+				$node = new Phamlp_Haml_Tree_Node_CodeBlock("<?php {$line[self::HAML_CONTENT]} {", $parent);
 			}
 			else {
-				$node = new HamlCodeBlockNode("<?php {$line[self::HAML_CONTENT]} { ?>", $parent);
+				$node = new Phamlp_Haml_Tree_Node_CodeBlock("<?php {$line[self::HAML_CONTENT]} { ?>", $parent);
 			}
 		}
 		elseif (strpos($line[self::HAML_CONTENT], 'else') === 0) {
-			$node = new HamlCodeBlockNode("<?php } {$line[self::HAML_CONTENT]} { ?>", null);
+			$node = new Phamlp_Haml_Tree_Node_CodeBlock("<?php } {$line[self::HAML_CONTENT]} { ?>", null);
 			$node->token = $line;
 			$node->showOutput = $this->showOutput;
 			$node->showSource = $this->showSource;
@@ -1015,11 +1015,11 @@ class Phamlp_Haml_Parser {
 			$node = null;
 		}
 		elseif (strpos($line[self::HAML_CONTENT], 'case') === 0) {
-			$node = new HamlNode(($parent->hasChildren() ? '<?php ' : '') .
+			$node = new Phamlp_Haml_Tree_Node(($parent->hasChildren() ? '<?php ' : '') .
 					"{$line[self::HAML_CONTENT]}: ?>", $parent);
 		}
 		else {
-			$node = new HamlNode("<?php {$line[self::HAML_CONTENT]}; ?>", $parent);
+			$node = new Phamlp_Haml_Tree_Node("<?php {$line[self::HAML_CONTENT]}; ?>", $parent);
 		}
 		return $node;
 	}
@@ -1027,8 +1027,8 @@ class Phamlp_Haml_Parser {
 	/**
 	 * Parse content
 	 * @param array line to parse
-	 * @param HamlNode parent node
-	 * @return HamlNode
+	 * @param Phamlp_Haml_Tree_Node parent node
+	 * @return Phamlp_Haml_Tree_Node
 	 */
 	private function parseContent($line, $parent) {
 		switch ($line[self::HAML_TOKEN]) {
@@ -1055,7 +1055,7 @@ class Phamlp_Haml_Parser {
 		    break;
 		} // switch
 
-	  return new HamlNode($this->interpolate($content), $parent);
+	  return new Phamlp_Haml_Tree_Node($this->interpolate($content), $parent);
 	}
 
 	/**
@@ -1094,8 +1094,8 @@ class Phamlp_Haml_Parser {
 	/**
 	 * Parse a doctype declaration
 	 * @param array line to parse
-	 * @param HamlNode parent node
-	 * @return HamlDoctypeNode
+	 * @param Phamlp_Haml_Tree_Node parent node
+	 * @return Phamlp_Haml_Tree_Node_Doctype
 	 */
 	private function parseDoctype($line, $parent) {
 		$content = explode(' ', $line[self::HAML_CONTENT]);
@@ -1120,7 +1120,7 @@ class Phamlp_Haml_Parser {
 				throw new Phamlp_Haml_Exception('Invalid {what} ({value}); must be one of "{options}"', array('{what}'=>'doctype', '{value}'=>$content[0], '{options}'=>join(', ', $_doctypes).' or empty'), $this);
 			}
 		}
-		return new HamlDoctypeNode($output, $parent);
+		return new Phamlp_Haml_Tree_Node_Doctype($output, $parent);
 	}
 
 	/**
@@ -1140,14 +1140,14 @@ class Phamlp_Haml_Parser {
 	/**
 	 * Parse a HamlHelper.
 	 * @param array line to parse
-	 * @param HamlNode parent node
-	 * @return HamlHelperNode
+	 * @param Phamlp_Haml_Tree_Node parent node
+	 * @return Phamlp_Haml_Tree_Node_Helper
 	 */
 	private function parseHelper($line, $parent) {
-		preg_match(HamlHelperNode::MATCH, $line[self::HAML_CONTENT], $matches);
-		$node = new HamlHelperNode($this->helperClass, $matches[HamlHelperNode::PRE], $matches[HamlHelperNode::NAME], $matches[HamlHelperNode::ARGS], $parent);
-		if (isset($matches[HamlHelperNode::BLOCK])) {
-			new HamlNode($matches[HamlHelperNode::BLOCK], $node);
+		preg_match(Phamlp_Haml_Tree_Node_Helper::MATCH, $line[self::HAML_CONTENT], $matches);
+		$node = new Phamlp_Haml_Tree_Node_Helper($this->helperClass, $matches[Phamlp_Haml_Tree_Node_Helper::PRE], $matches[Phamlp_Haml_Tree_Node_Helper::NAME], $matches[Phamlp_Haml_Tree_Node_Helper::ARGS], $parent);
+		if (isset($matches[Phamlp_Haml_Tree_Node_Helper::BLOCK])) {
+			new Phamlp_Haml_Tree_Node($matches[Phamlp_Haml_Tree_Node_Helper::BLOCK], $node);
 		}
 		return $node;
 	}
@@ -1155,11 +1155,11 @@ class Phamlp_Haml_Parser {
 	/**
 	 * Parse an element.
 	 * @param array line to parse
-	 * @param HamlNode parent node
-	 * @return HamlElementNode tag node and children
+	 * @param Phamlp_Haml_Tree_Node parent node
+	 * @return Phamlp_Haml_Tree_Node_Element tag node and children
 	 */
 	private function parseElement($line, $parent) {
-		$node = new HamlElementNode($line[self::HAML_TAG], $parent);
+		$node = new Phamlp_Haml_Tree_Node_Element($line[self::HAML_TAG], $parent);
 		$node->isSelfClosing = $this->isSelfClosing($line);
 		$node->isBlock = $this->isBlock($line);
 		$node->attributes = $this->parseAttributes($line);
@@ -1181,11 +1181,11 @@ class Phamlp_Haml_Parser {
 	/**
 	 * Parse a filter.
 	 * @param array line to parse
-	 * @param HamlNode parent node
-	 * @return HamlNode filter node
+	 * @param Phamlp_Haml_Tree_Node parent node
+	 * @return Phamlp_Haml_Tree_Node filter node
 	 */
 	private function parseFilter($line, $parent) {
-		$node = new HamlFilterNode($this->getFilter($line[self::HAML_FILTER]), $parent);
+		$node = new Phamlp_Haml_Tree_Node_Filter($this->getFilter($line[self::HAML_FILTER]), $parent);
 		if ($this->hasContent($line)) {
 			$child = $this->parseContent($line);
 			$child->showOutput = $this->showOutput;
@@ -1201,11 +1201,11 @@ class Phamlp_Haml_Parser {
 	/**
 	 * Parse an Xml comment.
 	 * @param array line to parse
-	 * @param HamlNode parent node
-	 * @return HamlCommentNode
+	 * @param Phamlp_Haml_Tree_Node parent node
+	 * @return Phamlp_Haml_Tree_Node_Comment
 	 */
 	private function parseXmlComment($line, $parent) {
-		return new HamlCommentNode($line[self::HAML_CONTENT], $parent);
+		return new Phamlp_Haml_Tree_Node_Comment($line[self::HAML_CONTENT], $parent);
 	}
 
 	private function parseWhitespaceControl($line) {

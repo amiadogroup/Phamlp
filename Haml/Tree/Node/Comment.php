@@ -1,7 +1,7 @@
 <?php
 /* SVN FILE: $Id$ */
 /**
- * HamlCommentNode class file.
+ * Phamlp_Haml_Tree_Node_Comment class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
  * @copyright 	Copyright (c) 2010 PBM Web Development
  * @license			http://phamlp.googlecode.com/files/license.txt
@@ -10,12 +10,12 @@
  */
 
 /**
- * HamlCommentNode class.
+ * Phamlp_Haml_Tree_Node_Comment class.
  * Represents a comment, including MSIE conditional comments.
  * @package			PHamlP
  * @subpackage	Haml.tree
  */
-class HamlCommentNode extends HamlNode {
+class Phamlp_Haml_Tree_Node_Comment extends Phamlp_Haml_Tree_Node {
 	private $isConditional;
 
 	public function __construct($content, $parent) {

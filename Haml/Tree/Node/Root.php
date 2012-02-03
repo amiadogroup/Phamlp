@@ -1,7 +1,7 @@
 <?php
 /* SVN FILE: $Id$ */
 /**
- * HamlRootNode class file.
+ * Phamlp_Haml_Tree_Node_Root class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
  * @copyright 	Copyright (c) 2010 PBM Web Development
  * @license			http://phamlp.googlecode.com/files/license.txt
@@ -10,12 +10,12 @@
  */
 
 /**
- * HamlRootNode class.
+ * Phamlp_Haml_Tree_Node_Root class.
  * Also the root node of a document.
  * @package			PHamlP
  * @subpackage	Haml.tree
  */
-class HamlRootNode extends HamlNode {
+class Phamlp_Haml_Tree_Node_Root extends Phamlp_Haml_Tree_Node {
 	/**
 	 * @var Phamlp_Haml_Renderer the renderer for this node
 	 */
@@ -26,9 +26,9 @@ class HamlRootNode extends HamlNode {
 	protected $options;
 
 	/**
-	 * Root HamlNode constructor.
+	 * Root Phamlp_Haml_Tree_Node constructor.
 	 * @param array options for the tree
-	 * @return HamlNode
+	 * @return Phamlp_Haml_Tree_Node
 	 */
 	public function __construct($options) {
 		$this->root = $this;

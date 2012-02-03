@@ -1,7 +1,7 @@
 <?php
 /* SVN FILE: $Id$ */
 /**
- * HamlElementNode class file.
+ * Phamlp_Haml_Tree_Node_Element class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
  * @copyright 	Copyright (c) 2010 PBM Web Development
  * @license			http://phamlp.googlecode.com/files/license.txt
@@ -9,16 +9,16 @@
  * @subpackage	Haml.tree
  */
 
-require_once('HamlRootNode.php');
-require_once('HamlNodeExceptions.php');
+require_once('Phamlp_Haml_Tree_Node_Root.php');
+require_once('Phamlp_Haml_Tree_NodeExceptions.php');
 
 /**
- * HamlElementNode class.
+ * Phamlp_Haml_Tree_Node_Element class.
  * Represents an element.
  * @package			PHamlP
  * @subpackage	Haml.tree
  */
-class HamlElementNode extends HamlNode {
+class Phamlp_Haml_Tree_Node_Element extends Phamlp_Haml_Tree_Node {
 	public $isBlock;
 	public $isSelfClosing;
 	public $attributes;
@@ -39,14 +39,14 @@ class HamlElementNode extends HamlNode {
 		foreach ($this->children as $index=>$child) {
 			$output = $child->render();
 			$output = ($this->whitespaceControl['inner'] ? trim($output) : $output);
-			if ($index && $this->children[$index-1] instanceof HamlElementNode && $this->children[$index-1]->whitespaceControl['outer']['right']) {
+			if ($index && $this->children[$index-1] instanceof Phamlp_Haml_Tree_Node_Element && $this->children[$index-1]->whitespaceControl['outer']['right']) {
 				$output = ltrim($output);
 			}
 			$this->output .= $output;
 		} // foreach
 
 		return $this->debug($this->output .	(isset($child) &&
-			$child instanceof HamlElementNode &&
+			$child instanceof Phamlp_Haml_Tree_Node_Element &&
 			$child->whitespaceControl['outer']['right'] ? ltrim($close) : $close));
 	}
 }

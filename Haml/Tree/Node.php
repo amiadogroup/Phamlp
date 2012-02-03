@@ -1,7 +1,7 @@
 <?php
 /* SVN FILE: $Id$ */
 /**
- * HamlNode class file.
+ * Phamlp_Haml_Tree_Node class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
  * @copyright 	Copyright (c) 2010 PBM Web Development
  * @license			http://phamlp.googlecode.com/files/license.txt
@@ -9,28 +9,19 @@
  * @subpackage	Haml.tree
  */
 
-require_once('HamlRootNode.php');
-require_once('HamlCommentNode.php');
-require_once('HamlDoctypeNode.php');
-require_once('HamlElementNode.php');
-require_once('HamlFilterNode.php');
-require_once('HamlHelperNode.php');
-require_once('HamlCodeBlockNode.php');
-require_once('HamlNodeExceptions.php');
-
 /**
- * HamlNode class.
+ * Phamlp_Haml_Tree_Node class.
  * Base class for all Haml nodes.
  * @package			PHamlP
  * @subpackage	Haml.tree
  */
-class HamlNode {
+class Phamlp_Haml_Tree_Node {
 	/**
-	 * @var HamlNode root node of this node
+	 * @var Phamlp_Haml_Tree_Node root node of this node
 	 */
 	protected $root;
 	/**
-	 * @var HamlNode parent of this node
+	 * @var Phamlp_Haml_Tree_Node parent of this node
 	 */
 	protected $parent;
 	/**
@@ -86,14 +77,14 @@ class HamlNode {
 		if (method_exists($this, $getter)) {
 			return $this->$getter();
 		}
-		throw new HamlNodeException('No getter function for {what}', array('{what}'=>$name));
+		throw new Phamlp_Haml_Tree_NodeException('No getter function for {what}', array('{what}'=>$name));
 	}
 
 	/**
 	 * Setter.
 	 * @param string name of property to set
 	 * @return mixed value of property
-	 * @return HamlNode this node
+	 * @return Phamlp_Haml_Tree_Node this node
 	 */
 	public function __set($name, $value) {
 		$setter = 'set' . ucfirst($name);
@@ -101,7 +92,7 @@ class HamlNode {
 			$this->$setter($value);
 			return $this;
 		}
-		throw new HamlNodeException('No setter function for {what}', array('{what}'=>$name));
+		throw new Phamlp_Haml_Tree_NodeException('No setter function for {what}', array('{what}'=>$name));
 	}
 
 	/**
@@ -152,7 +143,7 @@ class HamlNode {
 
 	/**
 	 * Returns the last child node of this node.
-	 * @return HamlNode the last child node of this node
+	 * @return Phamlp_Haml_Tree_Node the last child node of this node
 	 */
 	public function getLastChild() {
 	  return $this->children[count($this->children) - 1];
@@ -170,7 +161,7 @@ class HamlNode {
 	 * Sets the indent level of this node.
 	 * Used during rendering to give correct indentation.
 	 * @param integer the indent level of this node
-	 * @return HamlNode this node
+	 * @return Phamlp_Haml_Tree_Node this node
 	 */
 	private function setLevel($level) {
 		$this->token['level'] = $level;

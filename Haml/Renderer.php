@@ -123,7 +123,7 @@ class Phamlp_Haml_Renderer {
 
 	/**
 	 * Renders content.
-	 * @param HamlNode the node being rendered
+	 * @param Phamlp_Haml_Tree_Node the node being rendered
 	 * @return string the rendered content
 	 */
 	public function renderContent($node) {
