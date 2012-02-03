@@ -10,8 +10,6 @@
  * @subpackage	Haml.filters
  */
 
-require_once('HamlCssFilter.php');
-
 /**
  * {@link Sass http://sass-lang.com/} Filter for
  * {@link http://haml-lang.com/ Haml} class.
@@ -20,7 +18,7 @@ require_once('HamlCssFilter.php');
  * @package			PHamlP
  * @subpackage	Haml.filters
  */
-class HamlSassFilter extends HamlBaseFilter {
+class Phamlp_Haml_Filter_Sass extends Phamlp_Haml_Filter_Base {
 	/**
 	 * Run the filter
 	 * @param string text to filter
@@ -28,7 +26,7 @@ class HamlSassFilter extends HamlBaseFilter {
 	 */
 	public function run($text) {
 		$sass = new Phamlp_Sass_Parser();
-		$css = new HamlCssFilter();
+		$css = new Phamlp_Haml_Filter_Css();
 		$css->init();
 
 		return $css->run($sass->toCss(preg_replace(Phamlp_Haml_Parser::MATCH_INTERPOLATION, '<?php echo \1; ?>', $text), false));

@@ -1,7 +1,7 @@
 <?php
 /* SVN FILE: $Id$ */
 /**
- * Escaped Filter for {@link http://haml-lang.com/ Haml} class file.
+ * PHP Filter for {@link http://haml-lang.com/ Haml} class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
  * @copyright		Copyright (c) 2010 PBM Web Development
  * @license			http://phamlp.googlecode.com/files/license.txt
@@ -10,23 +10,18 @@
  */
 
 /**
- * Escaped Filter for {@link http://haml-lang.com/ Haml} class.
- * Escapes the text.
- * Code to be interpolated can be included by wrapping it in #().
+ * PHP Filter for {@link http://haml-lang.com/ Haml} class.
+ * The text will be parsed with the PHP interpreter.
  * @package			PHamlP
  * @subpackage	Haml.filters
  */
-class HamlEscapedFilter extends HamlBaseFilter {
+class Phamlp_Haml_Filter_Php extends Phamlp_Haml_Filter_Base {
 	/**
 	 * Run the filter
 	 * @param string text to filter
 	 * @return string filtered text
 	 */
 	public function run($text) {
-	  return preg_replace(
-	  	Phamlp_Haml_Parser::MATCH_INTERPOLATION,
-	  	'<?php echo htmlspecialchars($text); ?>',
-	  	htmlspecialchars($text)
-	  ) . "\n";
+	  return "<?php\n$text?>\n";
 	}
 }

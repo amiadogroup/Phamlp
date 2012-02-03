@@ -9,9 +9,6 @@
  * @subpackage	Haml.tree
  */
 
-require_once('Phamlp_Haml_Tree_Node_Root.php');
-require_once('Phamlp_Haml_Tree_NodeExceptions.php');
-
 /**
  * Phamlp_Haml_Tree_Node_Element class.
  * Represents an element.

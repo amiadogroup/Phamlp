@@ -782,7 +782,7 @@ class Phamlp_Haml_Parser {
 	 * Gets a filter.
 	 * Filters are loaded on first use.
 	 * @param string filter name
-	 * @throws Phamlp_Haml_Exception if the filter does not exist or does not extend HamlBaseFilter
+	 * @throws Phamlp_Haml_Exception if the filter does not exist or does not extend Phamlp_Haml_Filter_Base
 	 */
 	private function getFilter($filter) {
 		static $firstRun = true;
@@ -790,7 +790,7 @@ class Phamlp_Haml_Parser {
 		
 		if (empty($this->filters[$filter])) {
 			if ($firstRun) {
-				require_once('filters/HamlBaseFilter.php');
+				require_once('filters/Phamlp_Haml_Filter_Base.php');
 				$firstRun = false;
 			}
 
@@ -815,8 +815,8 @@ class Phamlp_Haml_Parser {
 			
 			$this->filters[$filter] = new $filterclass();
 
-			if (!($this->filters[$filter] instanceof HamlBaseFilter)) {
-				throw new Phamlp_Haml_Exception('{what} must extend {base} class', array('{what}'=>$filter, '{base}'=>'HamlBaseFilter'), $this);
+			if (!($this->filters[$filter] instanceof Phamlp_Haml_Filter_Base)) {
+				throw new Phamlp_Haml_Exception('{what} must extend {base} class', array('{what}'=>$filter, '{base}'=>'Phamlp_Haml_Filter_Base'), $this);
 			}
 
 			$this->filters[$filter]->init();

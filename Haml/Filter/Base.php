@@ -15,7 +15,7 @@
  * @package			PHamlP
  * @subpackage	Haml.filters
  */
-abstract class HamlBaseFilter {
+abstract class Phamlp_Haml_Filter_Base {
 	/**
 	 * Initialise the filter.
 	 */

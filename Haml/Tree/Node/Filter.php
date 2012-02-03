@@ -18,14 +18,14 @@
  */
 class Phamlp_Haml_Tree_Node_Filter extends Phamlp_Haml_Tree_Node {
 	/**
-	 * @var HamlBaseFilter the filter to run
+	 * @var Phamlp_Haml_Filter_Base the filter to run
 	 */
 	private $filter;
 
 	/**
 	 * Phamlp_Haml_Tree_Node_Filter constructor.
 	 * Sets the filter.
-	 * @param HamlBaseFilter the filter to run
+	 * @param Phamlp_Haml_Filter_Base the filter to run
 	 * @return Phamlp_Haml_Tree_Node_Filter
 	 */
 	public function __construct($filter, $parent) {

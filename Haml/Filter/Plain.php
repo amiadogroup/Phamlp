@@ -16,7 +16,7 @@
  * @package			PHamlP
  * @subpackage	Haml.filters
  */
-class HamlPlainFilter extends HamlBaseFilter {
+class Phamlp_Haml_Filter_Plain extends Phamlp_Haml_Filter_Base {
 	/**
 	 * Run the filter
 	 * @param string text to filter

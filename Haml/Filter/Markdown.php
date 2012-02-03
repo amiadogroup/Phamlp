@@ -1,8 +1,8 @@
 <?php
 /* SVN FILE: $Id$ */
 /**
- * Textile Filter for {@link http://haml-lang.com/ Haml} class file.
- * This filter is an abstract filter that must be extended. 
+ * Markdown Filter for {@link http://haml-lang.com/ Haml} class file.
+ * This filter is an abstract filter that must be extended.
  * 
  * @author			Chris Yates <chris.l.yates@gmail.com>
  * @copyright		Copyright (c) 2010 PBM Web Development
@@ -12,8 +12,8 @@
  */
 
 /**
- * Textile Filter for {@link http://haml-lang.com/ Haml} class.
- * Parses the text with Textile.
+ * Markdown Filter for {@link http://haml-lang.com/ Haml} class.
+ * Parses the text with Markdown.
  * 
  * This is an abstract class that must be extended and the init() method
  * implemented to provide the vendorPath if the vendor class is not imported
@@ -22,16 +22,16 @@
  * @package			PHamlP
  * @subpackage	Haml.filters
  */
-abstract class _HamlTextileFilter extends HamlBaseFilter {
+abstract class Phamlp_Haml_Filter_Markdown extends Phamlp_Haml_Filter_Base {
 	/**
-	 * @var string Path to Textile Parser
+	 * @var string Path to Markdown Parser
 	 */
 	protected $vendorPath;
 	/**
-	 * @var string Textile class
+	 * @var string Markdown class
 	 * Override this value if the class name is different in your environment
 	 */
-	protected $vendorClass = 'Textile';
+	protected $vendorClass = 'MarkdownExtra_Parser';
 	
 	/**
 	 * Child classes must implement this method.
@@ -45,6 +45,6 @@ abstract class _HamlTextileFilter extends HamlBaseFilter {
 	 * @return string filtered text
 	 */
 	public function run($text) {
-		return '<?php	'.(!empty($this->vendorPath)?'require_once "'.$this->vendorPath.'";':'').'$textile___=new '.$this->vendorClass.'();echo  $textile___->TextileThis("'.preg_replace(Phamlp_Haml_Parser::MATCH_INTERPOLATION, '".\1."', $text).'");?>';
+		return '<?php	'.(!empty($this->vendorPath)?'require_once "'.$this->vendorPath.'";':'').'$markdown___=new '.$this->vendorClass.'();echo  $markdown___->safeTransform("'.preg_replace(Phamlp_Haml_Parser::MATCH_INTERPOLATION, '".\1."', $text).'");?>';
 	}
 }
