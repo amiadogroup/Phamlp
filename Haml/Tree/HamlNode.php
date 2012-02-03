@@ -58,7 +58,7 @@ class HamlNode {
 	 */
 	protected $output;
 	/**
-	 * @var HamlRenderer Renderer object
+	 * @var Phamlp_Haml_Renderer Renderer object
 	 */
 	private $_r; 
 	/**
@@ -214,7 +214,7 @@ class HamlNode {
 
 	/**
 	 * Returns the renderer.
-	 * @return HamlRenderer the rendered
+	 * @return Phamlp_Haml_Renderer the rendered
 	 */
 	public function getRenderer() {
 		if (empty($this->_r)) {

@@ -1,7 +1,7 @@
 <?php
 /* SVN FILE: $Id$ */
 /**
- * HamlCompressedRenderer class file.
+ * Phamlp_Haml_Renderer_Compressed class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
  * @copyright 	Copyright (c) 2010 PBM Web Development
  * @license			http://phamlp.googlecode.com/files/license.txt
@@ -10,12 +10,12 @@
  */
 
 /**
- * HamlCompressedRenderer class.
+ * Phamlp_Haml_Renderer_Compressed class.
  * Output has minimal whitespace.
  * @package			PHamlP
  * @subpackage	Haml.renderers
  */
-class HamlCompressedRenderer extends HamlRenderer {
+class Phamlp_Haml_Renderer_Compressed extends Phamlp_Haml_Renderer {
 	/**
 	 * Renders the opening of a comment.
 	 * Only conditional comments are rendered

@@ -1,7 +1,7 @@
 <?php
 /* SVN FILE: $Id$ */
 /**
- * HamlNestedRenderer class file.
+ * Phamlp_Haml_Renderer_Nested class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
  * @copyright 	Copyright (c) 2010 PBM Web Development
  * @license			http://phamlp.googlecode.com/files/license.txt
@@ -10,12 +10,12 @@
  */
 
 /**
- * HamlNestedRenderer class.
+ * Phamlp_Haml_Renderer_Nested class.
  * Blocks and content are indented according to their nesting level.
  * @package			PHamlP
  * @subpackage	Haml.renderers
  */
-class HamlNestedRenderer extends HamlRenderer {
+class Phamlp_Haml_Renderer_Nested extends Phamlp_Haml_Renderer {
 	/**
 	 * Renders the opening tag of an element
 	 */

@@ -9,8 +9,6 @@
  * @subpackage	Haml.tree
  */
 
-require_once(dirname(__FILE__).'/../renderers/HamlRenderer.php');
-
 /**
  * HamlRootNode class.
  * Also the root node of a document.
@@ -19,7 +17,7 @@ require_once(dirname(__FILE__).'/../renderers/HamlRenderer.php');
  */
 class HamlRootNode extends HamlNode {
 	/**
-	 * @var HamlRenderer the renderer for this node
+	 * @var Phamlp_Haml_Renderer the renderer for this node
 	 */
 	protected $renderer;
 	/**
@@ -35,7 +33,7 @@ class HamlRootNode extends HamlNode {
 	public function __construct($options) {
 		$this->root = $this;
 		$this->options = $options;
-		$this->renderer = HamlRenderer::getRenderer($this->options['style'],
+		$this->renderer = Phamlp_Haml_Renderer::getRenderer($this->options['style'],
 			array(
 				'format' => $this->options['format'],
 				'attrWrapper' => $this->options['attrWrapper'],

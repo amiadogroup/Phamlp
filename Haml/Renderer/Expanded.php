@@ -1,7 +1,7 @@
 <?php
 /* SVN FILE: $Id$ */
 /**
- * HamlExpandedRenderer class file.
+ * Phamlp_Haml_Renderer_Expanded class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
  * @copyright 	Copyright (c) 2010 PBM Web Development
  * @license			http://phamlp.googlecode.com/files/license.txt
@@ -10,12 +10,12 @@
  */
 
 /**
- * HamlExpandedRenderer class.
+ * Phamlp_Haml_Renderer_Expanded class.
  * Blocks are on single lines and content indented.
  * @package			PHamlP
  * @subpackage	Haml.renderers
  */
-class HamlExpandedRenderer extends HamlRenderer {
+class Phamlp_Haml_Renderer_Expanded extends Phamlp_Haml_Renderer {
 	/**
 	 * Renders the opening tag of an element
 	 */

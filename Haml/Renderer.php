@@ -1,7 +1,7 @@
 <?php
 /* SVN FILE: $Id$ */
 /**
- * HamlRenderer class file.
+ * Phamlp_Haml_Renderer class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
  * @copyright 	Copyright (c) 2010 PBM Web Development
  * @license			http://phamlp.googlecode.com/files/license.txt
@@ -9,19 +9,14 @@
  * @subpackage	Haml.renderers
  */
 
-require_once('HamlCompressedRenderer.php');
-require_once('HamlCompactRenderer.php');
-require_once('HamlExpandedRenderer.php');
-require_once('HamlNestedRenderer.php');
-
 /**
- * HamlRenderer class.
+ * Phamlp_Haml_Renderer class.
  * Provides the most common version of each method. Child classs override
  * methods to provide style specific rendering.
  * @package			PHamlP
  * @subpackage	Haml.renderers
  */
-class HamlRenderer {
+class Phamlp_Haml_Renderer {
 	/**#@+
 	 * Output Styles
 	 */
@@ -40,18 +35,18 @@ class HamlRenderer {
 	/**
 	 * Returns the renderer for the required render style.
 	 * @param string render style
-	 * @return HamlRenderer
+	 * @return Phamlp_Haml_Renderer
 	 */
 	static public function getRenderer($style, $options) {
 		switch ($style) {
 			case self::STYLE_COMPACT:
-		  	return new HamlCompactRenderer($options);
+		  	return new Phamlp_Haml_Renderer_Compact($options);
 			case self::STYLE_COMPRESSED:
-		  	return new HamlCompressedRenderer($options);
+		  	return new Phamlp_Haml_Renderer_Compressed($options);
 			case self::STYLE_EXPANDED:
-		  	return new HamlExpandedRenderer($options);
+		  	return new Phamlp_Haml_Renderer_Expanded($options);
 			case self::STYLE_NESTED:
-		  	return new HamlNestedRenderer($options);
+		  	return new Phamlp_Haml_Renderer_Nested($options);
 		} // switch
 	}
 

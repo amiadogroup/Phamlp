@@ -1038,8 +1038,8 @@ class Phamlp_Haml_Parser {
 						'htmlentities(' . $line[self::HAML_CONTENT] . ')' :
 						$line[self::HAML_CONTENT]) .
 						"; ?>" .
-						($this->style == HamlRenderer::STYLE_EXPANDED ||
-							$this->style == HamlRenderer::STYLE_NESTED ? "\n" : ''));
+						($this->style == Phamlp_Haml_Renderer::STYLE_EXPANDED ||
+							$this->style == Phamlp_Haml_Renderer::STYLE_NESTED ? "\n" : ''));
 		    break;
 		  case self::INSERT_CODE_PRESERVE_WHITESPACE:
 				$content = ($this->suppressEval ? '' :
@@ -1047,8 +1047,8 @@ class Phamlp_Haml_Parser {
 						'htmlentities(' . $line[self::HAML_CONTENT] . ')' :
 						$line[self::HAML_CONTENT]) .
 						"; ?>" .
-						($this->style == HamlRenderer::STYLE_EXPANDED ||
-							$this->style == HamlRenderer::STYLE_NESTED ? "\n" : ''));
+						($this->style == Phamlp_Haml_Renderer::STYLE_EXPANDED ||
+							$this->style == Phamlp_Haml_Renderer::STYLE_NESTED ? "\n" : ''));
 		    break;
 		  default:
 		  	$content = $line[self::HAML_CONTENT];
