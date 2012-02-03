@@ -82,7 +82,7 @@ class Phamlp_Sass_Script_Function {
 		foreach (array_slice(scandir($dir), 2) as $file) {
 			if (is_file($dir . DIRECTORY_SEPARATOR . $file)) {
 				$files[] = $file;
-				require_once($dir . DIRECTORY_SEPARATOR . $file);
+				//require_once($dir . DIRECTORY_SEPARATOR . $file);
 			}
 		} // foreach
 		return $files;
