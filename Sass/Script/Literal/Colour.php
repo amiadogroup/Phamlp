@@ -348,7 +348,7 @@ class Phamlp_Sass_Script_Literal_Colour extends Phamlp_Sass_Script_Literal {
 	public function op_plus($other) {
 		if ($other instanceof Phamlp_Sass_Script_Literal_Number) {
 			if (!$other->isUnitless()) {
-				throw new Phamlp_Sass_Script_Literal_ColourException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'unitless number')), Phamlp_Sass_Script_Parser::$context->node);
+				throw new Phamlp_Sass_Script_Literal_ColourException('{what} must be a {type}', array('{what}'=>Phamlp_Translate::t('sass', 'Number'), '{type}'=>Phamlp_Translate::t('sass', 'unitless number')), Phamlp_Sass_Script_Parser::$context->node);
 			}
 			$this->red   = $this->getRed()   + $other->value;
 			$this->green = $this->getGreen() + $other->value;
@@ -373,7 +373,7 @@ class Phamlp_Sass_Script_Literal_Colour extends Phamlp_Sass_Script_Literal {
 	public function op_minus($other) {
 		if ($other instanceof Phamlp_Sass_Script_Literal_Number) {
 			if (!$other->isUnitless()) {
-				throw new Phamlp_Sass_Script_Literal_ColourException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'unitless number')), Phamlp_Sass_Script_Parser::$context->node);
+				throw new Phamlp_Sass_Script_Literal_ColourException('{what} must be a {type}', array('{what}'=>Phamlp_Translate::t('sass', 'Number'), '{type}'=>Phamlp_Translate::t('sass', 'unitless number')), Phamlp_Sass_Script_Parser::$context->node);
 			}
 			$this->red   = $this->getRed()   - $other->value;
 			$this->green = $this->getGreen() - $other->value;
@@ -398,7 +398,7 @@ class Phamlp_Sass_Script_Literal_Colour extends Phamlp_Sass_Script_Literal {
 	public function op_times($other) {
 		if ($other instanceof Phamlp_Sass_Script_Literal_Number) {
 			if (!$other->isUnitless()) {
-				throw new Phamlp_Sass_Script_Literal_ColourException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'unitless number')), Phamlp_Sass_Script_Parser::$context->node);
+				throw new Phamlp_Sass_Script_Literal_ColourException('{what} must be a {type}', array('{what}'=>Phamlp_Translate::t('sass', 'Number'), '{type}'=>Phamlp_Translate::t('sass', 'unitless number')), Phamlp_Sass_Script_Parser::$context->node);
 			}
 			$this->red   = $this->getRed()   * $other->value;
 			$this->green = $this->getGreen() * $other->value;
@@ -423,7 +423,7 @@ class Phamlp_Sass_Script_Literal_Colour extends Phamlp_Sass_Script_Literal {
 	public function op_div($other) {
 		if ($other instanceof Phamlp_Sass_Script_Literal_Number) {
 			if (!$other->isUnitless()) {
-				throw new Phamlp_Sass_Script_Literal_ColourException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'unitless number')), Phamlp_Sass_Script_Parser::$context->node);
+				throw new Phamlp_Sass_Script_Literal_ColourException('{what} must be a {type}', array('{what}'=>Phamlp_Translate::t('sass', 'Number'), '{type}'=>Phamlp_Translate::t('sass', 'unitless number')), Phamlp_Sass_Script_Parser::$context->node);
 			}
 			$this->red   = $this->getRed()   / $other->value;
 			$this->green = $this->getGreen() / $other->value;
@@ -448,7 +448,7 @@ class Phamlp_Sass_Script_Literal_Colour extends Phamlp_Sass_Script_Literal {
 	public function op_modulo($other) {
 		if ($other instanceof Phamlp_Sass_Script_Literal_Number) {
 			if (!$other->isUnitless()) {
-				throw new Phamlp_Sass_Script_Literal_ColourException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'unitless number')), Phamlp_Sass_Script_Parser::$context->node);
+				throw new Phamlp_Sass_Script_Literal_ColourException('{what} must be a {type}', array('{what}'=>Phamlp_Translate::t('sass', 'Number'), '{type}'=>Phamlp_Translate::t('sass', 'unitless number')), Phamlp_Sass_Script_Parser::$context->node);
 			}
 			$this->red   = $this->getRed()   % $other->value;
 			$this->green = $this->getGreen() % $other->value;
@@ -473,7 +473,7 @@ class Phamlp_Sass_Script_Literal_Colour extends Phamlp_Sass_Script_Literal {
 	public function op_bw_and($other) {
 		if ($other instanceof Phamlp_Sass_Script_Literal_Number) {
 			if (!$other->isUnitless()) {
-				throw new Phamlp_Sass_Script_Literal_ColourException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'unitless number')), Phamlp_Sass_Script_Parser::$context->node);
+				throw new Phamlp_Sass_Script_Literal_ColourException('{what} must be a {type}', array('{what}'=>Phamlp_Translate::t('sass', 'Number'), '{type}'=>Phamlp_Translate::t('sass', 'unitless number')), Phamlp_Sass_Script_Parser::$context->node);
 			}
 			$this->red   = $this->getRed()   & $other->value;
 			$this->green = $this->getGreen() & $other->value;
@@ -498,7 +498,7 @@ class Phamlp_Sass_Script_Literal_Colour extends Phamlp_Sass_Script_Literal {
 	public function op_bw_or($other) {
 		if ($other instanceof Phamlp_Sass_Script_Literal_Number) {
 			if (!$other->isUnitless()) {
-				throw new Phamlp_Sass_Script_Literal_ColourException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'unitless number')), Phamlp_Sass_Script_Parser::$context->node);
+				throw new Phamlp_Sass_Script_Literal_ColourException('{what} must be a {type}', array('{what}'=>Phamlp_Translate::t('sass', 'Number'), '{type}'=>Phamlp_Translate::t('sass', 'unitless number')), Phamlp_Sass_Script_Parser::$context->node);
 			}
 			$this->red   = $this->getRed()   | $other->value;
 			$this->green = $this->getGreen() | $other->value;
@@ -523,7 +523,7 @@ class Phamlp_Sass_Script_Literal_Colour extends Phamlp_Sass_Script_Literal {
 	public function op_bw_xor($other) {
 		if ($other instanceof Phamlp_Sass_Script_Literal_Number) {
 			if (!$other->isUnitless()) {
-				throw new Phamlp_Sass_Script_Literal_ColourException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'unitless number')), Phamlp_Sass_Script_Parser::$context->node);
+				throw new Phamlp_Sass_Script_Literal_ColourException('{what} must be a {type}', array('{what}'=>Phamlp_Translate::t('sass', 'Number'), '{type}'=>Phamlp_Translate::t('sass', 'unitless number')), Phamlp_Sass_Script_Parser::$context->node);
 			}
 			$this->red   = $this->getRed()   ^ $other->value;
 			$this->green = $this->getGreen() ^ $other->value;
@@ -558,7 +558,7 @@ class Phamlp_Sass_Script_Literal_Colour extends Phamlp_Sass_Script_Literal {
 	 */
 	public function op_shiftl($other) {
 		if (!$other instanceof Phamlp_Sass_Script_Literal_Number ||!$other->isUnitless()) {
-			throw new Phamlp_Sass_Script_Literal_ColourException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'unitless number')), Phamlp_Sass_Script_Parser::$context->node);
+			throw new Phamlp_Sass_Script_Literal_ColourException('{what} must be a {type}', array('{what}'=>Phamlp_Translate::t('sass', 'Number'), '{type}'=>Phamlp_Translate::t('sass', 'unitless number')), Phamlp_Sass_Script_Parser::$context->node);
 		}
 		$this->red   = $this->getRed()   << $other->value;
 		$this->green = $this->getGreen() << $other->value;
@@ -573,7 +573,7 @@ class Phamlp_Sass_Script_Literal_Colour extends Phamlp_Sass_Script_Literal {
 	 */
 	public function op_shiftr($other) {
 		if (!$other instanceof Phamlp_Sass_Script_Literal_Number || !$other->isUnitless()) {
-			throw new Phamlp_Sass_Script_Literal_ColourException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'unitless number')), Phamlp_Sass_Script_Parser::$context->node);
+			throw new Phamlp_Sass_Script_Literal_ColourException('{what} must be a {type}', array('{what}'=>Phamlp_Translate::t('sass', 'Number'), '{type}'=>Phamlp_Translate::t('sass', 'unitless number')), Phamlp_Sass_Script_Parser::$context->node);
 		}
 		$this->red   = $this->getRed()   >> $other->value;
 		$this->green = $this->getGreen() >> $other->value;

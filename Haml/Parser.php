@@ -324,7 +324,7 @@ class Phamlp_Haml_Parser {
 	 */
 	public function __construct($options = array()) {
 		if (isset($options['language'])) {
-			Phamlp::$language = $options['language'];
+			Phamlp_Translate::$language = $options['language'];
 			unset($options['language']);
 		}
 		foreach ($options as $name => $value) {

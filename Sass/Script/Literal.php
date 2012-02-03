@@ -137,7 +137,7 @@ abstract class Phamlp_Sass_Script_Literal {
 	 * @throws Exception if modulo not supported for the data type
 	 */
 	public function op_modulo($other) {
-		throw new Phamlp_Sass_Script_LiteralException('{class} does not support {operation}.', array('{class}'=>get_class($this), '{operation}'=>Phamlp::t('sass', 'Modulus')), Phamlp_Sass_Script_Parser::$context->node);
+		throw new Phamlp_Sass_Script_LiteralException('{class} does not support {operation}.', array('{class}'=>get_class($this), '{operation}'=>Phamlp_Translate::t('sass', 'Modulus')), Phamlp_Sass_Script_Parser::$context->node);
 	}
 
 	/**
@@ -147,7 +147,7 @@ abstract class Phamlp_Sass_Script_Literal {
 	 * @throws Exception if bitwise AND not supported for the data type
 	 */
 	public function op_bw_and($other) {
-		throw new Phamlp_Sass_Script_LiteralException('{class} does not support {operation}.', array('{class}'=>get_class($this), '{operation}'=>Phamlp::t('sass', 'Bitwise AND')), Phamlp_Sass_Script_Parser::$context->node);
+		throw new Phamlp_Sass_Script_LiteralException('{class} does not support {operation}.', array('{class}'=>get_class($this), '{operation}'=>Phamlp_Translate::t('sass', 'Bitwise AND')), Phamlp_Sass_Script_Parser::$context->node);
 	}
 
 	/**
@@ -157,7 +157,7 @@ abstract class Phamlp_Sass_Script_Literal {
 	 * @throws Exception if bitwise OR not supported for the data type
 	 */
 	public function op_bw_or($other) {
-		throw new Phamlp_Sass_Script_LiteralException('{class} does not support {operation}.', array('{class}'=>get_class($this), '{operation}'=>Phamlp::t('sass', 'Bitwise OR')), Phamlp_Sass_Script_Parser::$context->node);
+		throw new Phamlp_Sass_Script_LiteralException('{class} does not support {operation}.', array('{class}'=>get_class($this), '{operation}'=>Phamlp_Translate::t('sass', 'Bitwise OR')), Phamlp_Sass_Script_Parser::$context->node);
 	}
 
 	/**
@@ -167,7 +167,7 @@ abstract class Phamlp_Sass_Script_Literal {
 	 * @throws Exception if bitwise XOR not supported for the data type
 	 */
 	public function op_bw_xor($other) {
-		throw new Phamlp_Sass_Script_LiteralException('{class} does not support {operation}.', array('{class}'=>get_class($this), '{operation}'=>Phamlp::t('sass', 'Bitwise XOR')), Phamlp_Sass_Script_Parser::$context->node);
+		throw new Phamlp_Sass_Script_LiteralException('{class} does not support {operation}.', array('{class}'=>get_class($this), '{operation}'=>Phamlp_Translate::t('sass', 'Bitwise XOR')), Phamlp_Sass_Script_Parser::$context->node);
 	}
 
 	/**
@@ -177,7 +177,7 @@ abstract class Phamlp_Sass_Script_Literal {
 	 * @throws Exception if bitwise NOT not supported for the data type
 	 */
 	public function op_bw_not() {
-		throw new Phamlp_Sass_Script_LiteralException('{class} does not support {operation}.', array('{class}'=>get_class($this), '{operation}'=>Phamlp::t('sass', 'Bitwise NOT')), Phamlp_Sass_Script_Parser::$context->node);
+		throw new Phamlp_Sass_Script_LiteralException('{class} does not support {operation}.', array('{class}'=>get_class($this), '{operation}'=>Phamlp_Translate::t('sass', 'Bitwise NOT')), Phamlp_Sass_Script_Parser::$context->node);
 	}
 
 	/**
@@ -187,7 +187,7 @@ abstract class Phamlp_Sass_Script_Literal {
 	 * @throws Exception if bitwise Shift Left not supported for the data type
 	 */
 	public function op_shiftl($other) {
-		throw new Phamlp_Sass_Script_LiteralException('{class} does not support {operation}.', array('{class}'=>get_class($this), '{operation}'=>Phamlp::t('sass', 'Bitwise Shift Left')), Phamlp_Sass_Script_Parser::$context->node);
+		throw new Phamlp_Sass_Script_LiteralException('{class} does not support {operation}.', array('{class}'=>get_class($this), '{operation}'=>Phamlp_Translate::t('sass', 'Bitwise Shift Left')), Phamlp_Sass_Script_Parser::$context->node);
 	}
 
 	/**
@@ -197,7 +197,7 @@ abstract class Phamlp_Sass_Script_Literal {
 	 * @throws Exception if bitwise Shift Right not supported for the data type
 	 */
 	public function op_shiftr($other) {
-		throw new Phamlp_Sass_Script_LiteralException('{class} does not support {operation}.', array('{class}'=>get_class($this), '{operation}'=>Phamlp::t('sass', 'Bitwise Shift Right')), Phamlp_Sass_Script_Parser::$context->node);
+		throw new Phamlp_Sass_Script_LiteralException('{class} does not support {operation}.', array('{class}'=>get_class($this), '{operation}'=>Phamlp_Translate::t('sass', 'Bitwise Shift Right')), Phamlp_Sass_Script_Parser::$context->node);
 	}
 
 	/**
@@ -337,7 +337,7 @@ abstract class Phamlp_Sass_Script_Literal {
 	 */
 	 public static function assertInRange($literal, $min, $max, $units = '') {
 	 	 if ($literal->value < $min || $literal->value > $max) {
-			throw new Phamlp_Sass_Script_FunctionException('{what} must be {inRange}', array('{what}'=>$literal->typeOf, '{inRange}'=>Phamlp::t('sass', 'between {min} and {max} inclusive', array('{min}'=>$min.$units, '{max}'=>$max.$units))), Phamlp_Sass_Script_Parser::$context->node);
+			throw new Phamlp_Sass_Script_FunctionException('{what} must be {inRange}', array('{what}'=>$literal->typeOf, '{inRange}'=>Phamlp_Translate::t('sass', 'between {min} and {max} inclusive', array('{min}'=>$min.$units, '{max}'=>$max.$units))), Phamlp_Sass_Script_Parser::$context->node);
 		}
 	}
 

@@ -52,7 +52,7 @@ class Phamlp_Sass_Script_Literal_String extends Phamlp_Sass_Script_Literal {
 	 */
 	public function op_plus($other) {
 		if (!($other instanceof Phamlp_Sass_Script_Literal_String)) {
-			throw new Phamlp_Sass_Script_Literal_StringException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Value'), '{type}'=>Phamlp::t('sass', 'string')), Phamlp_Sass_Script_Parser::$context->node);
+			throw new Phamlp_Sass_Script_Literal_StringException('{what} must be a {type}', array('{what}'=>Phamlp_Translate::t('sass', 'Value'), '{type}'=>Phamlp_Translate::t('sass', 'string')), Phamlp_Sass_Script_Parser::$context->node);
 		}
 		$this->value .= $other->value;
 		return $this;
@@ -66,7 +66,7 @@ class Phamlp_Sass_Script_Literal_String extends Phamlp_Sass_Script_Literal {
 	 */
 	public function op_times($other) {
 		if (!($other instanceof Phamlp_Sass_Script_Literal_Number) || !$other->isUnitless()) {
-			throw new Phamlp_Sass_Script_Literal_StringException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Value'), '{type}'=>Phamlp::t('sass', 'unitless number')), Phamlp_Sass_Script_Parser::$context->node);
+			throw new Phamlp_Sass_Script_Literal_StringException('{what} must be a {type}', array('{what}'=>Phamlp_Translate::t('sass', 'Value'), '{type}'=>Phamlp_Translate::t('sass', 'unitless number')), Phamlp_Sass_Script_Parser::$context->node);
 		}
 		$this->value = str_repeat($this->value, $other->value);
 		return $this;

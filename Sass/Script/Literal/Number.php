@@ -104,7 +104,7 @@ class Phamlp_Sass_Script_Literal_Number extends Phamlp_Sass_Script_Literal {
 			return $other->op_plus($this);
 		}
 		elseif (!$other instanceof Phamlp_Sass_Script_Literal_Number) {
-			throw new Phamlp_Sass_Script_Literal_NumberException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'number')), Phamlp_Sass_Script_Parser::$context->node);
+			throw new Phamlp_Sass_Script_Literal_NumberException('{what} must be a {type}', array('{what}'=>Phamlp_Translate::t('sass', 'Number'), '{type}'=>Phamlp_Translate::t('sass', 'number')), Phamlp_Sass_Script_Parser::$context->node);
 		}
 		else {
 			$other = $this->convert($other);
@@ -131,7 +131,7 @@ class Phamlp_Sass_Script_Literal_Number extends Phamlp_Sass_Script_Literal {
 			return $other->op_minus($this);
 		}
 		elseif (!$other instanceof Phamlp_Sass_Script_Literal_Number) {
-			throw new Phamlp_Sass_Script_Literal_NumberException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'number')), Phamlp_Sass_Script_Parser::$context->node);
+			throw new Phamlp_Sass_Script_Literal_NumberException('{what} must be a {type}', array('{what}'=>Phamlp_Translate::t('sass', 'Number'), '{type}'=>Phamlp_Translate::t('sass', 'number')), Phamlp_Sass_Script_Parser::$context->node);
 		}
 		else {
 			$other = $this->convert($other);
@@ -158,7 +158,7 @@ class Phamlp_Sass_Script_Literal_Number extends Phamlp_Sass_Script_Literal {
 			return $other->op_times($this);
 		}
 		elseif (!$other instanceof Phamlp_Sass_Script_Literal_Number) {
-			throw new Phamlp_Sass_Script_Literal_NumberException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'number')), Phamlp_Sass_Script_Parser::$context->node);
+			throw new Phamlp_Sass_Script_Literal_NumberException('{what} must be a {type}', array('{what}'=>Phamlp_Translate::t('sass', 'Number'), '{type}'=>Phamlp_Translate::t('sass', 'number')), Phamlp_Sass_Script_Parser::$context->node);
 		}
 		else {
 			return new Phamlp_Sass_Script_Literal_Number(($this->value * $other->value).$this->unitString(
@@ -179,7 +179,7 @@ class Phamlp_Sass_Script_Literal_Number extends Phamlp_Sass_Script_Literal {
 			return $other->op_div($this);
 		}
 		elseif (!$other instanceof Phamlp_Sass_Script_Literal_Number) {
-			throw new Phamlp_Sass_Script_Literal_NumberException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'number')), Phamlp_Sass_Script_Parser::$context->node);
+			throw new Phamlp_Sass_Script_Literal_NumberException('{what} must be a {type}', array('{what}'=>Phamlp_Translate::t('sass', 'Number'), '{type}'=>Phamlp_Translate::t('sass', 'number')), Phamlp_Sass_Script_Parser::$context->node);
 		}
 		elseif ($this->inExpression || $other->inExpression) {
 			return new Phamlp_Sass_Script_Literal_Number(($this->value / $other->value).$this->unitString(
@@ -217,7 +217,7 @@ class Phamlp_Sass_Script_Literal_Number extends Phamlp_Sass_Script_Literal {
 	 */
 	public function op_gt($other) {
 		if (!$other instanceof Phamlp_Sass_Script_Literal_Number) {
-			throw new Phamlp_Sass_Script_Literal_NumberException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'number')), Phamlp_Sass_Script_Parser::$context->node);
+			throw new Phamlp_Sass_Script_Literal_NumberException('{what} must be a {type}', array('{what}'=>Phamlp_Translate::t('sass', 'Number'), '{type}'=>Phamlp_Translate::t('sass', 'number')), Phamlp_Sass_Script_Parser::$context->node);
 		}
 		return new Phamlp_Sass_Script_Literal_Boolean($this->value > $this->convert($other)->value);
 	}
@@ -230,7 +230,7 @@ class Phamlp_Sass_Script_Literal_Number extends Phamlp_Sass_Script_Literal {
 	 */
 	public function op_gte($other) {
 		if (!$other instanceof Phamlp_Sass_Script_Literal_Number) {
-			throw new Phamlp_Sass_Script_Literal_NumberException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'number')), Phamlp_Sass_Script_Parser::$context->node);
+			throw new Phamlp_Sass_Script_Literal_NumberException('{what} must be a {type}', array('{what}'=>Phamlp_Translate::t('sass', 'Number'), '{type}'=>Phamlp_Translate::t('sass', 'number')), Phamlp_Sass_Script_Parser::$context->node);
 		}
 		return new Phamlp_Sass_Script_Literal_Boolean($this->value >= $this->convert($other)->value);
 	}
@@ -243,7 +243,7 @@ class Phamlp_Sass_Script_Literal_Number extends Phamlp_Sass_Script_Literal {
 	 */
 	public function op_lt($other) {
 		if (!$other instanceof Phamlp_Sass_Script_Literal_Number) {
-			throw new Phamlp_Sass_Script_Literal_NumberException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'number')), Phamlp_Sass_Script_Parser::$context->node);
+			throw new Phamlp_Sass_Script_Literal_NumberException('{what} must be a {type}', array('{what}'=>Phamlp_Translate::t('sass', 'Number'), '{type}'=>Phamlp_Translate::t('sass', 'number')), Phamlp_Sass_Script_Parser::$context->node);
 		}
 		return new Phamlp_Sass_Script_Literal_Boolean($this->value < $this->convert($other)->value);
 	}
@@ -256,7 +256,7 @@ class Phamlp_Sass_Script_Literal_Number extends Phamlp_Sass_Script_Literal {
 	 */
 	public function op_lte($other) {
 		if (!$other instanceof Phamlp_Sass_Script_Literal_Number) {
-			throw new Phamlp_Sass_Script_Literal_NumberException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'number')), Phamlp_Sass_Script_Parser::$context->node);
+			throw new Phamlp_Sass_Script_Literal_NumberException('{what} must be a {type}', array('{what}'=>Phamlp_Translate::t('sass', 'Number'), '{type}'=>Phamlp_Translate::t('sass', 'number')), Phamlp_Sass_Script_Parser::$context->node);
 		}
 		return new Phamlp_Sass_Script_Literal_Boolean($this->value <= $this->convert($other)->value);
 	}
@@ -269,7 +269,7 @@ class Phamlp_Sass_Script_Literal_Number extends Phamlp_Sass_Script_Literal {
 	 */
 	public function op_modulo($other) {
 		if (!$other instanceof Phamlp_Sass_Script_Literal_Number || !$other->isUnitless()) {
-			throw new Phamlp_Sass_Script_Literal_NumberException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'unitless number')), Phamlp_Sass_Script_Parser::$context->node);
+			throw new Phamlp_Sass_Script_Literal_NumberException('{what} must be a {type}', array('{what}'=>Phamlp_Translate::t('sass', 'Number'), '{type}'=>Phamlp_Translate::t('sass', 'unitless number')), Phamlp_Sass_Script_Parser::$context->node);
 		}
 		$this->value %= $this->convert($other)->value;
 		return $this;

@@ -285,7 +285,7 @@ class Phamlp_Sass_Parser {
 			throw new Phamlp_Sass_Exception('{what} must be a {type}', array('{what}'=>'options', '{type}'=>'array'));
 		}
 		if (!empty($options['language'])) {
-			Phamlp::$language = $options['language'];
+			Phamlp_Translate::$language = $options['language'];
 		}
 		
 		if (!empty($options['extensions'])) {

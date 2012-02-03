@@ -66,7 +66,7 @@ class Phamlp_Sass_Tree_Node_Debug extends Phamlp_Sass_Tree_Node {
 	public function parse($context) {
 		if (!$this->warning || ($this->root->parser->quiet === false)) {
 			set_error_handler(array($this, 'errorHandler'));
-			trigger_error(($this->warning ? $this->interpolate(Phamlp::t('sass', $this->message, $this->params), $context) : $this->evaluate(Phamlp::t('sass', $this->message, $this->params), $context)->toString()));
+			trigger_error(($this->warning ? $this->interpolate(Phamlp_Translate::t('sass', $this->message, $this->params), $context) : $this->evaluate(Phamlp_Translate::t('sass', $this->message, $this->params), $context)->toString()));
 			restore_error_handler();			
 		}
 
