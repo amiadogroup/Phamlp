@@ -63,7 +63,7 @@ class Phamlp_Translate {
 	 * @param string message category
 	 */
 	private static function loadMessages($category) {
-		$messageFile = dirname(__FILE__).DIRECTORY_SEPARATOR.$category.DIRECTORY_SEPARATOR.'messages'.DIRECTORY_SEPARATOR.self::$language.'.php';
+		$messageFile = dirname(__FILE__).DIRECTORY_SEPARATOR.$category.DIRECTORY_SEPARATOR.'Message'.DIRECTORY_SEPARATOR.self::$language.'.php';
 		if (file_exists($messageFile)) {
 			self::$messages[$category] = require_once($messageFile);
 		}
