@@ -181,7 +181,8 @@ class Phamlp_Sass_Script_Parser {
 				array_push($outputQueue, array_pop($operatorStack));
 			}
 			else {
-				throw new Phamlp_Sass_Script_ParserException('Unmatched parentheses', array(), $context->node);
+				array_pop($operatorStack);
+				//throw new Phamlp_Sass_Script_ParserException('Unmatched parentheses', array(), $context->node);
 			}
 		}
 		return $outputQueue;

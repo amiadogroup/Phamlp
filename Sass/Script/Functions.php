@@ -734,7 +734,7 @@ class Phamlp_Sass_Script_Functions {
 	 * Phamlp_Sass_Script_Literal
 	 */
 	public static function type_of($obj) {
-		Phamlp_Sass_Script_Literal::assertType($obj, Phamlp_Sass_Script_Literal);
+		Phamlp_Sass_Script_Literal::assertType($obj, 'Phamlp_Sass_Script_Literal');
 		return new Phamlp_Sass_Script_Literal_String($obj->typeOf);
 	}
 	

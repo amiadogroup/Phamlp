@@ -47,12 +47,14 @@ class Phamlp_Sass_Script_Function {
 	 * @throws Phamlp_Sass_Script_FunctionException if function is undefined
 	 */
 	public function perform() {
-		$name = implode(null, split(' ', ucwords(implode(' ', split('-', $this->name)))));
+		$name = str_replace('-', '_', $this->name);
+		if($this->name == 'if') {
+			$name = '_if';
+		}
 		foreach(Phamlp_Sass_Script_Parser::$context->node->parser->function_paths as $namespace=>$path) {
 			foreach(glob($path.DIRECTORY_SEPARATOR.'*.php') as $file) {
-				var_dump($namespace.basename($file, ".php"));
 				if (method_exists($namespace.basename($file, ".php"), $name)) {
-					return call_user_func_array(array($namespace.$name, $name), $this->args);
+					return call_user_func_array(array($namespace.basename($file, ".php"), $name), $this->args);
 				}
 			}
 		}
