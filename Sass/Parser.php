@@ -764,7 +764,7 @@ class Phamlp_Sass_Parser {
 	private function parseDirective($token, $parent) {
 		switch (Phamlp_Sass_Tree_Node_Directive::extractDirective($token)) {
 			case '@extend':
-				return new SassExtendNode($token);
+				return new Phamlp_Sass_Tree_Node_Extend($token);
 				break;
 			case '@mixin':
 				return new Phamlp_Sass_Tree_Node_Mixin_Definition($token);

@@ -9,8 +9,8 @@
  */
 
 /**
- * SassExtendNodeException class.
+ * Phamlp_Sass_Tree_Node_ExtendException class.
  * @package			PHamlP
  * @subpackage	Sass.tree
  */
-class SassExtendNodeException extends Phamlp_Sass_Tree_NodeException {}
+class Phamlp_Sass_Tree_Node_ExtendException extends Phamlp_Sass_Tree_NodeException {}

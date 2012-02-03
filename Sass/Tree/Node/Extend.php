@@ -1,7 +1,7 @@
 <?php
-/* SVN FILE: $Id: SassExtendNode.php 49 2010-04-04 10:51:24Z chris.l.yates $ */
+/* SVN FILE: $Id: Phamlp_Sass_Tree_Node_Extend.php 49 2010-04-04 10:51:24Z chris.l.yates $ */
 /**
- * SassExtendNode class file.
+ * Phamlp_Sass_Tree_Node_Extend class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
  * @copyright 	Copyright (c) 2010 PBM Web Development
  * @license			http://phamlp.googlecode.com/files/license.txt
@@ -10,12 +10,12 @@
  */
 
 /**
- * SassExtendNode class.
+ * Phamlp_Sass_Tree_Node_Extend class.
  * Represents a Sass @debug or @warn directive.
  * @package			PHamlP
  * @subpackage	Sass.tree
  */
-class SassExtendNode extends Phamlp_Sass_Tree_Node {
+class Phamlp_Sass_Tree_Node_Extend extends Phamlp_Sass_Tree_Node {
 	const IDENTIFIER = '@';
 	const MATCH = '/^@extend\s+(.+)/i';
 	const VALUE = 1;
@@ -26,9 +26,9 @@ class SassExtendNode extends Phamlp_Sass_Tree_Node {
 	private $value;
 
 	/**
-	 * SassExtendNode.
+	 * Phamlp_Sass_Tree_Node_Extend.
 	 * @param object source token
-	 * @return SassExtendNode
+	 * @return Phamlp_Sass_Tree_Node_Extend
 	 */
 	public function __construct($token) {
 		parent::__construct($token);
