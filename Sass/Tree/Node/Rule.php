@@ -282,10 +282,10 @@ class Phamlp_Sass_Tree_Node_Rule extends Phamlp_Sass_Tree_Node {
 	 */
 	private function resolveParentReferences($selector, $context) {
 		$resolvedReferences = array(); 
-		if (!count($this->parentSelectors)) {
+		/*if (!count($this->parentSelectors)) {
 			throw new Phamlp_Sass_Tree_Node_RuleException('Can not use parent selector (' .
 					self::PARENT_REFERENCE . ') when no parent selectors', array(), $this);
-		}
+		}*/
 		foreach ($this->getParentSelectors($context) as $parentSelector) {
 			$resolvedReferences[] = str_replace(self::PARENT_REFERENCE, $parentSelector, $selector);
 		}
