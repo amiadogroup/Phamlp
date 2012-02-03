@@ -52,8 +52,6 @@
  * @subpackage	Haml
  */
 
-require_once('tree/Phamlp_Haml_Tree_Node.php');
-
 /**
  * Phamlp_Haml_Parser class.
  * Parses {@link http://haml-lang.com/ Haml} view files.
@@ -790,7 +788,6 @@ class Phamlp_Haml_Parser {
 		
 		if (empty($this->filters[$filter])) {
 			if ($firstRun) {
-				require_once('filters/Phamlp_Haml_Filter_Base.php');
 				$firstRun = false;
 			}
 
@@ -799,13 +796,11 @@ class Phamlp_Haml_Parser {
 				$this->filterDir = (substr($this->filterDir, -1) == DIRECTORY_SEPARATOR?
 						substr($this->filterDir, 0, -1):$this->filterDir);
 				if (file_exists($this->filterDir.DIRECTORY_SEPARATOR."$filterclass.php")) {
-					require_once($this->filterDir.DIRECTORY_SEPARATOR."$filterclass.php");
 					$imported = true; 
 				}
 			}
 
 			if (!$imported && file_exists(dirname(__FILE__).DIRECTORY_SEPARATOR.'filters'.DIRECTORY_SEPARATOR."$filterclass.php")) {
-				require_once("filters/$filterclass.php");
 				$imported = true; 
 			}
 			
