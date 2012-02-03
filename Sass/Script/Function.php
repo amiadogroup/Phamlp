@@ -47,21 +47,13 @@ class Phamlp_Sass_Script_Function {
 	 * @throws Phamlp_Sass_Script_FunctionException if function is undefined
 	 */
 	public function perform() {
-		$name = str_replace('-', '_', $this->name);
-		foreach (Phamlp_Sass_Script_Parser::$context->node->parser->function_paths as $path) {	
-			$_path = explode(DIRECTORY_SEPARATOR, $path);
-			$_class = ucfirst($_path[sizeof($_path) - 2]);
-			foreach (array_slice(scandir($path), 2) as $file) {
-				$filename = $path . DIRECTORY_SEPARATOR . $file;
-				if (is_file($filename)) {
-					require_once($filename);
-					$class = 'SassExtentions'.$_class.'Functions'. ucfirst(substr($file, 0, -4));
-					if (method_exists($class, $name)) {
-						return call_user_func_array(array($class, $name), $this->args);
-					}
-				}
-			} // foreach
-		} // foreach
+		$name = implode(null, split(' ', ucwords(implode(' ', split('-', $this->name)))));
+		foreach (Phamlp_Sass_Script_Parser::$context->node->parser->function_paths as $namespace=>$path) {	
+			//$class = 'SassExtentions'.$_class.'Functions'. ucfirst(substr($file, 0, -4));
+			if (method_exists($namespace.$name, $name)) {
+				return call_user_func_array(array($namespace.$name, $name), $this->args);
+			}
+		}
 
 		if (method_exists('Phamlp_Sass_Script_Functions', $name)) {
 			return call_user_func_array(array('Phamlp_Sass_Script_Functions', $name), $this->args);

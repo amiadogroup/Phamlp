@@ -34,7 +34,6 @@ class Phamlp_Sass_Parser {
 	const CACHE							= true;
 	const CACHE_LOCATION		= './sass-cache';
 	const CSS_LOCATION			= './css';
-	const TEMPLATE_LOCATION = './sass-templates';
 	const BEGIN_COMMENT			= '/';
 	const BEGIN_CSS_COMMENT	= '/*';
 	const END_CSS_COMMENT		= '*/';
@@ -129,7 +128,7 @@ class Phamlp_Sass_Parser {
 	 * @var array An array of filesystem paths which should be searched for
 	 * SassScript functions.
 	 */
-	private $function_paths;
+	private $function_paths = array();
 	
 	/**
 	 * line:
@@ -161,7 +160,7 @@ class Phamlp_Sass_Parser {
 	 * 
 	 * Defaults to './sass-templates'.
 	 */
-	private $load_paths;
+	private $load_paths = array();
 	
 	/**
 	 * property_syntax: 
@@ -290,17 +289,15 @@ class Phamlp_Sass_Parser {
 		}
 		
 		if (!empty($options['extensions'])) {
-			foreach ($options['extensions'] as $extension=>$extOptions) {
-				$configClass = 'Phamlp_Sass_Extension_'.$extension.'_Config';
-				$config = new $configClass;
-				$config->config($extOptions);
-				
-				$lp = dirname(__FILE__).DIRECTORY_SEPARATOR.'extensions'.DIRECTORY_SEPARATOR.$extension.DIRECTORY_SEPARATOR.'frameworks';
-				$fp = dirname(__FILE__).DIRECTORY_SEPARATOR.'extensions'.DIRECTORY_SEPARATOR.$extension.DIRECTORY_SEPARATOR.'functions';
-				$options['load_paths'] = (empty($options['load_paths']) ?
-					array($lp) : array_merge($options['load_paths'], $lp));
-				$options['function_paths'] = (empty($options['function_paths']) ?
-					array($fp) : array_merge($options['function_paths'], $fp));			
+                        if(!isset($options['load_paths'])) {
+                                $options['load_paths'] = array();
+                        }
+                        if(!isset($options['function_paths'])) {
+                                $options['function_paths'] = array();
+                        }
+			foreach ($options['extensions'] as $extension) {
+				$options['load_paths'] = array_merge($options['load_paths'], $extension->getFrameworkPaths());
+				$options['function_paths'] = array_merge($options['function_paths'], $extension->getFunctionsPaths());			
 			}
 		}
 		
@@ -321,7 +318,6 @@ class Phamlp_Sass_Parser {
 			'debug_info'		 => false,
 			'filename'			 => array('dirname' => '', 'basename' => ''),
 			'function_paths' => array(),
-			'load_paths' 		 => array(dirname(__FILE__) . DIRECTORY_SEPARATOR . self::TEMPLATE_LOCATION),
 			'line'					 => 1,
 			'line_numbers'	 => false,
 			'style' 				 => Phamlp_Sass_Renderer::STYLE_NESTED,

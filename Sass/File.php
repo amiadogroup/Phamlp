@@ -75,7 +75,7 @@ class Phamlp_Sass_File {
 			if (file_exists($_filename)) {
 				return $_filename;
 			}
-
+print_r($parser->load_paths);
 			foreach (array_merge(array(dirname($parser->filename)), $parser->load_paths) as $loadPath) {
 				$path = self::findFile($_filename, realpath($loadPath));
 				if ($path !== false) {
@@ -90,7 +90,7 @@ class Phamlp_Sass_File {
 				}
 			}		
 		}
-
+die;
 		throw new Phamlp_Sass_Exception('Unable to find {what}: {filename}', array('{what}'=>'import file', '{filename}'=>$filename));
 	}
 
