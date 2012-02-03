@@ -9,11 +9,9 @@
  * @subpackage	Haml.tree
  */
 
-require_once(dirname(__FILE__).'/../HamlException.php');
-
 /**
  * HamlNodeException class.
  * @package			PHamlP
  * @subpackage	Haml.tree
  */
-class HamlNodeException extends HamlException {}
+class HamlNodeException extends Phamlp_Haml_Exception {}

@@ -24,7 +24,7 @@ class HamlEscapedFilter extends HamlBaseFilter {
 	 */
 	public function run($text) {
 	  return preg_replace(
-	  	HamlParser::MATCH_INTERPOLATION,
+	  	Phamlp_Haml_Parser::MATCH_INTERPOLATION,
 	  	'<?php echo htmlspecialchars($text); ?>',
 	  	htmlspecialchars($text)
 	  ) . "\n";

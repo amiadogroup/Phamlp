@@ -1,8 +1,8 @@
 <?php
 /* SVN FILE: $Id$ */
 /**
- * HamlParser class file.
- * HamlParser allows you to write view files in
+ * Phamlp_Haml_Parser class file.
+ * Phamlp_Haml_Parser allows you to write view files in
  * {@link http://haml-lang.com/ Haml}.
  * 
  * Please see the {@link http://haml-lang.com/docs/yardoc/file.Haml_REFERENCE.html#plain_text Haml documentation} for the syntax.
@@ -53,16 +53,14 @@
  */
 
 require_once('tree/HamlNode.php');
-require_once('HamlHelpers.php');
-require_once('HamlException.php');
 
 /**
- * HamlParser class.
+ * Phamlp_Haml_Parser class.
  * Parses {@link http://haml-lang.com/ Haml} view files.
  * @package			PHamlP
  * @subpackage	Haml
  */
-class HamlParser {
+class Phamlp_Haml_Parser {
 	/**#@+
 	 * Debug modes
 	 */
@@ -230,9 +228,9 @@ class HamlParser {
 	 */
 	private $helperFile;
 	/**
-	 * @var string Haml helper class. This must be an instance of HamlHelpers.
+	 * @var string Haml helper class. This must be an instance of Phamlp_Haml_Helpers.
 	 */
-	private $helperClass = 'HamlHelpers';
+	private $helperClass = 'Phamlp_Haml_Helpers';
 
 	/**
 	 * @var array built in Doctypes
@@ -322,9 +320,9 @@ class HamlParser {
 	private $source;
 
 	/**
-	 * HamlParser constructor.
+	 * Phamlp_Haml_Parser constructor.
 	 * @param array options
-	 * @return HamlParser
+	 * @return Phamlp_Haml_Parser
 	 */
 	public function __construct($options = array()) {
 		if (isset($options['language'])) {
@@ -342,18 +340,16 @@ class HamlParser {
 		$this->format = strtolower($this->format);
 		if (is_null($this->doctype) &&
 				!array_key_exists($this->format, $this->doctypes)) {
-			throw new HamlException('Invalid {what} ({value}). Must be one of "{options}"', array('{what}'=>'format', '{value}'=>$this->format, '{options}'=>join(', ', array_keys($this->doctypes))), $this);
+			throw new Phamlp_Haml_Exception('Invalid {what} ({value}). Must be one of "{options}"', array('{what}'=>'format', '{value}'=>$this->format, '{options}'=>join(', ', array_keys($this->doctypes))), $this);
 		}
 
-		$this->showSource = $this->debug & HamlParser::DEBUG_SHOW_SOURCE;
-		$this->showOutput = $this->debug & HamlParser::DEBUG_SHOW_OUTPUT;
+		$this->showSource = $this->debug & Phamlp_Haml_Parser::DEBUG_SHOW_SOURCE;
+		$this->showOutput = $this->debug & Phamlp_Haml_Parser::DEBUG_SHOW_OUTPUT;
 		
-		require_once dirname(__FILE__).DIRECTORY_SEPARATOR.'HamlHelpers.php';
 		if (isset($this->helperFile)) {
-			require_once $this->helperFile;
 			$this->helperClass = basename($this->helperFile, ".php"); 
-			if (!is_subclass_of($this->helperClass, 'HamlHelpers')) {
-				throw new HamlException('{what} must extend {base} class', array('{what}'=>$this->helperClass, '{base}'=>'HamlHelpers'), $this);
+			if (!is_subclass_of($this->helperClass, 'Phamlp_Haml_Helpers')) {
+				throw new Phamlp_Haml_Exception('{what} must extend {base} class', array('{what}'=>$this->helperClass, '{base}'=>'Phamlp_Haml_Helpers'), $this);
 			}
 		} 
 	}
@@ -368,7 +364,7 @@ class HamlParser {
 		if (method_exists($this, $getter)) {
 			return $this->$getter();
 		}
-		throw new HamlException('No getter function for {what}', array('{what}'=>$name));
+		throw new Phamlp_Haml_Exception('No getter function for {what}', array('{what}'=>$name));
 	}
 	
 	public function getFilename() {
@@ -433,11 +429,6 @@ class HamlParser {
 	public function haml2PHP($sourceFile) {
 		$this->line = 0;
 		$this->filename = $sourceFile;
-		$helpers = "<?php\nrequire_once '".dirname(__FILE__).DIRECTORY_SEPARATOR."HamlHelpers.php';\n";
-		if (isset($this->helperFile)) {
-			$helpers .= "require_once '{$this->helperFile}';\n";
-		}
-		$helpers .= "?>";
 		return $helpers . $this->toTree(file_get_contents($sourceFile))->render();
 	}
 
@@ -529,7 +520,7 @@ class HamlParser {
 				return false;
 			}
 			else {
-				throw new HamlException('Illegal indentation level ({level}); indentation level can only increase by one', array('{level}'=>$level), $this);
+				throw new Phamlp_Haml_Exception('Illegal indentation level ({level}); indentation level can only increase by one', array('{level}'=>$level), $this);
 			}
 		}
 		else {
@@ -555,7 +546,7 @@ class HamlParser {
 	 * The first character of the first indented line determines the character.
 	 * If this is a space the number of spaces determines the indentSpaces; this
 	 * is always 1 if the indent character is a tab.
-	 * @throws HamlException if the indent is mixed
+	 * @throws Phamlp_Haml_Exception if the indent is mixed
 	 */
 	private function setIndentChar() {
 		foreach ($this->source as $l=>$source) {
@@ -565,7 +556,7 @@ class HamlParser {
 				if ($i < $len && in_array($source[$i], $this->indentChars)) {
 					$this->line = ++$l;
 					$this->source = $source;
-					throw new HamlException('Mixed indentation not allowed', array(), $this);
+					throw new Phamlp_Haml_Exception('Mixed indentation not allowed', array(), $this);
 				}
 				$this->indentSpaces = ($this->indentChar == ' ' ? $i : 1);
 				return;
@@ -625,7 +616,7 @@ class HamlParser {
 
 		if (!is_integer($indent) ||
 				preg_match("/[^{$this->indentChar}]/", $line[self::HAML_INDENT])) {
-			throw new HamlException('Invalid indentation', array(), $this);
+			throw new Phamlp_Haml_Exception('Invalid indentation', array(), $this);
 		}
 		return $indent;
 	}
@@ -791,7 +782,7 @@ class HamlParser {
 	 * Gets a filter.
 	 * Filters are loaded on first use.
 	 * @param string filter name
-	 * @throws HamlException if the filter does not exist or does not extend HamlBaseFilter
+	 * @throws Phamlp_Haml_Exception if the filter does not exist or does not extend HamlBaseFilter
 	 */
 	private function getFilter($filter) {
 		static $firstRun = true;
@@ -819,13 +810,13 @@ class HamlParser {
 			}
 			
 			if (!$imported) {
-				throw new HamlException('Unable to find {what}: {filename}', array('{what}'=>$filter.' filter', '{filename}'=>$filterclass.'.php'), $this);
+				throw new Phamlp_Haml_Exception('Unable to find {what}: {filename}', array('{what}'=>$filter.' filter', '{filename}'=>$filterclass.'.php'), $this);
 			}
 			
 			$this->filters[$filter] = new $filterclass();
 
 			if (!($this->filters[$filter] instanceof HamlBaseFilter)) {
-				throw new HamlException('{what} must extend {base} class', array('{what}'=>$filter, '{base}'=>'HamlBaseFilter'), $this);
+				throw new Phamlp_Haml_Exception('{what} must extend {base} class', array('{what}'=>$filter, '{base}'=>'HamlBaseFilter'), $this);
 			}
 
 			$this->filters[$filter]->init();
@@ -945,7 +936,7 @@ class HamlParser {
 			elseif (!empty($attr[4])) {
 				$values = array_map('trim', explode(',', $attr[4]));
 				if ($attr[3] !== 'class' && $attr[3] !== 'id') {
-					throw new HamlException('Attribute must be "class" or "id" with array value', array(), $this);
+					throw new Phamlp_Haml_Exception('Attribute must be "class" or "id" with array value', array(), $this);
 				}
 				$attributes[$attr[3]] = '<?php echo ' . join(($attr[3] === 'id' ? ".'_'." : ".' '."), $values) . '; ?>';
 			}
@@ -973,12 +964,12 @@ class HamlParser {
 	
 	/**
 	 * Returns an array of attributes for the html element.
-	 * @param array arguments for HamlHelpers::html_attrs 
+	 * @param array arguments for Phamlp_Haml_Helpers::html_attrs 
 	 * @return array attributes for the html element
 	 */
 	private function htmlAttrs($htmlAttrs) {
 		if (empty($htmlAttrs[1]) && empty($htmlAttrs[2])) {
-			return HamlHelpers::html_attrs();
+			return Phamlp_Haml_Helpers::html_attrs();
 		}
 		else {
 			$htmlAttrs[1] = substr($htmlAttrs[1], 1, -1);
@@ -986,10 +977,10 @@ class HamlParser {
 				$htmlAttrs[1] = eval("return {$htmlAttrs[1]}");
 			}
 			if (isset($htmlAttrs[2])) {
-				return HamlHelpers::html_attrs($htmlAttrs[1], eval($htmlAttrs[2] . ';'));
+				return Phamlp_Haml_Helpers::html_attrs($htmlAttrs[1], eval($htmlAttrs[2] . ';'));
 			}
 			else {
-				return HamlHelpers::html_attrs($htmlAttrs[1]);
+				return Phamlp_Haml_Helpers::html_attrs($htmlAttrs[1]);
 			}
 		}
 	}
@@ -1093,7 +1084,7 @@ class HamlParser {
 		    break;
 		  default:
 		  	if (!in_array($matches[1], $this->styles)) {
-					throw new HamlException('Invalid {what} ({value})', array('{what}'=>'directive', '{value}'=>self::DIRECTIVE.$matches[0]), $this);
+					throw new Phamlp_Haml_Exception('Invalid {what} ({value})', array('{what}'=>'directive', '{value}'=>self::DIRECTIVE.$matches[0]), $this);
 		  	}
 		  	$this->style = $matches[1];
 		    break;
@@ -1126,7 +1117,7 @@ class HamlParser {
 			else {
 				$_doctypes = array_keys($this->doctypes[$this->format]);
 				array_shift($_doctypes);
-				throw new HamlException('Invalid {what} ({value}); must be one of "{options}"', array('{what}'=>'doctype', '{value}'=>$content[0], '{options}'=>join(', ', $_doctypes).' or empty'), $this);
+				throw new Phamlp_Haml_Exception('Invalid {what} ({value}); must be one of "{options}"', array('{what}'=>'doctype', '{value}'=>$content[0], '{options}'=>join(', ', $_doctypes).' or empty'), $this);
 			}
 		}
 		return new HamlDoctypeNode($output, $parent);

@@ -31,6 +31,6 @@ class HamlScssFilter extends HamlBaseFilter {
 		$css = new HamlCssFilter();
 		$css->init();
 
-		return $css->run($sass->toCss(preg_replace(HamlParser::MATCH_INTERPOLATION, '<?php echo \1; ?>', $text), false));
+		return $css->run($sass->toCss(preg_replace(Phamlp_Haml_Parser::MATCH_INTERPOLATION, '<?php echo \1; ?>', $text), false));
 	}
 }

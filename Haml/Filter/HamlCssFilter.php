@@ -24,7 +24,7 @@ class HamlCssFilter extends HamlBaseFilter {
 	 */
 	public function run($text) {
 	  return "<style type=\"text/css\">\n/*<![CDATA[*/\n" .
-	  	preg_replace(HamlParser::MATCH_INTERPOLATION, '<?php echo \1; ?>', $text) .
+	  	preg_replace(Phamlp_Haml_Parser::MATCH_INTERPOLATION, '<?php echo \1; ?>', $text) .
 	  	"/*]]>*/\n</style>\n";
 	}
 }

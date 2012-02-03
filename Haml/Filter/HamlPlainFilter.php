@@ -23,6 +23,6 @@ class HamlPlainFilter extends HamlBaseFilter {
 	 * @return string filtered text
 	 */
 	public function run($text) {
-	  return preg_replace(HamlParser::MATCH_INTERPOLATION, '<?php echo \1; ?>', $text). "\n";
+	  return preg_replace(Phamlp_Haml_Parser::MATCH_INTERPOLATION, '<?php echo \1; ?>', $text). "\n";
 	}
 }

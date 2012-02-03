@@ -182,7 +182,7 @@ class HamlNode {
 	 * @return string the source for this node
 	 */
 	private function getSource() {
-		return $this->token[HamlParser::HAML_SOURCE];
+		return $this->token[Phamlp_Haml_Parser::HAML_SOURCE];
 	}
 
 	/**
@@ -248,6 +248,6 @@ class HamlNode {
 	 * @param array source line(s) that generated the ouput
 	 */
 	protected function showSource($output) {
-		return "<!--\n  ({$this->line['file']} {$this->line['number']}:{$this->line['indentLevel']})\n  {$this->line[HamlParser::HAML_SOURCE]}\n-->\n$output";
+		return "<!--\n  ({$this->line['file']} {$this->line['number']}:{$this->line['indentLevel']})\n  {$this->line[Phamlp_Haml_Parser::HAML_SOURCE]}\n-->\n$output";
 	}
 }

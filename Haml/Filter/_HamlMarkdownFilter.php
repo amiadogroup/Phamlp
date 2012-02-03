@@ -45,6 +45,6 @@ abstract class _HamlMarkdownFilter extends HamlBaseFilter {
 	 * @return string filtered text
 	 */
 	public function run($text) {
-		return '<?php	'.(!empty($this->vendorPath)?'require_once "'.$this->vendorPath.'";':'').'$markdown___=new '.$this->vendorClass.'();echo  $markdown___->safeTransform("'.preg_replace(HamlParser::MATCH_INTERPOLATION, '".\1."', $text).'");?>';
+		return '<?php	'.(!empty($this->vendorPath)?'require_once "'.$this->vendorPath.'";':'').'$markdown___=new '.$this->vendorClass.'();echo  $markdown___->safeTransform("'.preg_replace(Phamlp_Haml_Parser::MATCH_INTERPOLATION, '".\1."', $text).'");?>';
 	}
 }

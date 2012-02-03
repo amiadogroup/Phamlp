@@ -23,7 +23,7 @@ class HamlCdataFilter extends HamlBaseFilter {
 	 */
 	public function run($text) {
 	  return "<![CDATA[\n" .
-	  	preg_replace(HamlParser::MATCH_INTERPOLATION, '<?php echo \1; ?>', $text) .
+	  	preg_replace(Phamlp_Haml_Parser::MATCH_INTERPOLATION, '<?php echo \1; ?>', $text) .
 	  	"  ]]>\n";
 	}
 }
