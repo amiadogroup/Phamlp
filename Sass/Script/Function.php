@@ -48,10 +48,12 @@ class Phamlp_Sass_Script_Function {
 	 */
 	public function perform() {
 		$name = implode(null, split(' ', ucwords(implode(' ', split('-', $this->name)))));
-		foreach (Phamlp_Sass_Script_Parser::$context->node->parser->function_paths as $namespace=>$path) {	
-			//$class = 'SassExtentions'.$_class.'Functions'. ucfirst(substr($file, 0, -4));
-			if (method_exists($namespace.$name, $name)) {
-				return call_user_func_array(array($namespace.$name, $name), $this->args);
+		foreach(Phamlp_Sass_Script_Parser::$context->node->parser->function_paths as $namespace=>$path) {
+			foreach(glob($path.DIRECTORY_SEPARATOR.'*.php') as $file) {
+				var_dump($namespace.basename($file, ".php"));
+				if (method_exists($namespace.basename($file, ".php"), $name)) {
+					return call_user_func_array(array($namespace.$name, $name), $this->args);
+				}
 			}
 		}
 
