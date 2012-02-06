@@ -39,7 +39,7 @@ class Phamlp_Sass_Tree_Node_Mixin_Definition extends Phamlp_Sass_Tree_Node {
 	 */
 	public function __construct($token) {
   	if ($token->level !== 0) {
-			throw new Phamlp_Sass_Tree_Node_Mixin_DefinitionException('Mixins can only be defined at root level', array(), $this);
+			//throw new Phamlp_Sass_Tree_Node_Mixin_DefinitionException('Mixins can only be defined at root level', array(), $this);
 	 	}
 		parent::__construct($token);
 		preg_match(self::MATCH, $token->source, $matches);

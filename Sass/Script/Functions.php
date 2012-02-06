@@ -40,6 +40,22 @@ class Phamlp_Sass_Script_Functions {
 	const DECREASE = false;
 	const INCREASE = true;
 	
+	/**
+	 * If Function, returns argument 1 or 2
+	 *
+	 * @param Phamlp_Sass_Script_Literal_Boolean $expression
+	 * @param Phamlp_Sass_Script_Literal $content_true
+	 * @param Phamlp_Sass_Script_Literal $content_false
+	 * @return Phamlp_Sass_Script_Literal
+	 */
+	public static function f_if(Phamlp_Sass_Script_Literal_Boolean $expression, Phamlp_Sass_Script_Literal $content_true, Phamlp_Sass_Script_Literal $content_false) {
+		if($expression->value) {
+			return $content_true;
+		} else {
+			return $content_false;
+		}
+	}
+	
 	/*
 	 * Colour Creation
 	 */

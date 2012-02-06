@@ -49,7 +49,7 @@ class Phamlp_Sass_Script_Function {
 	public function perform() {
 		$name = str_replace('-', '_', $this->name);
 		if($this->name == 'if') {
-			$name = '_if';
+			$name = 'f_if';
 		}
 		foreach(Phamlp_Sass_Script_Parser::$context->node->parser->function_paths as $namespace=>$path) {
 			foreach(glob($path.DIRECTORY_SEPARATOR.'*.php') as $file) {

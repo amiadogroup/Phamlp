@@ -661,7 +661,7 @@ class Phamlp_Sass_Parser {
 			$srclen = strlen($this->source);
 		}
 		while (is_null($token) && $srcpos < $srclen) {
-			$c = $this->source[$srcpos++];
+			$c = @$this->source[$srcpos++];
 			switch ($c) {
 				case self::BEGIN_COMMENT:	
 					if (substr($this->source, $srcpos-1, strlen(self::BEGIN_SASS_COMMENT))
@@ -772,6 +772,9 @@ class Phamlp_Sass_Parser {
 			case '@include':
 				return new Phamlp_Sass_Tree_Node_Mixin($token);
 				break;
+                        case '@function':
+                                return null;
+                                break;
 			case '@import':
 				if ($this->syntax == Phamlp_Sass_File::SASS) {
 					$i = 0;
